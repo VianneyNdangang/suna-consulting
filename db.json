@@ -1,0 +1,97 @@
+{
+  "site-content": {
+    "hero_title": "Plus proche du pays, malgré la distance",
+    "hero_subtitle": "Votre représentant de confiance au Cameroun",
+    "stats": [
+      { "label": "Années d'expérience", "value": "8+" },
+      { "label": "Dossiers traités", "value": "500+" },
+      { "label": "Pays couverts", "value": "12" }
+    ],
+    "why_choose_us": [
+      "Professionnalisme et discrétion",
+      "Transparence dans toutes les missions",
+      "Comptes rendus réguliers et détaillés"
+    ],
+    "contact_phone": "+237 679-188-336",
+    "contact_email": "sunaconsulting@gmail.com",
+    "contact_whatsapp": "+237679188336",
+    "social_links": {
+      "facebook": "https://facebook.com/sunaconsulting",
+      "instagram": "https://instagram.com/sunaconsulting"
+    }
+  },
+  "services": [
+    {
+      "id": "b1",
+      "slug": "assistance-administrative",
+      "title": "Assistance administrative",
+      "short_description": "Démarches, dépôts de documents et suivi de dossiers.",
+      "icon": "shield-doc",
+      "is_active": true,
+      "display_order": 1
+    },
+    {
+      "id": "b2",
+      "slug": "accompagnement-immobilier-foncier",
+      "title": "Accompagnement immobilier et foncier",
+      "short_description": "Vérification de parcelles et suivi des transactions.",
+      "icon": "home",
+      "is_active": true,
+      "display_order": 2
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    }
+  ],
+  "team": [
+    {
+      "id": "m1",
+      "name": "Paul Etoundi",
+      "role": "Responsable terrain",
+      "photo_url": "https://cdn.suna.com/team/paul.jpg"
+    }
+  ],
+  "faq": [
+    {
+      "id": "f1",
+      "question": "Comment payer depuis l'étranger ?",
+      "answer": "Par virement international ou mobile money via nos partenaires.",
+      "category": "paiement",
+      "display_order": 1
+    }
+  ],
+  "newsletter": [
+    {
+      "id": "n1",
+      "email": "diaspora@example.com"
+    }
+  ],
+  "quotes": [
+    {
+      "id": "q1...",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "description": "J/'aimerais faire vérifier une parcelle à Douala avant achat.",
+      "status": "en_cours",
+      "created_at": "2026-07-16T10:20:00Z",
+      "updated_at": "2026-07-17T09:00:00Z"
+    }
+  ],
+  "auth/me": {
+    "id": "5f2b9e1a-...",
+    "full_name": "Jean Mballa",
+    "email": "jean.mballa@example.com",
+    "phone": "+1 514 555 0134",
+    "country": "Canada",
+    "city": "Montréal",
+    "role": "client",
+    "is_verified": true
+  }
+}

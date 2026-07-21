@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+body {
+    background-color: #fffdf9;
+}
+@theme {
+    --color-rust-900: #8a3e12;
+    --color-rust-600: #b5651d;
+    --color-gold-400: #d4a24e;
+    --color-ink-900: #171310;
+    --color-sand-50: #f7f1e8;
+}

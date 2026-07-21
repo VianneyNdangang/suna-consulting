@@ -1,0 +1,1962 @@
+--- PAGE 1 ---
+SUNA	Consulting	-	API	&	Design	System
+Súna	Consulting	—	Documentation	technique
+16	juillet	2026
+SÚNA	CONSULTING	—	Spécification	Backend,	Contrats	API	&
+Design	System
+Ce	document	couvre	:	le	modèle	de	données,	
+chaque	endpoint	avec	un	exemple	de	requête	et	de	réponse	JSON
+,	le	planning	frontend	3
+jours,	puis	le	
+détail	complet	de	chaque	composant	du	design
+.
+Hypothèse	technique	retenue	:
+	API	REST	JSON,	JWT	(access	+	refresh),	front-end	React	+	TypeScript	+	Tailwind	CSS.
+1.	Modèle	de	données
+1.1	
+User
+Champ
+Type
+Détails
+id
+UUID
+clé	primaire
+full_name
+string
+email
+string
+unique
+password_hash
+string
+jamais	renvoyé
+phone
+string
+country
+string
+pays	de	résidence
+city
+string
+role
+enum
+client
+	|	
+admin
+	|	
+super_admin
+is_verified
+boolean
+is_active
+boolean
+avatar_url
+string|null
+created_at
+	/	
+updated_at
+datetime
+1.2	
+QuoteRequest
+Champ
+Type
+Détails
+id
+UUID
+user_id
+UUID|null
+service_slug
+string
+description
+text
+preferred_contact
+enum
+email
+|
+telephone
+|
+whatsapp
+status
+enum
+nouveau
+|
+en_cours
+|
+traite
+|
+cloture
+attachments
+array<url>
+admin_notes
+text
+admin	uniquement
+created_at
+	/	
+updated_at
+datetime
+1.3	
+Service
+Champ
+Type
+id
+UUID
+slug
+string
+title
+string
+short_description
+string
+long_description
+text
+
+--- PAGE 2 ---
+features
+array<string>
+icon
+string
+image_url
+string
+display_order
+integer
+is_active
+boolean
+1.4	
+Testimonial
+Champ
+Type
+id
+UUID
+author_name
+string
+author_location
+string
+content
+text
+rating
+integer	(1–5)
+photo_url
+string|null
+service_id
+UUID|null
+is_published
+boolean
+created_at
+datetime
+1.5	
+TeamMember
+id,	name,	role,	bio,	photo_url,	display_order
+1.6	
+SiteContent
+hero_title,	hero_subtitle,	stats[{label,value}],	why_choose_us[],	contact_phone,	contact_email,	contact_whatsapp,
+	
+social_links{facebook,instagram,linkedin}
+1.7	
+FAQItem
+id,	question,	answer,	category,	display_order
+1.8	
+NewsletterSubscriber
+id,	email,	subscribed_at
+2.	Format	standard	des	réponses
+Succès
+Erreur
+3.	Endpoints	—	Authentification	&	compte
+POST	
+/api/auth/register
+Requête	:
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{},
+		
+"meta"
+:
+	
+{
+	
+"page"
+:
+	
+1
+,
+	
+"per_page"
+:
+	
+20
+,
+	
+"total"
+:
+	
+84
+	
+}
+}
+{
+		
+"success"
+:
+	
+f alse
+,
+		
+"error"
+:
+	
+{
+				
+"code"
+:
+	
+"VALIDATION_ERROR"
+,
+				
+"message"
+:
+	
+"Email	déjà	utilisé"
+,
+				
+"fields"
+:
+	
+{
+	
+"email"
+:
+	
+"Cet	email	existe	déjà"
+	
+}
+		
+}
+}
+
+--- PAGE 3 ---
+Réponse	
+201
+	:
+POST	
+/api/auth/login
+Requête	:
+Réponse	
+200
+	:
+POST	
+/api/auth/ref resh
+Requête	:	
+{	"refresh_token": 	"d9f8b1c2..."	}
+	Réponse	:	
+{	"success": 	true,	"data": 	{	"access_token": 	"eyJhbGci...",	"expires_in": 	900
+	
+}	}
+POST	
+/api/auth/logout
+Requête	:	
+{	"refresh_token": 	"d9f8b1c2..."	}
+	→	Réponse	:	
+{	"success": 	true,	"data": 	null	}
+POST	
+/api/auth/verif y-email
+Requête	:	
+{	"token": 	"a1b2c3d4"	}
+	→	Réponse	:	
+{	"success": 	true,	"data": 	{	"is_verified": 	true	}	}
+POST	
+/api/auth/f orgot-password
+Requête	:	
+{	"email": 	"jean.mballa@example.com"	}
+	→	Réponse	:	
+{	"success": 	true,	"data": 	{	"message": 	"Email	envoyé"	}	}
+POST	
+/api/auth/reset-password
+Requête	:	
+{	"token": 	"a1b2c3d4",	"new_password": 	"NouveauMdp!26"	}
+	→	Réponse	:	
+{	"success": 	true,	"data": 	null	}
+GET	
+/api/auth/me
+Réponse	:
+{
+		
+"full_name"
+:
+	
+"Jean	Mballa"
+,
+		
+"email"
+:
+	
+"jean.mballa@example.com"
+,
+		
+"password"
+:
+	
+"MotDePasse!2026"
+,
+		
+"phone"
+:
+	
+"+1	514	555	0134"
+,
+		
+"country"
+:
+	
+"Canada"
+,
+		
+"city"
+:
+	
+"Montréal"
+}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{
+				
+"id"
+:
+	
+"5f2b9e1a-..."
+,
+				
+"full_name"
+:
+	
+"Jean	Mballa"
+,
+				
+"email"
+:
+	
+"jean.mballa@example.com"
+,
+				
+"role"
+:
+	
+"client"
+,
+				
+"is_verified"
+:
+	
+f alse
+,
+				
+"created_at"
+:
+	
+"2026-07-16T10: 12: 00Z"
+		
+}
+}
+{
+	
+"email"
+:
+	
+"jean.mballa@example.com"
+,
+	
+"password"
+:
+	
+"MotDePasse!2026"
+	
+}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{
+				
+"access_token"
+:
+	
+"eyJhbGciOi..."
+,
+				
+"refresh_token"
+:
+	
+"d9f8b1c2..."
+,
+				
+"expires_in"
+:
+	
+900
+,
+				
+"user"
+:
+	
+{
+						
+"id"
+:
+	
+"5f2b9e1a-..."
+,
+						
+"full_name"
+:
+	
+"Jean	Mballa"
+,
+						
+"email"
+:
+	
+"jean.mballa@example.com"
+,
+						
+"role"
+:
+	
+"client"
+				
+}
+		
+}
+}
+
+--- PAGE 4 ---
+PATCH	
+/api/auth/me
+Requête	(champs	partiels)	:	
+{	"phone": 	"+1	514	555	9999",	"city": 	"Laval"	}
+	Réponse	:	objet	
+User
+	mis	à	jour,	même	forme	que	
+GET
+	
+/api/auth/me
+.
+4.	Endpoints	—	Contenu	public
+GET	
+/api/site-content
+GET	
+/api/services
+GET	
+/api/services/{slug}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{
+				
+"id"
+:
+	
+"5f2b9e1a-..."
+,
+				
+"full_name"
+:
+	
+"Jean	Mballa"
+,
+				
+"email"
+:
+	
+"jean.mballa@example.com"
+,
+				
+"phone"
+:
+	
+"+1	514	555	0134"
+,
+				
+"country"
+:
+	
+"Canada"
+,
+				
+"city"
+:
+	
+"Montréal"
+,
+				
+"role"
+:
+	
+"client"
+,
+				
+"is_verified"
+:
+	
+true
+		
+}
+}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{
+				
+"hero_title"
+:
+	
+"Plus	proche	du	pays,	malgré	la	distance"
+,
+				
+"hero_subtitle"
+:
+	
+"Votre	représentant	de	confiance	au	Cameroun"
+,
+				
+"stats"
+:
+	
+[
+						
+{
+	
+"label"
+:
+	
+"Années	d'expérience"
+,
+	
+"value"
+:
+	
+"8+"
+	
+}
+,
+						
+{
+	
+"label"
+:
+	
+"Dossiers	traités"
+,
+	
+"value"
+:
+	
+"500+"
+	
+}
+,
+						
+{
+	
+"label"
+:
+	
+"Pays	couverts"
+,
+	
+"value"
+:
+	
+"12"
+	
+}
+				
+]
+,
+				
+"why_choose_us"
+:
+	
+[
+						
+"Professionnalisme	et	discrétion"
+,
+						
+"Transparence	dans	toutes	les	missions"
+,
+						
+"Comptes	rendus	réguliers	et	détaillés"
+				
+]
+,
+				
+"contact_phone"
+:
+	
+"+237	679-188-336"
+,
+				
+"contact_email"
+:
+	
+"sunaconsulting@gmail.com"
+,
+				
+"contact_whatsapp"
+:
+	
+"+237679188336"
+,
+				
+"social_links"
+:
+	
+{
+	
+"facebook"
+:
+	
+"https: //facebook.com/sunaconsulting"
+,
+	
+"instagram"
+:
+	
+"https: //instagram.com/sunaconsulting"
+	
+}
+		
+}
+}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+[
+				
+{
+						
+"id"
+:
+	
+"b1..."
+,
+						
+"slug"
+:
+	
+"assistance-administrative"
+,
+						
+"title"
+:
+	
+"Assistance	administrative"
+,
+						
+"short_description"
+:
+	
+"Démarches,	dépôts	de	documents	et	suivi	de	dossiers."
+,
+						
+"icon"
+:
+	
+"shield-doc"
+,
+						
+"image_url"
+:
+	
+"https: //cdn.suna.com/services/administratif.jpg"
+,
+						
+"display_order"
+:
+	
+1
+				
+}
+		
+]
+,
+		
+"meta"
+:
+	
+{
+	
+"total"
+:
+	
+6
+	
+}
+}
+
+--- PAGE 5 ---
+GET	
+/api/testimonials
+GET	
+/api/team
+GET	
+/api/f aq
+POST	
+/api/newsletter/subscribe
+Requête	:	
+{	"email": 	"diaspora@example.com"	}
+	→	Réponse	:	
+{	"success": 	true,	"data": 	{	"subscribed": 	true	}	}
+POST	
+/api/quotes
+Requête	:
+Réponse	
+201
+	:
+GET	
+/api/quotes/{id}
+	(propriétaire	uniquement)
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{
+				
+"id"
+:
+	
+"b1..."
+,
+				
+"slug"
+:
+	
+"assistance-administrative"
+,
+				
+"title"
+:
+	
+"Assistance	administrative"
+,
+				
+"long_description"
+:
+	
+"Nous	prenons	en	charge	l'ensemble	de	vos	démarches..."
+,
+				
+"features"
+:
+	
+[
+						
+"Réalisation	de	démarches	administratives"
+,
+						
+"Dépôt	et	retrait	de	documents"
+,
+						
+"Paiement	de	factures	et	formalités	diverses"
+,
+						
+"Suivi	de	dossiers	auprès	des	administrations"
+				
+]
+,
+				
+"image_url"
+:
+	
+"https: //cdn.suna.com/services/administratif.jpg"
+		
+}
+}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+[
+				
+{
+						
+"id"
+:
+	
+"t1..."
+,
+						
+"author_name"
+:
+	
+"Carine	N."
+,
+						
+"author_location"
+:
+	
+"Toronto,	Canada"
+,
+						
+"content"
+:
+	
+"Súna	a	géré	la	rénovation	de	la	maison	de	mes	parents	sans	que	j'aie	à	me	déplacer."
+,
+						
+"rating"
+:
+	
+5
+,
+						
+"photo_url"
+:
+	
+"https: //cdn.suna.com/avatars/carine.jpg"
+				
+}
+		
+]
+}
+{
+	
+"success"
+:
+	
+true
+,
+	
+"data"
+:
+	
+[
+	
+{
+	
+"id"
+:
+	
+"m1..."
+,
+	
+"name"
+:
+	
+"Paul	Etoundi"
+,
+	
+"role"
+:
+	
+"Responsable	terrain"
+,
+	
+"photo_url"
+:
+	
+"https: //cdn.suna.com/team/paul.jpg"
+	
+}
+	
+]
+	
+}
+{
+	
+"success"
+:
+	
+true
+,
+	
+"data"
+:
+	
+[
+	
+{
+	
+"id"
+:
+	
+"f1..."
+,
+	
+"question"
+:
+	
+"Comment	payer	depuis	l'étranger	?"
+,
+	
+"answer"
+:
+	
+"Par	virement
+	
+international	ou	mobile	money	via	nos	partenaires."
+,
+	
+"category"
+:
+	
+"paiement"
+	
+}
+	
+]
+	
+}
+{
+		
+"service_slug"
+:
+	
+"accompagnement-immobilier-foncier"
+,
+		
+"description"
+:
+	
+"J'aimerais	faire	vérifier	une	parcelle	à	Douala	avant	achat."
+,
+		
+"preferred_contact"
+:
+	
+"whatsapp"
+,
+		
+"contact_email"
+:
+	
+"jean.mballa@example.com"
+,
+		
+"contact_phone"
+:
+	
+"+1	514	555	0134"
+}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{
+				
+"id"
+:
+	
+"q1..."
+,
+				
+"service_slug"
+:
+	
+"accompagnement-immobilier-foncier"
+,
+				
+"status"
+:
+	
+"nouveau"
+,
+				
+"created_at"
+:
+	
+"2026-07-16T10: 20: 00Z"
+		
+}
+}
+
+--- PAGE 6 ---
+5.	Endpoints	—	Espace	administrateur	(
+/api/admin/...
+)
+Rôle	requis	:	
+admin
+	ou	
+super_admin
+.
+GET	/	PATCH	
+/api/admin/site-content
+Requête	PATCH	(champs	partiels)	:
+Réponse	:	objet	
+SiteContent
+	complet	mis	à	jour	(même	forme	que	
+GET	/api/site-content
+).
+GET	
+/api/admin/services
+POST	
+/api/admin/services
+Requête	:
+Réponse	
+201
+	:	objet	
+Service
+	créé,	forme	identique	à	la	requête	+	
+id
+,	
+created_at
+.
+PATCH	
+/api/admin/services/{id}
+	—	champs	partiels,	même	forme	que	POST.
+DELETE	
+/api/admin/services/{id}
+	—	Réponse	:	
+{	"success":	true,	"data":	null	}
+GET	
+/api/admin/testimonials
+	(inclut	non	publiés)
+POST	
+/api/admin/testimonials
+PATCH	
+/api/admin/testimonials/{id}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+{
+				
+"id"
+:
+	
+"q1..."
+,
+				
+"service_slug"
+:
+	
+"accompagnement-immobilier-foncier"
+,
+				
+"description"
+:
+	
+"J'aimerais	faire	vérifier	une	parcelle	à	Douala	avant	achat."
+,
+				
+"status"
+:
+	
+"en_cours"
+,
+				
+"created_at"
+:
+	
+"2026-07-16T10: 20: 00Z"
+,
+				
+"updated_at"
+:
+	
+"2026-07-17T09: 00: 00Z"
+		
+}
+}
+{
+	
+"hero_title"
+:
+	
+"Plus	proche	du	pays,	malgré	la	distance"
+,
+	
+"contact_phone"
+:
+	
+"+237	679-188-337"
+	
+}
+{
+	
+"success"
+:
+	
+true
+,
+	
+"data"
+:
+	
+[
+	
+{
+	
+"id"
+:
+	
+"b1..."
+,
+	
+"slug"
+:
+	
+"assistance-administrative"
+,
+	
+"title"
+:
+	
+"Assistance	administrative"
+,
+	
+"is_active"
+:
+	
+true
+,
+	
+"display_order"
+:
+	
+1
+	
+}
+	
+]
+,
+	
+"meta"
+:
+	
+{
+	
+"total"
+:
+	
+6
+	
+}
+	
+}
+{
+		
+"title"
+:
+	
+"Nouveau	service"
+,
+		
+"slug"
+:
+	
+"nouveau-service"
+,
+		
+"short_description"
+:
+	
+"Description	courte	pour	la	carte"
+,
+		
+"long_description"
+:
+	
+"Description	longue	pour	la	page	détail"
+,
+		
+"features"
+:
+	
+[
+"Prestation	1"
+,
+	
+"Prestation	2"
+]
+,
+		
+"icon"
+:
+	
+"shield-star"
+,
+		
+"image_url"
+:
+	
+"https: //cdn.suna.com/services/nouveau.jpg"
+,
+		
+"display_order"
+:
+	
+7
+,
+		
+"is_active"
+:
+	
+true
+}
+{
+	
+"success"
+:
+	
+true
+,
+	
+"data"
+:
+	
+[
+	
+{
+	
+"id"
+:
+	
+"t1..."
+,
+	
+"author_name"
+:
+	
+"Carine	N."
+,
+	
+"is_published"
+:
+	
+f alse
+	
+}
+	
+]
+,
+	
+"meta"
+:
+	
+{
+	
+"total"
+:
+	
+14
+	
+}
+	
+}
+{
+		
+"author_name"
+:
+	
+"Carine	N."
+,
+		
+"author_location"
+:
+	
+"Toronto,	Canada"
+,
+		
+"content"
+:
+	
+"Súna	a	géré	la	rénovation	de	la	maison	de	mes	parents..."
+,
+		
+"rating"
+:
+	
+5
+,
+		
+"service_id"
+:
+	
+"b3..."
+,
+		
+"is_published"
+:
+	
+f alse
+}
+
+--- PAGE 7 ---
+DELETE	
+/api/admin/testimonials/{id}
+	→	
+{	"success":	true,	"data":	null	}
+GET	/	POST	/	PATCH	/	DELETE	
+/api/admin/team
+Même	logique	CRUD,	corps	:
+GET	/	POST	/	PATCH	/	DELETE	
+/api/admin/f aq
+GET	
+/api/admin/quotes
+	(avec	filtres	
+?status=nouveau&service_slug=...
+)
+PATCH	
+/api/admin/quotes/{id}
+GET	
+/api/admin/users
+	(avec	filtres	
+?role=client&is_active=true
+)
+PATCH	
+/api/admin/users/{id}
+DELETE	
+/api/admin/users/{id}
+	→	
+{	"success":	true,	"data":	null	}
+POST	
+/api/admin/media/upload
+Requête	:	
+multipart/form-data
+	avec	champ	
+file
+.	Réponse	:
+GET	
+/api/admin/newsletter/subscribers
+6.	Planning	de	réalisation	du	front-end	—	3	jours
+Jour	1	—	Socle	du	site	public
+Créneau
+Tâche
+Matin
+Setup	(Vite/Next	+	TS	+	Tailwind),	tokens	de	design,	routing,	header/menu
+mobile/footer
+Après-midi
+Accueil	statique	:	hero	+	carte	animée,	bandeau	de	confiance,	grille
+services,	“Pourquoi	nous	choisir”
+{
+	
+"is_published"
+:
+	
+true
+	
+}
+{
+	
+"name"
+:
+	
+"Paul	Etoundi"
+,
+	
+"role"
+:
+	
+"Responsable	terrain"
+,
+	
+"bio"
+:
+	
+"12	ans	d'expérience	en	gestion	immobilière."
+,
+	
+"photo_url"
+:
+	
+"https: //cdn.suna.com/team/paul.jpg"
+,
+	
+"display_order"
+:
+	
+1
+	
+}
+{
+	
+"question"
+:
+	
+"Quels	sont	les	délais	moyens	?"
+,
+	
+"answer"
+:
+	
+"Entre	48h	et	5	jours	selon	la	complexité."
+,
+	
+"category"
+:
+	
+"delais"
+,
+	
+"display_order"
+:
+	
+3
+	
+}
+{
+		
+"success"
+:
+	
+true
+,
+		
+"data"
+:
+	
+[
+				
+{
+	
+"id"
+:
+	
+"q1..."
+,
+	
+"service_slug"
+:
+	
+"accompagnement-immobilier-foncier"
+,
+	
+"status"
+:
+	
+"nouveau"
+,
+	
+"contact_email"
+:
+	
+"jean.mballa@example.com"
+,
+	
+"created_at"
+:
+	
+"2026-07-16T10: 20: 00Z"
+	
+}
+		
+]
+,
+		
+"meta"
+:
+	
+{
+	
+"page"
+:
+	
+1
+,
+	
+"per_page"
+:
+	
+20
+,
+	
+"total"
+:
+	
+37
+	
+}
+}
+{
+	
+"status"
+:
+	
+"en_cours"
+,
+	
+"admin_notes"
+:
+	
+"Agent	envoyé	sur	place	le	18/07."
+	
+}
+{
+	
+"success"
+:
+	
+true
+,
+	
+"data"
+:
+	
+[
+	
+{
+	
+"id"
+:
+	
+"5f2b9e1a-..."
+,
+	
+"full_name"
+:
+	
+"Jean	Mballa"
+,
+	
+"email"
+:
+	
+"jean.mballa@example.com"
+,
+	
+"role"
+:
+	
+"client"
+,
+	
+"is_active"
+:
+	
+true
+	
+}
+	
+]
+,
+	
+"meta"
+:
+	
+{
+	
+"total"
+:
+	
+212
+	
+}
+	
+}
+{
+	
+"role"
+:
+	
+"admin"
+,
+	
+"is_active"
+:
+	
+true
+	
+}
+{
+	
+"success"
+:
+	
+true
+,
+	
+"data"
+:
+	
+{
+	
+"url"
+:
+	
+"https: //cdn.suna.com/uploads/2026/07/photo-abc123.jpg"
+	
+}
+	
+}
+{
+	
+"success"
+:
+	
+true
+,
+	
+"data"
+:
+	
+[
+	
+{
+	
+"id"
+:
+	
+"n1..."
+,
+	
+"email"
+:
+	
+"diaspora@example.com"
+,
+	
+"subscribed_at"
+:
+	
+"2026-06-01T08: 00: 00Z"
+	
+}
+	
+]
+,
+	
+"meta"
+:
+	
+{
+	
+"total"
+:
+	
+340
+	
+}
+	
+}
+
+--- PAGE 8 ---
+Soir
+“Comment	ça	marche”,	carrousel	témoignages,	CTA	final,	passe	responsive
+Jour	2	—	Contenu	dynamique	+	Authentification
+Créneau
+Tâche
+Matin
+Connexion	API	:	services,	témoignages,	FAQ,	contenu	global	(loading/erreur)
+Après-midi
+Auth	:	inscription,	connexion,	mot	de	passe	oublié,	vérification	email
+Soir
+Espace	client	(profil,	suivi	devis)	+	formulaire	de	devis	connecté	à	
+POST
+	
+/api/quotes
+Jour	3	—	Admin	+	Finitions
+Créneau
+Tâche
+Matin
+Layout	admin	protégé	par	rôle,	édition	
+site-content
+,	CRUD	services
+Après-midi
+Modération	témoignages,	gestion	des	devis	(statuts,	notes)
+Soir
+Équipe/FAQ	si	le	temps	le	permet,	QA	(accessibilité,	images,	mobile),	build
+production
+Priorité	si	le	temps	manque	le	Jour	3	:
+	contenu	global	→	services	→	devis	→	témoignages	→	équipe/FAQ.
+7.	Design	System	—	Détail	de	chaque	composant
+7.1	Tokens	globaux	(rappel)
+Couleurs	:	
+rust-900	#8A3E12
+,	
+rust-600	#B5651D
+,	
+gold-400	#D4A24E
+,	
+ink-900	#171310
+,	
+sand-050	#F7F1E8
+,	
+white	#FFFFFF
+Display	:	grotesque	condensée	(type	Archivo	Expanded),	toujours	en	majuscules	pour	H1/H2
+Corps	:	serif	humaniste	chaleureuse	(type	Fraunces/Lora)
+Utilitaire	:	monospace	fine	(type	IBM	Plex	Mono)	pour	chiffres,	téléphone,	statuts
+Radius	:	0	par	défaut	(rigueur),	
+rounded-2xl
+	uniquement	sur	cadres	photo/carte
+Ombres	:	très	discrètes,	
+shadow-sm
+	uniquement	au	survol	des	cartes
+7.2	Header	/	Navigation
+Hauteur	80px	desktop,	fond	
+sand-050
+	avec	
+border-bottom	1px	solid	rust-600/20
+,	devient	
+shadow-sm
+	au	scroll	(sticky)
+Logo	à	gauche	(36px	de	haut),	liens	en	display	face	14px	tracking	large,	espacement	32px	entre	liens
+Lien	actif	:	soulignement	2px	
+gold-400
+,	pas	de	changement	de	couleur	du	texte	(discrétion)
+CTA	“Demander	un	devis”	:	bouton	plein	
+rust-600
+,	texte	blanc,	
+px-5	py-2.5
+,	hover	→	
+rust-900
+Menu	“Services”	:	mega-menu	au	clic/hover,	grille	2	colonnes	des	6	pôles	avec	icône	+	titre,	fond	blanc,	ombre	légère,	apparition	en	fondu
+150ms
+Mobile	(<	768px)	:	header	réduit	à	64px,	icône	hamburger	à	droite	;	panneau	plein	écran	fond	
+ink-900
+,	liens	display	28px	empilés,	CTA
+fixé	en	bas,	fermeture	par	icône	croix	ou	swipe
+7.3	Footer
+Fond	
+rust-900
+,	texte	
+sand-050
+Grille	4	colonnes	desktop	→	empilée	en	1	colonne	mobile
+Séparateur	“lance”	stylisé	(petit	trait	diagonal	24px)	entre	le	bloc	logo	et	les	colonnes	de	liens
+Icônes	réseaux	sociaux	:	traits	fins,	20px,	hover	→	
+gold-400
+Bas	de	page	:	ligne	fine	
+rust-600/30
+,	texte	12px	centré,	mentions	légales	en	lien	discret
+7.4	Boutons
+Variante
+Fond
+Texte
+Bordure
+Hover
+Primaire
+rust-600
+blanc
+aucune
+rust-900
+Secondaire
+transparent
+rust-600
+1.5px	
+rust-600
+fond	
+rust-600/10
+Fantôme	(liens	d’action
+mineurs)
+transparent
+ink-900
+aucune
+soulignement	
+gold-400
+Sur	fond	sombre	(footer/CTA
+final)
+gold-400
+ink-900
+aucune
+sand-050
+Tous	les	boutons	:	
+px-6	py-3
+,	angles	francs	(
+rounded-none
+),	transition	150ms,	focus	visible	=	anneau	2px	
+gold-400
+	offset	2px	(accessibilité
+clavier).
+7.5	Carte	“Service”	(page	d’accueil	et	page	Services)
+Cadre	blanc,	
+rounded-2xl
+,	padding	24px,	bordure	1px	
+rust-600/15
+
+--- PAGE 9 ---
+Icône	bouclier	en	haut	(32px,	couleur	
+rust-600
+)	—	au	survol,	l’icône	se	“referme”	légèrement	(scale	0.92,	200ms)	:	clin	d’œil	au	symbole
+de	protection
+Titre	en	display	18px	majuscules,	description	en	corps	14px	sur	2	lignes	max	(
+line-clamp-2
+)
+Lien	“En	savoir	plus	→”	en	bas,	apparaît	souligné	au	survol	de	la	carte	entière
+Grille	:	3	colonnes	desktop,	2	tablette,	1	mobile	;	gap	24px
+7.6	Hero	animé	—	carte	du	monde	(élément	signature)
+Composant	plein	largeur,	fond	
+sand-050
+,	carte	SVG	stylisée	du	monde	en	
+rust-600/10
+5	points	de	départ	(Toronto,	Paris,	Londres,	Pékin,	Sydney)	reliés	par	des	traits	en	pointillé	vers	un	point	unique	sur	le	Cameroun
+Séquence	d’animation	au	chargement	:	chaque	trait	se	dessine	l’un	après	l’autre	(
+stroke-dashoffset
+,	300ms	de	décalage	entre	chaque,
+durée	totale	~1,8s)
+Une	fois	toutes	les	lignes	arrivées,	le	point	Cameroun	pulse	en	continu	(halo	
+gold-400
+,	
+animate-pulse
+	doux,	2s	de	cycle)
+Respect	de	
+prefers-reduced-motion
+	:	si	activé,	les	traits	apparaissent	directement	sans	animation,	seul	un	léger	halo	statique	reste	sur	le
+point	Cameroun
+Titre	H1	et	sous-titre	superposés	à	gauche	(desktop)	ou	au-dessus	de	la	carte	(mobile,	carte	réduite	à	une	illustration	simplifiée)
+7.7	Bandeau	de	confiance	(stats)
+Fond	
+ink-900
+,	3	à	4	chiffres	en	typo	monospace	36px	
+gold-400
+,	label	12px	
+sand-050/70
+	en	dessous
+Disposition	en	ligne	desktop,	grille	2x2	mobile
+7.8	Timeline	“Comment	ça	marche”
+Ligne	verticale	fine	
+rust-600/30
+	reliant	les	étapes
+Chaque	étape	:	pastille	numérotée	(justifiée	ici	car	c’est	un	vrai	processus	séquentiel),	titre	display	16px,	description	corps	14px
+Révélation	au	scroll	:	fondu	+	léger	décalage	vertical	(20px),	une	étape	à	la	fois
+7.9	Carrousel	Témoignages
+Carte	témoignage	:	fond	blanc,	guillemet	stylisé	en	filigrane	
+rust-600/10
+	en	fond,	photo	ronde	48px,	nom	+	localisation	en	monospace
+12px	(écho	à	la	carte	du	hero)
+Navigation	:	flèches	discrètes	de	part	et	d’autre,	points	de	pagination	en	bas	(
+rust-600
+	actif,	
+rust-600/20
+	inactif)
+Défilement	automatique	6s,	pause	au	survol
+7.10	Formulaires	(inscription,	connexion,	devis,	admin)
+Champ	texte	:	fond	blanc,	bordure	1px	
+ink-900/20
+,	
+focus: border-rust-600
+	+	anneau	
+gold-400/30
+Label	au-dessus	en	display	12px	majuscules,	tracking	large
+Message	d’erreur	:	texte	rouge	discret	12px	sous	le	champ,	bordure	du	champ	passe	en	rouge	
+#B3261E
+Bouton	de	soumission	:	primaire,	largeur	pleine	sur	mobile
+Upload	fichier	(pièces	jointes	devis)	:	zone	de	dépôt	en	pointillés	
+rust-600/30
+,	icône	bouclier	au	centre,	texte	“Glissez	vos	documents	ici”
+7.11	Badges	de	statut	(devis,	comptes)
+Statut
+Couleur	badge
+nouveau
+fond	
+gold-400/20
+,	texte	
+gold-400
+	foncé
+en_cours
+fond	
+rust-600/15
+,	texte	
+rust-600
+traite
+fond	vert	doux	
+#DCEFE2
+,	texte	
+#1E7A46
+cloture
+fond	gris	
+#EDEBE8
+,	texte	
+ink-900/60
+Forme	:	pilule	(
+rounded-full
+),	texte	11px	majuscules,	padding	
+px-3	py-1
+.
+7.12	Interface	Admin	—	spécificités
+Layout	deux	colonnes	:	sidebar	fixe	gauche	(240px,	fond	
+ink-900
+,	icônes	+	libellés)	/	contenu	principal	fond	
+sand-050
+Table	de	données	(utilisateurs,	devis,	témoignages)	:	en-têtes	en	monospace	11px	majuscules,	lignes	alternées	légèrement	teintées	
+sand-
+050
+,	actions	(éditer/supprimer)	en	icônes	à	droite,	apparition	au	survol	de	ligne
+Formulaire	d’édition	:	ouvert	en	panneau	latéral	(drawer)	plutôt	qu’en	page	séparée,	pour	rester	rapide	à	utiliser
+Confirmation	de	suppression	:	toujours	une	modale	de	confirmation,	jamais	de	suppression	directe	au	clic
+Notifications	d’action	(création/modification/suppression	réussie)	:	toast	en	bas	à	droite,	fond	
+ink-900
+,	texte	
+sand-050
+,	disparition
+automatique	après	4s
+7.13	Accessibilité	&	responsive	—	rappel	transverse
+Contraste	texte/fond	vérifié	AA	minimum	sur	tous	les	textes	
+rust-600
+	sur	
+sand-050
+Focus	clavier	visible	sur	tous	les	éléments	interactifs	(anneau	
+gold-400
+)
+Breakpoints	:	mobile	<	640px,	tablette	640–1024px,	desktop	>	1024px
+Une	seule	animation	orchestrée	par	page	(le	hero)	;	toutes	les	autres	transitions	restent	utilitaires	et	courtes	(150–300ms)
+
