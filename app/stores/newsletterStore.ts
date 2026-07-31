@@ -9,6 +9,7 @@ export const usenewslettertore = defineStore("newsletter", () => {
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
+  const toast = useToastStore();
 
   const fetchnewsletter = async () => {
     try {
@@ -20,8 +21,12 @@ export const usenewslettertore = defineStore("newsletter", () => {
 
       newsletter.value = items as newsletterType[];
     } catch (error) {
-      console.error("Error fetching newsletter", error);
       newsletter.value = [];
+      toast.show(
+        "Opération échouée",
+        "danger",
+        "Erreur lors de la recuperation des Emails",
+      );
     } finally {
       loading.value = false;
     }
@@ -32,14 +37,23 @@ export const usenewslettertore = defineStore("newsletter", () => {
       loading.value = true;
       const response = await api.post("/newsletter", newProduct);
       newsletter.value = [...newsletter.value, response.data as newsletterType];
+      toast.show(
+        "Opération réussie",
+        "success",
+        "Votre adresse email a été enregistrée avec succes",
+      );
     } catch (error) {
-      console.error("Error creating product", error);
+      toast.show(
+        "Opération echouée",
+        "danger",
+        "Une erreur est survenue lors de l'enregistrement de votre adresse email.",
+      );
     } finally {
       loading.value = false;
     }
   };
 
-      // const response = await api.patch(`/newsletter/${id}`, is_active:)
+  // const response = await api.patch(`/newsletter/${id}`, is_active:)
 
   return { fetchnewsletter, newsletter, loading, createnewsletter };
 });

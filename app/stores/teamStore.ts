@@ -2,55 +2,75 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { AxiosInstance } from "axios";
 import { useNuxtApp } from "#imports";
-import type { servicesType } from "~/types/types";
+import type { teamType } from "~/types/types";
 
-export const useservicestore = defineStore("services", () => {
-  const services = ref<servicesType[]>([]);
+export const useTeamtore = defineStore("Team", () => {
+  const Team = ref<teamType[]>([]);
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
+  const toast = useToastStore();
 
-  const fetchservices = async () => {
+  const fetchTeam = async () => {
     try {
       loading.value = true;
-      const response = await api.get("/services");
+      const response = await api.get("/team");
       const items = Array.isArray(response.data)
         ? response.data
-        : (response.data?.services ?? []);
+        : (response.data?.Team ?? []);
 
-      services.value = items as servicesType[];
+      Team.value = items as teamType[];
     } catch (error) {
-      console.error("Error fetching services", error);
-      services.value = [];
+      console.error("Error fetching Team", error);
+      Team.value = [];
     } finally {
       loading.value = false;
     }
   };
 
-  const createServices = async (newProduct: servicesType) => {
+  const createTeam = async (newTeamMember: teamType) => {
     try {
       loading.value = true;
-      const response = await api.post("/services", newProduct);
-      services.value = [...services.value, response.data as servicesType];
+      const response = await api.post("/team", newTeamMember);
+      Team.value = [...Team.value, response.data as teamType];
+      toast.show(
+        "Operation réussie",
+        "success",
+        (newTeamMember.name =
+          " a été ajouter dans votre équipe en comme " + newTeamMember.role),
+      );
     } catch (error) {
-      console.error("Error creating product", error);
+      toast.show(
+        "Operation échouée",
+        "danger",
+        "Votre requette n'a pas été soumise",
+      );
     } finally {
       loading.value = false;
     }
   };
 
-  const updateServices = async (id: string, data:any) => {
+  const updateTeam = async (id: string, data: any) => {
     try {
       loading.value = true;
       const response = api({
         method: "PATCH",
-        url: `users/${id}/services`,
-        data:data,
+        url: `team/${id}`,
+        data: data,
       });
-
-      // const response = await api.patch(`/services/${id}`, is_active:)
-    } catch (error) {}
+      toast.show(
+        "Operation réussie",
+        "success",
+        "Votre requette a bien été soumise",
+      );
+    } catch (error) {
+      toast.show(
+        "Operation échouée",
+        "danger",
+        "Votre requette n'a pas été soumise",
+      );
+    }
   };
 
-  return { fetchservices, services, loading, createServices, updateServices };
+  return { fetchTeam, Team, loading, createTeam, updateTeam };
 });

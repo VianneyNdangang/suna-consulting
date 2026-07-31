@@ -4,37 +4,45 @@ import type { AxiosInstance } from "axios";
 import { useNuxtApp } from "#imports";
 import type { servicesType } from "~/types/types";
 
-export const useservicestore = defineStore("services", () => {
+export const useServiceStore = defineStore("services", () => {
   const services = ref<servicesType[]>([]);
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
+  const toast = useToastStore();
 
-  const fetchservices = async () => {
+  const fetchServices = async () => {
     try {
       loading.value = true;
-      const response = await api.get("/api/mock/services");
-      const items = Array.isArray(response.data)
+      const response = await api.get("/services");
+      const items: servicesType[] = Array.isArray(response.data)
         ? response.data
         : (response.data?.services ?? []);
-
-      services.value = items as servicesType[];
+      services.value = items.filter((item)=> item.is_active === true) ;
     } catch (error) {
-      console.error("Error fetching services", error);
       services.value = [];
     } finally {
       loading.value = false;
     }
   };
 
-  const createServices = async (newProduct: servicesType) => {
+  const createServices = async (newService: servicesType) => {
     try {
       loading.value = true;
-      const response = await api.post("/api/mock/services", newProduct);
+      const response = await api.post("/services", newService);
       const created = response.data ?? response;
       services.value = [...services.value, created as servicesType];
+      toast.show(
+        "Opération réussie",
+        "success",
+        "Le service "+newService.title+" a été créé avec succès.",
+      );
     } catch (error) {
-      console.error("Error creating product", error);
+      toast.show(
+        "Opération échouée",
+        "danger",
+        "Erreur lors de la création du service "+newService.title,
+      )
     } finally {
       loading.value = false;
     }
@@ -45,17 +53,26 @@ export const useservicestore = defineStore("services", () => {
       loading.value = true;
       const response = await api({
         method: "PATCH",
-        url: `/api/mock/services/${id}`,
+        url: `/services/${id}`,
         data:data,
       });
-
       const updated = response.data ?? response;
       const idx = services.value.findIndex(s => String((s as any).id) === String(id));
       if (idx !== -1) services.value[idx] = updated as servicesType;
 
-      // const response = await api.patch(`/services/${id}`, is_active:)
-    } catch (error) {}
+      toast.show(
+        "Opération réussie",
+        "success",
+        "Le service "+updated.title+" a été modifié avec succès.",
+      );
+    } catch (error) {
+      toast.show(
+        "Opération échouée",
+        "danger",
+        "Erreur lors de la modification de ce service",
+      )
+    }
   };
 
-  return { fetchservices, services, loading, createServices, updateServices };
+  return { fetchServices, services, loading, createServices, updateServices };
 });

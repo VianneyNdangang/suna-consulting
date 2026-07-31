@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { motion } from 'motion-v';
-import QuoteForm from '~/components/organisms/QuoteForm.vue';
+import QuoteForm from '~/components/quoteForm/QuoteForm.vue';
+import { type site_contentType } from '~/types/types';
+
+const store = usesite_contentStore()
+
+const siteContent = ref<site_contentType>()
+onMounted(async()=>{
+  await store.fetchsite_content()
+  siteContent.value = store.site_content
+})
 </script>
 
 <template>
@@ -16,16 +25,16 @@ import QuoteForm from '~/components/organisms/QuoteForm.vue';
 
           <div class="mt-8 space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
             <div>
-              <p class="text-sm font-semibold uppercase tracking-[0.2em] text-rust-600">Téléphone</p>
-              <p class="mt-2 text-lg text-slate-700">+237 679 188 336</p>
+              <p class="text-sm font-semibold mb-2 uppercase tracking-[0.2em] text-rust-600">Téléphone</p>
+              <p v-for="phon in siteContent?.contact_phone" class=" text-lg text-slate-700">{{phon}}</p>
             </div>
             <div>
-              <p class="text-sm font-semibold uppercase tracking-[0.2em] text-rust-600">Email</p>
-              <p class="mt-2 text-lg text-slate-700">sunaconsulting@gmail.com</p>
+              <p class="text-sm font-semibold mb-2 uppercase tracking-[0.2em] text-rust-600">Email</p>
+              <p class=" text-lg text-slate-700">sunaconsulting@gmail.com</p>
             </div>
             <div>
-              <p class="text-sm font-semibold uppercase tracking-[0.2em] text-rust-600">WhatsApp</p>
-              <p class="mt-2 text-lg text-slate-700">+237 679 188 336</p>
+              <p class="text-sm font-semibold mb-2 uppercase tracking-[0.2em] text-rust-600">WhatsApp</p>
+              <p v-for="what in siteContent?.contact_whatsapp" class="text-lg text-slate-700">{{what}}</p>
             </div>
           </div>
         </div>

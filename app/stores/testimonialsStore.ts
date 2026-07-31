@@ -2,36 +2,46 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { AxiosInstance } from "axios";
 import { useNuxtApp } from "#imports";
-import type { servicesType } from "~/types/types";
+import type { testimonialsType } from "~/types/types";
 
-export const useservicestore = defineStore("services", () => {
-  const services = ref<servicesType[]>([]);
+export const useTestimonialstore = defineStore("Testimonials", () => {
+  const Testimonials = ref<testimonialsType[]>([]);
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
+  const toast = useToastStore();
 
-  const fetchservices = async () => {
+  const fetchTestimonials = async () => {
     try {
       loading.value = true;
-      const response = await api.get("/services");
-      const items = Array.isArray(response.data)
+      const response = await api.get("/testimonials");
+      const items: testimonialsType[] = Array.isArray(response.data)
         ? response.data
-        : (response.data?.services ?? []);
-
-      services.value = items as servicesType[];
+        : (response.data?.Testimonials ?? []);
+      Testimonials.value = items.filter(
+        (item: any) => item.is_published === true,
+      );
     } catch (error) {
-      console.error("Error fetching services", error);
-      services.value = [];
+      console.error("Error fetching Testimonials", error);
+      Testimonials.value = [];
     } finally {
       loading.value = false;
     }
   };
 
-  const createServices = async (newProduct: servicesType) => {
+  const createTestimonials = async (newProduct: testimonialsType) => {
     try {
       loading.value = true;
-      const response = await api.post("/services", newProduct);
-      services.value = [...services.value, response.data as servicesType];
+      const response = await api.post("/testimonials", newProduct);
+      Testimonials.value = [
+        ...Testimonials.value,
+        response.data as testimonialsType,
+      ];
+      toast.show(
+        "Opération réussie",
+        "success",
+        "Votre temoignage a été envoyé avec succès.",
+      );
     } catch (error) {
       console.error("Error creating product", error);
     } finally {
@@ -39,18 +49,5 @@ export const useservicestore = defineStore("services", () => {
     }
   };
 
-  const updateServices = async (id: string, data:any) => {
-    try {
-      loading.value = true;
-      const response = api({
-        method: "PATCH",
-        url: `users/${id}/services`,
-        data:data,
-      });
-
-      // const response = await api.patch(`/services/${id}`, is_active:)
-    } catch (error) {}
-  };
-
-  return { fetchservices, services, loading, createServices, updateServices };
+  return { fetchTestimonials, Testimonials, loading, createTestimonials };
 });

@@ -11,8 +11,8 @@
       <tbody>
         <tr v-for="s in services" :key="s.id">
           <td>{{ s.id }}</td>
-          <td>{{ s.title ?? s.name }}</td>
-          <td>{{ s.price ?? '-' }}</td>
+          <td>{{ s.title  }}</td>
+          <td>{{ }}</td>
           <td>
             <button @click="openEdit(s)">Éditer</button>
             <button @click="remove(s.id)">Supprimer</button>
@@ -47,11 +47,14 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, computed } from 'vue';
-import { useservicestore } from '~/stores/servicesStore';
+import { useServiceStore } from '~/stores/servicesStore';
 
-definePageMeta({ middleware: 'auth' });
+definePageMeta({ 
+  // middleware: 'auth' 
+  layout: 'admin'
+});
 
-const store = useservicestore();
+const store = useServiceStore();
 const services = store.services;
 const loading = computed(() => store.loading);
 
@@ -63,7 +66,7 @@ const error = ref<string | null>(null);
 
 const activeForm = computed(() => (creating.value ? form : editForm));
 
-const refresh = async () => { await store.fetchservices(); };
+const refresh = async () => { await store.fetchServices(); };
 const openCreate = () => { creating.value = true; editingId.value = null; error.value = null; };
 const closeCreate = () => { creating.value = false; error.value = null; };
 

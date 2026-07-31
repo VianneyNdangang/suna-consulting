@@ -10,11 +10,6 @@ export const menus = [
         name: 'services'
     },
     {
-        label: 'Comment ça marche',
-        path: '/about',
-        name: 'about'
-    },
-    {
         label: 'À propos',
         path: '/about',
         name: 'about'

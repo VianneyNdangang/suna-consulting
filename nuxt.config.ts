@@ -12,7 +12,15 @@ export default defineNuxtConfig({
     ],
   },
 
-  modules: ["@nuxt/icon", "@pinia/nuxt", 'motion-v/nuxt', '@nuxt/ui'],
+  modules: [
+    "@nuxt/icon",
+    "@pinia/nuxt",
+    'motion-v/nuxt',
+    '@nuxt/ui',
+    '@vee-validate/nuxt',
+    '@nuxt/image',
+    '@nuxt/image'
+  ],
   app: {
     pageTransition: { name: 'page', mode: 'out-in' },
     head: {
@@ -29,7 +37,7 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      apiUrl: 'https://dummyjson.com'
+      apiUrl: 'http://localhost:3000/'
     }
   }
 });

@@ -49,7 +49,10 @@
 import { ref, reactive, onMounted, computed } from 'vue';
 import { usequotestore } from '~/stores/quotesStore';
 
-definePageMeta({ middleware: 'auth' });
+definePageMeta({ 
+  // middleware: 'auth',
+  layout: 'admin'
+ });
 
 const store = usequotestore();
 const quotes = store.quotes;

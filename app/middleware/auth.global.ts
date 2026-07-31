@@ -3,7 +3,7 @@ import { useAuthStore } from '~/stores/authStore';
 
 export default defineNuxtRouteMiddleware((to) => {
   const auth = useAuthStore();
-  const protectedPaths = [''];
+  const protectedPaths = ['admin'];
   if (!protectedPaths.some((path) => to.path.startsWith(path))) return;
 
   if (!auth.token) {

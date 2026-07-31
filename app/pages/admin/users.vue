@@ -1,5 +1,5 @@
 <template>
-  <div class="admin-users">
+  <!-- <div >
     <h1>Utilisateurs</h1>
     <div class="controls">
       <button @click="refresh" :disabled="loading">Rafraîchir</button>
@@ -45,17 +45,29 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
+  <DataTable
+            title="Users"
+            :records="users"
+            :headers="header"
+            :loading="userStore.loading"
+            v-if="users"
+          />
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: "admin"
+})
+import { IconEdit, IconTrash } from '@tabler/icons-vue';
 import { ref, reactive, onMounted, computed } from 'vue';
+import Badge from '~/components/badge/Badge.vue';
 import { useUserStore } from '~/stores/userStore';
 
-definePageMeta({ middleware: 'auth' });
+// definePageMeta({ middleware: 'auth' });
 
 const store = useUserStore();
-const users = store.users;
+const users = ref<any[]>([]);
 const loading = computed(() => store.loading);
 
 const creating = ref(false);
@@ -69,6 +81,85 @@ const activeForm = computed(() => (creating.value ? form : editForm));
 const refresh = async () => { await store.fetchUsers(); };
 const openCreate = () => { creating.value = true; editingId.value = null; error.value = null; };
 const closeCreate = () => { creating.value = false; error.value = null; };
+
+
+
+const header: any[] = [
+  {
+    textAlign: "left",
+    accessor: "Id",
+    name: "id",
+    render: (record: any) => record?.id ? record?.id: '-',
+    width: "28",
+  },
+  {
+    textAlign: "left",
+    accessor: "userName",
+    name: "User Name",
+    render: (record: any) => record?.userName ? record?.userName:'-',
+    width: "28",
+  },
+  {
+    textAlign: "left",
+    accessor: "lastName",
+    name: "Last Name",
+    render: (record: any) => record?.lastName ? record?.lastName:'-',
+    width: "28",
+  },
+  {
+    textAlign: "left",
+    accessor: "email",
+    name: "E-mail",
+    render: (record: any) => record?.email ? record?.email: '-',
+    width: "auto",
+  },
+  {
+    textAlign: "center",
+    accessor: "role",
+    name: "Role",
+    render: (record: any) =>
+  record?.role
+    ? h(Badge, {
+        type: "primary",
+        message: record.role,
+        w: '20'
+      })
+    : "-",
+    width: "28",
+  },
+  {
+    textAlign: "left",
+    accessor: "phone",
+    name: "Phone",
+    render: (record: any) => record?.phone ? record?.phone:'-',
+    width: "auto",
+  },
+  {
+    textAlign: "right",
+    accessor: "actions",
+    name: "Actions",
+    render: (record: any) =>
+      h("div", { class: "flex justify-end gap-2" }, [
+        h(IconEdit, {
+          size: 18,
+          class: "cursor-pointer text-slate-900 hover:text-blue-700",
+        }),
+        h(IconTrash, {
+          size: 18,
+          class: "cursor-pointer text-red-500 hover:text-red-700",
+        }),
+      ]),
+    width: "28",
+  },
+];
+
+const userStore = useUserStore();
+onMounted(async () => {
+  await userStore.fetchUsers();
+  users.value = store.users;
+  // loading.value = store.loading;
+});
+
 
 const openEdit = (u: any) => {
   editingId.value = String(u.id);
@@ -122,10 +213,5 @@ onMounted(async () => { await refresh(); });
 </script>
 
 <style scoped>
-.admin-users { max-width: 1000px; margin: 2rem auto; }
-table { width: 100%; border-collapse: collapse; }
-th, td { padding: 6px 8px; border: 1px solid #ddd; }
-.form { margin-top: 1rem; display:flex; flex-direction:column; gap:8px; }
-.actions { display:flex; gap:8px; }
-.error { color: #c00; }
+
 </style>

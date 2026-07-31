@@ -4,11 +4,12 @@ import type { AxiosInstance } from "axios";
 import { useNuxtApp } from "#imports";
 import type { site_contentType } from "~/types/types";
 
-export const usesite_contenttore = defineStore("site_content", () => {
-  const site_content = ref<site_contentType[]>([]);
+export const usesite_contentStore = defineStore("site_content", () => {
+  const site_content = ref<site_contentType>();
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
+  const toast = useToastStore();
 
   const fetchsite_content = async () => {
     try {
@@ -16,12 +17,10 @@ export const usesite_contenttore = defineStore("site_content", () => {
       const response = await api.get("/site-content");
       const items = Array.isArray(response.data)
         ? response.data
-        : (response.data?.site_content ?? []);
+        : (response.data ?? {});
 
-      site_content.value = items as site_contentType[];
+      site_content.value = items as site_contentType;
     } catch (error) {
-      console.error("Error fetching site_content", error);
-      site_content.value = [];
     } finally {
       loading.value = false;
     }
@@ -35,6 +34,11 @@ export const usesite_contenttore = defineStore("site_content", () => {
         url: `site-content/${id}`,
         data: data,
       });
+      toast.show(
+        "Operation réussie",
+        "success",
+        "Le contenu de votre site a été mis a jour"
+      )
     } catch (error) {
     } finally {
       loading.value = false;

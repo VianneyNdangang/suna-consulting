@@ -9,18 +9,18 @@ export const usequotestore = defineStore("quotes", () => {
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
+  const toast = useToastStore()
 
   const fetchquotes = async () => {
     try {
       loading.value = true;
-      const response = await api.get("/api/mock/quotes");
+      const response = await api.get("/quotes");
       const items = Array.isArray(response.data)
         ? response.data
         : (response.data?.quotes ?? []);
 
       quotes.value = items as quotesType[];
     } catch (error) {
-      console.error("Error fetching quotes", error);
       quotes.value = [];
     } finally {
       loading.value = false;
@@ -30,11 +30,20 @@ export const usequotestore = defineStore("quotes", () => {
   const createquotes = async (newProduct: quotesType) => {
     try {
       loading.value = true;
-      const response = await api.post("/api/mock/quotes", newProduct);
+      const response = await api.post("/quotes", newProduct);
       const created = response.data ?? response;
       quotes.value = [...quotes.value, created as quotesType];
+      toast.show(
+        "Operation réussie",
+        "success",
+        "Votre requette a bien été soumise"
+      )
     } catch (error) {
-      console.error("Error creating product", error);
+      toast.show(
+        "Operation échouée",
+        "danger",
+        "Erreur lors de la soumission de votre requette"
+      )
     } finally {
       loading.value = false;
     }
@@ -45,7 +54,7 @@ export const usequotestore = defineStore("quotes", () => {
       loading.value = true;
       const response = await api({
         method: "PATCH",
-        url: `/api/mock/quotes/${id}`,
+        url: `quotes/${id}`,
         data:data,
       });
 
