@@ -1,0 +1,360 @@
+{
+  "site-content": {
+    "hero_title": "Plus proche du pays, malgré la distance",
+    "hero_subtitle": "Votre représentant de confiance au Cameroun",
+    "hero_video": "/hero_video.mp4",
+    "stats": [
+      {
+        "label": "Années d'expérience",
+        "value": 8
+      },
+      {
+        "label": "Dossiers traités",
+        "value": 500
+      },
+      {
+        "label": "Pays couverts",
+        "value": 12
+      }
+    ],
+    "our_goals": "Notre mission est de permettre à chaque membre de la diaspora de rester connecté à ses intérêts, sa famille et ses projets au Cameroun, avec la même tranquillité d'esprit que s'il était présent sur place.",
+    "our_values": {
+      "title": "Nous fondons notre action sur quatre principes essentiels :",
+      "items": [
+        "Confiance : nous agissons dans le strict respect des intérêts de nos clients.",
+        "Transparence : chaque mission fait l'objet d'un suivi clair et régulier.",
+        "Professionnalisme : nous garantissons une exécution rigoureuse et efficace.",
+        "Proximité : nous sommes les yeux, les oreilles et les mains de nos clients sur le terrain."
+      ]
+    },
+    "our_engagement": [
+      {
+        "title": "Au-delà de nos activités commerciales, nous avons choisi de faire de notre entreprise un acteur du développement social.",
+        "content": []
+      },
+      {
+        "title": "Ainsi, 15 % de nos ressources humaines et de nos actions seront dédiés à des initiatives à fort impact social, notamment",
+        "content": [
+          "La réalisation de forages d'eau potable ;",
+          "L'acquisition de tables-bancs pour les établissements scolaires",
+          "La rénovation et l'amélioration des infrastructures hospitalières ",
+          "L'assistance aux orphelins et aux veuves",
+          "Le soutien à toute action contribuant au bien-être des communautés locales"
+        ]
+      }
+    ],
+    "why_choose_us": [
+      "Professionnalisme et discrétion",
+      "Transparence dans toutes les missions",
+      "Comptes rendus réguliers et détaillés"
+    ],
+    "contact_phone": [
+      "+237 679 188 336",
+      "+237 691 948 056"
+    ],
+    "contact_email": "sunaconsulting@gmail.com",
+    "contact_whatsapp": [
+      "+237679188336"
+    ],
+    "social_links": {
+      "facebook": "https://facebook.com/sunaconsulting",
+      "instagram": "https://instagram.com/sunaconsulting"
+    }
+  },
+  "services": [
+    {
+      "id": "b1",
+      "slug": "assistance-administrative",
+      "title": "Démarches administratives et courses diverses ",
+      "short_description": "Démarches, dépôts de documents et suivi de dossiers.",
+      "icon": "shield-doc",
+      "is_active": true,
+      "display_order": 1
+    },
+    {
+      "id": "b2",
+      "slug": "accompagnement-immobilier-foncier",
+      "title": "Paiement de factures et frais divers ;",
+      "short_description": "Vérification de parcelles et suivi des transactions.",
+      "icon": "home",
+      "is_active": true,
+      "display_order": 2
+    },
+    {
+      "id": "b3",
+      "slug": "assistance-administrative",
+      "title": " Achat et livraison de cadeaux ou de biens pour les proches ",
+      "short_description": "Démarches, dépôts de documents et suivi de dossiers.",
+      "icon": "shield-doc",
+      "is_active": true,
+      "display_order": 1
+    },
+    {
+      "id": "b4",
+      "slug": "accompagnement-immobilier-foncier",
+      "title": " Réservation d'appartements, d'hôtels ou de véhicules ",
+      "short_description": "Vérification de parcelles et suivi des transactions.",
+      "icon": "home",
+      "is_active": true,
+      "display_order": 2
+    },
+    {
+      "id": "b5",
+      "slug": "assistance-administrative",
+      "title": "Organisation de réunions professionnelles ;",
+      "short_description": "Démarches, dépôts de documents et suivi de dossiers.",
+      "icon": "shield-doc",
+      "is_active": true,
+      "display_order": 1
+    },
+    {
+      "id": "b6",
+      "slug": "accompagnement-immobilier-foncier",
+      "title": " Organisation d'événements familiaux : dot, mariage, anniversaire, baptême, etc. ",
+      "short_description": "Vérification de parcelles et suivi des transactions.",
+      "icon": "home",
+      "is_active": true,
+      "display_order": 2
+    },
+    {
+      "id": "b7",
+      "slug": "assistance-administrative",
+      "title": " Visites et inspections de terrains ou parcelles avant acquisition ",
+      "short_description": "Démarches, dépôts de documents et suivi de dossiers.",
+      "icon": "shield-doc",
+      "is_active": true,
+      "display_order": 1
+    },
+    {
+      "id": "b8",
+      "slug": "accompagnement-immobilier-foncier",
+      "title": " Suivi de chantiers de construction et rapports réguliers ",
+      "short_description": "Vérification de parcelles et suivi des transactions.",
+      "icon": "home",
+      "is_active": true,
+      "display_order": 2
+    },
+    {
+      "id": "b9",
+      "slug": "assistance-administrative",
+      "title": " Gestion et entretien de biens immobiliers ",
+      "short_description": "Démarches, dépôts de documents et suivi de dossiers.",
+      "icon": "shield-doc",
+      "is_active": true,
+      "display_order": 1
+    },
+    {
+      "id": "b10",
+      "slug": "accompagnement-immobilier-foncier",
+      "title": " Nettoyage général, jardinage et maintenance ",
+      "short_description": "Vérification de parcelles et suivi des transactions.",
+      "icon": "home",
+      "is_active": true,
+      "display_order": 2
+    },
+    {
+      "id": "b11",
+      "slug": "assistance-administrative",
+      "title": " Assistance personnalisée selon les besoins spécifiques du client.",
+      "short_description": "Démarches, dépôts de documents et suivi de dossiers.",
+      "icon": "shield-doc",
+      "is_active": true,
+      "display_order": 1
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 3,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 3,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 3,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    },
+    {
+      "id": "t1",
+      "author_name": "Carine N.",
+      "author_location": "Toronto, Canada",
+      "content": "Súna a géré la rénovation de la maison de mes parents sans que j'aie à me déplacer.",
+      "rating": 5,
+      "photo_url": "https://cdn.suna.com/avatars/carine.jpg",
+      "is_published": true
+    }
+  ],
+  "team": [
+    {
+      "id": "m1",
+      "name": "Paul Etoundi",
+      "role": "Responsable terrain",
+      "photo_url": "https://cdn.suna.com/team/paul.jpg"
+    }
+  ],
+  "faq": [
+    {
+      "id": "f1",
+      "question": "Comment payer depuis l'étranger ?",
+      "answer": "Par virement international ou mobile money via nos partenaires.",
+      "category": "paiement1",
+      "display_order": 1
+    },
+    {
+      "id": "f2",
+      "question": "Comment se déroule un premier échange ?",
+      "answer": "Nous commençons par une discussion pour comprendre votre besoin, votre délai et les contraintes locales.",
+      "category": "paiement2",
+      "display_order": 1
+    },
+    {
+      "id": "f3",
+      "question": "Pouvez-vous intervenir depuis l’étranger ?",
+      "answer": "Oui. L’essentiel de notre accompagnement est pensé pour fonctionner à distance avec une vraie réactivité.",
+      "category": "paiement",
+      "display_order": 1
+    },
+    {
+      "id": "f4",
+      "question": "Quels types de dossiers pouvez-vous suivre ?",
+      "answer": "Nous accompagnons les démarches administratives, immobilières, foncières et les projets de coordination locale.",
+      "category": "paiement",
+      "display_order": 1
+    }
+  ],
+  "newsletter": [
+    {
+      "id": "n1",
+      "email": "diaspora@example.com"
+    }
+  ],
+  "quotes": [
+    {
+      "id": "q1...",
+      "user_id": "5f2b9e1a-...",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "description": "J/'aimerais faire vérifier une parcelle à Douala avant achat.",
+      "status": "en_cours",
+      "created_at": "2026-07-16T10:20:00Z",
+      "updated_at": "2026-07-17T09:00:00Z"
+    }
+  ],
+  "auth/me": {
+    "id": "5f2b9e1a-...",
+    "full_name": "Jean Mballa",
+    "email": "jean.mballa@example.com",
+    "phone": "+1 514 555 0134",
+    "country": "Canada",
+    "city": "Montréal",
+    "role": "client",
+    "is_verified": true
+  },
+  "users": [
+    {
+      "name": "vianney",
+      "email": "ndangangvianney@gmail.com",
+      "password": "123456",
+      "id": "yGmzekzKQpY"
+    },
+    {
+      "firstName": "Vianney",
+      "lastName": "admin",
+      "userName": "Pezoh",
+      "password": "01234567",
+      "confirmPassword": "01234567",
+      "role": "admin",
+      "email": "ndangangvianney@gmail.com",
+      "phone": "6652814435",
+      "id": "5kvwnE8rRcc"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
