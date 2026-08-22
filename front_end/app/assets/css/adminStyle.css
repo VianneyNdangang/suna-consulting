@@ -1,0 +1,159 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+/* ============================
+   LIGHT THEME
+============================ */
+
+.admin-layout {
+  /* Layout */
+  --background: #f9f9f9;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --popover: #ffffff;
+
+  /* Text */
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  /* Borders */
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+
+  /* Brand */
+  --primary: #1d4ed8;
+  --primary-hover: #1e40af;
+  --primary-foreground: #ffffff;
+
+  /* Secondary */
+  --secondary: #d4af37;
+  --secondary-hover: #c29b1b;
+  --secondary-foreground: #ffffff;
+  --secondary-ghost: #f8e39e;
+
+  /* States */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+
+  /* Hover */
+  --hover: #f7f7f7;
+  --muted: #f8fafc;
+
+  /* Sidebar */
+  --sidebar: #ffffff;
+  --sidebar-hover: #f1f5f9;
+  --sidebar-border: #e2e8f0;
+
+  /* Radius */
+  --radius: 0.5rem;
+
+  /*Skeleton*/
+  --skeleton: #e5e7eb;
+}
+
+/* ============================
+   DARK THEME
+============================ */
+
+.admin-layout.dark {
+  --background: #0f1115;
+  --surface: #171a21;
+  --card: #1e222b;
+  --popover: #1e222b;
+
+  --text-primary: #f5f7fa;
+  --text-secondary: #a3aab8;
+  --text-muted: #768498;
+
+  --border: #343a46;
+  --input: #2a2f3a;
+  --ring: #3b82f6;
+
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --primary-foreground: #ffffff;
+
+  --secondary: #d4af37;
+  --secondary-hover: #b9931d;
+  --secondary-foreground: #000000;
+
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #60a5fa;
+
+  --hover: #2a2f3a;
+  --muted: #171a21;
+
+  --sidebar: #111827;
+  --sidebar-hover: #1f2937;
+  --sidebar-border: #343a46;
+}
+
+/* ============================
+   BASE
+============================ */
+
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    border-color: var(--border);
+    font-variant-numeric: tabular-nums;
+  }
+
+  html {
+    font-family: Manrope, sans-serif;
+    scroll-behavior: smooth;
+    font-size: 14px;
+  }
+
+  body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text-primary);
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 40%, transparent);
+    color: var(--text-primary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 9999px;
+  }
+
+  input,
+  textarea,
+  select {
+    background: var(--surface);
+    color: var(--text-primary);
+    border-color: var(--border);
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--background) inset;
+    -webkit-text-fill-color: var(--text-primary);
+  }
+
+  .hide-password-toggle::-ms-reveal,
+  .hide-password-toggle::-ms-clear {
+    display: none;
+  }
+}

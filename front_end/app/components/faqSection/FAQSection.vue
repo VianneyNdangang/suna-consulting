@@ -1,38 +1,154 @@
 <script setup lang="ts">
-import type { faqType } from "~/types/types";
+import { ref, computed } from 'vue';
+import type { faqType } from '~/types/types';
 
 const props = defineProps<{
-  items: faqType[];
+  items?: faqType[];
 }>();
+
+const defaultFaqs = [
+  {
+    label: 'Comment s’effectuent les paiements depuis l’étranger ?',
+    content: 'Nous acceptons les règlements sécurisés par virement bancaire international (RIB européen / nord-américain), carte bancaire ou Mobile Money certifié. Chaque transaction fait l’objet d’une facture et d’un reçu horodaté.',
+    icon: 'i-lucide-credit-card',
+    category: 'Paiement & Tarifs',
+  },
+  {
+    label: 'Comment puis-je suivre l’avancement de ma mission en direct ?',
+    content: 'Dès le lancement, un canal de communication direct (WhatsApp / espace client) est ouvert avec votre chargé de mission. Vous recevez des photos horodatées, des vidéos haute définition et un compte-rendu d’étape régulier.',
+    icon: 'i-lucide-smartphone',
+    category: 'Suivi & Communication',
+  },
+  {
+    label: 'Intervenez-vous partout au Cameroun ?',
+    content: 'Oui ! Si nos bureaux permanents sont situés à Yaoundé et Douala, nous déployons des équipes de confiance sur l’ensemble des 10 régions du Cameroun (Ouest, Sud, Littoral, Centre, Nord...) selon les spécificités de votre demande.',
+    icon: 'i-lucide-map-pin',
+    category: 'Zone d’intervention',
+  },
+  {
+    label: 'Comment sécurisez-vous une transaction foncière ou immobilière ?',
+    content: 'Avant tout achat ou acompte, nous effectuons une réquisition au cadastre et aux services des domaines, vérifions l’authenticité du titre foncier, rencontrons les autorités traditionnelles et réalisons une visite géolocalisée sur place.',
+    icon: 'i-lucide-land-plot',
+    category: 'Immobilier & Foncier',
+  },
+  {
+    label: 'Quels sont les délais moyens de traitement ?',
+    content: 'Le premier cadrage s’effectue sous 24 heures. Pour les démarches administratives courantes, comptez 3 à 7 jours ouvrés. Les missions de suivi de chantier s’inscrivent dans la durée de votre planning de construction.',
+    icon: 'i-lucide-clock',
+    category: 'Délais & Planning',
+  },
+  {
+    label: 'Quelle est la garantie de confidentialité de mes démarches ?',
+    content: 'Toutes nos interventions sont couvertes par une stricte clause de confidentialité. Nous ne divulguons aucune information sur vos acquisitions, vos démarches personnelles ou l’identité de vos proches.',
+    icon: 'i-lucide-lock',
+    category: 'Confidentialité',
+  },
+];
+
+const searchQuery = ref('');
+
+const accordionItems = computed(() => {
+  let source = defaultFaqs;
+  if (props.items && props.items.length > 0) {
+    source = props.items.map(item => ({
+      label: item.question,
+      content: item.answer,
+      icon: 'i-lucide-help-circle',
+      category: item.category || 'Général',
+    }));
+  }
+
+  if (!searchQuery.value.trim()) return source;
+  const q = searchQuery.value.toLowerCase();
+  return source.filter(
+    item => item.label.toLowerCase().includes(q) || item.content.toLowerCase().includes(q)
+  );
+});
 </script>
 
 <template>
-  <section class="mx-auto w-full px-4 py-10 md:px-20">
-    <div class="max-w-2xl">
-      <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rust-600">
-        FAQ
-      </p>
-      <h2 class="mt-2 text-3xl font-semibold text-ink-900 sm:text-4xl">
-        Questions fréquentes sur nos services
-      </h2>
-    </div>
-
-    <div class="mt-10 space-y-4">
-      <details
-        v-for="item in props.items"
-        :key="item.id"
-        class="rounded-md border border-slate-200 bg-white p-5 shadow-sm"
-      >
-        <summary
-          class="cursor-pointer list-none text-lg font-semibold text-ink-900"
+  <section id="faq" class="py-16 md:py-24 bg-sand-25 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center space-y-4 max-w-2xl mx-auto">
+        <UBadge
+          color="primary"
+          variant="subtle"
+          size="md"
+          class="bg-rust-100 text-rust-800 border border-rust-200 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase"
         >
-          <h3 class="text-xl text-rust-900 font-bold">
-            <p>{{ item.category }}</p>
-          </h3>
-          {{ item.question }}
-        </summary>
-        <p class="mt-3 text-slate-600">{{ item.answer }}</p>
-      </details>
+          <UIcon name="i-lucide-help-circle" class="w-3.5 h-3.5 mr-1" />
+          Questions Fréquentes
+        </UBadge>
+
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-ink-900 tracking-tight">
+          Tout ce que vous devez savoir sur <span class="text-rust-600">nos services</span>
+        </h2>
+
+        <p class="text-base text-slate-600 leading-relaxed font-normal">
+          Vous avez des questions sur la gestion de vos démarches à distance ? Trouvez rapidement vos réponses ci-dessous.
+        </p>
+
+        <!-- Search Bar -->
+        <div class="pt-2 max-w-md mx-auto">
+          <UInput
+            v-model="searchQuery"
+            icon="i-lucide-search"
+            placeholder="Rechercher une question (paiement, foncier, délais...)"
+            size="md"
+            class="w-full shadow-sm"
+          />
+        </div>
+      </div>
+
+      <!-- FAQ Accordion with Nuxt UI -->
+      <div class="mt-10 space-y-3">
+        <UAccordion
+          :items="accordionItems"
+          size="lg"
+          class="space-y-3"
+          :ui="{
+            item: 'rounded-xl border border-gold-400/25 bg-white shadow-sm overflow-hidden transition-colors hover:border-gold-400/50',
+            trigger: 'px-5 py-4 text-left font-bold text-ink-900 hover:text-rust-600 transition-colors flex items-center justify-between text-base',
+            body: 'px-5 pb-5 pt-1 text-sm leading-relaxed text-slate-600 border-t border-slate-100/80 bg-sand-25/50',
+          }"
+        />
+      </div>
+
+      <!-- Help contact box -->
+      <div class="mt-12 text-center rounded-2xl bg-white p-6 border border-gold-400/20 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-left">
+          <h4 class="text-base font-bold text-ink-900">
+            Une question spécifique à votre dossier ?
+          </h4>
+          <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+            Notre équipe vous répond avec précision dans la journée.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <UButton
+            to="/contact"
+            variant="outline"
+            color="neutral"
+            size="sm"
+            icon="i-lucide-mail"
+            class="font-semibold"
+          >
+            Nous écrire
+          </UButton>
+          <a
+            href="https://wa.me/237679188336"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-lg shadow-sm transition-colors"
+          >
+            <UIcon name="i-lucide-message-circle" class="w-4 h-4" />
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 </template>

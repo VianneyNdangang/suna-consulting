@@ -2,19 +2,21 @@
   <NuxtLink
     :to="props.item.path"
     v-if="props.item?.children?.length === 0"
-    class="block rounded px-3 py-1 mb-1 text-md hover:bg-(--btt-bg) hover:text-white transition"
+    class="block rounded px-3 py-1 mb-1 text-md hover:bg-(--hover) transition"
     :class="{
-      'bg-(--btt-bg)/20 border-l-4 border-(--btt-bg)': route.name === props.item.name,
+      'bg-(--btt-bg)/20 border-l-4 border-rust-600':
+        route.path === props.item.path,
     }"
   >
     <div class="flex items-center gap-2 text-(--text-primary)">
-      <VueIcon v-if="props.item.icon" :name="props.item.icon" class="size-5" />
+      <Icon v-if="props.item.icon" :name="props.item.icon" class="size-5" />
+      <!-- <VueIcon v-if="props.item.icon" :name="props.item.icon" class="size-5" /> -->
       <p v-if="uiStore.isSidebar">{{ props.item.label }}</p>
     </div>
   </NuxtLink>
   <details v-else class="group [&_summary::-webkit-details-marker]:hidden">
     <summary
-      class="flex px-3 py-1 mb-1 text-md transition items-center justify-between rounded hover:bg-[#b18332] hover:text-gray-200"
+      class="flex px-3 py-1 mb-1 text-md transition items-center justify-between rounded hover:bg-(--hover)"
     >
       <div class="flex items-center gap-2">
         <Icon
@@ -50,33 +52,34 @@
         class="flex rounded items-center gap-2 px-3 py-1 mb-1 text-sm transition hover:bg-(--btt-bg) hover:text-white"
         :class="{
           'bg-(--btt-bg)/20 border-l-4 border-(--btt-bg)':
-            route.name === p.name,
-          '': route.name != p.name,
+            route.path === p.path,
+          '': route.path != p.path,
         }"
       >
-        <VueIcon :name="p.icon" class="size-5" />
+        <Icon :name="p.icon" class="size-5" />
         <p v-if="uiStore.isSidebar">{{ p.label }}</p>
       </NuxtLink>
     </div>
   </details>
 </template>
 <script setup lang="ts">
-import { RouterLink, useRoute } from "vue-router";
-
 export type menuType = {
-  label: string
+  label: string;
   path: string;
-  icon: any;
+  icon: string;
   name: string;
   children: {
     label: string;
     path: string;
-    icon: any;
+    icon: string;
     name: string;
-    // allow: ['ADMIN', 'MANAGER'].includes(auth?.role),
-  }[]};
+  }[];
+};
 
-const uiStore = useUiStore()
-const route = useRoute()
-const props = defineProps<{item: menuType|any}>();
+const uiStore = useUiStore();
+const route = useRoute();
+
+const props = defineProps<{
+  item: menuType;
+}>();
 </script>

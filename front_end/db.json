@@ -342,7 +342,9 @@
       "name": "vianney",
       "email": "ndangangvianney@gmail.com",
       "password": "123456",
-      "id": "yGmzekzKQpY"
+      "id": "yGmzekzKQpY",
+      "is_active": true,
+      "role": "admin"
     },
     {
       "firstName": "Vianney",
@@ -350,10 +352,23 @@
       "userName": "Pezoh",
       "password": "01234567",
       "confirmPassword": "01234567",
+      "is_active": true,
       "role": "admin",
       "email": "ndangangvianney@gmail.com",
       "phone": "6652814435",
       "id": "5kvwnE8rRcc"
+    },
+    {
+      "firstName": "pezoh",
+      "lastName": "admin",
+      "userName": "Vianney",
+      "password": "11201201",
+      "confirmPassword": "11201201",
+      "is_active": false,
+      "role": "CategoryManager",
+      "email": "vanney@gmail.com",
+      "phone": "6652814435",
+      "id": "Ha7ACPwbRPo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

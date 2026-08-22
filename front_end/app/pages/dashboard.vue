@@ -6,8 +6,9 @@
       <pre>{{ user }}</pre>
       <button @click="logout">Se déconnecter</button>
     </div>
-    <div v-else>
-      <p>Chargement...</p>
+    <div v-else-if="auth.loading" class="space-y-3" aria-busy="true" aria-label="Chargement du profil">
+      <USkeleton class="h-6 w-48" />
+      <USkeleton class="h-24 w-full max-w-xl" />
     </div>
   </div>
 </template>

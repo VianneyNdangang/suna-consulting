@@ -1,59 +1,137 @@
 <script setup lang="ts">
-import { motion } from 'motion-v';
+import { computed, onMounted } from 'vue';
 import QuoteForm from '~/components/quoteForm/QuoteForm.vue';
-import { type site_contentType } from '~/types/types';
 
-const store = usesite_contentStore()
+useHead({
+  title: 'Contactez Súna Consulting | Yaoundé, Douala & Diaspora',
+  meta: [
+    {
+      name: 'description',
+      content: 'Contactez l’équipe Súna Consulting au Cameroun. Échangez par WhatsApp, téléphone ou formulaire pour vos démarches administratives, foncières et projets.',
+    },
+    { property: 'og:title', content: 'Contactez Súna Consulting | Yaoundé, Douala & Diaspora' },
+    {
+      property: 'og:description',
+      content: 'Prenez contact avec un conseiller Súna au Cameroun. Réponse sous 24h ouvrées.',
+    },
+    { property: 'og:url', content: 'https://sunaconsulting.com/contact' },
+  ],
+  link: [{ rel: 'canonical', href: 'https://sunaconsulting.com/contact' }],
+});
 
-const siteContent = ref<site_contentType>()
-onMounted(async()=>{
-  await store.fetchsite_content()
-  siteContent.value = store.site_content
-})
+const store = usesite_contentStore();
+const loading = computed(() => store.loading);
+const siteContent = computed(() => store.site_content);
+
+onMounted(() => {
+  if (!store.site_content) {
+    store.fetchsite_content().catch(() => {});
+  }
+});
 </script>
 
 <template>
-  <div>
-    <section class="mx-auto w-full px-6 py-20 lg:px-8">
-      <div class="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-        <div>
-          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rust-600">Contact</p>
-          <h1 class="mt-3 text-4xl font-semibold text-link-900 sm:text-5xl">Nous sommes à votre écoute pour préparer
-            votre prochaine étape</h1>
-          <p class="mt-6 text-lg leading-8 text-slate-600">Vous pouvez nous écrire pour un premier échange, un besoin
-            précis ou une demande de suivi.</p>
+  <div class="bg-sand-25 py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Contact Info Left Column -->
+        <div class="lg:col-span-5 space-y-6">
+          <UBadge
+            color="primary"
+            variant="subtle"
+            size="md"
+            class="bg-rust-100 text-rust-800 border border-rust-200 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase"
+          >
+            <UIcon name="i-lucide-mail" class="w-3.5 h-3.5 mr-1" />
+            Contact Direct
+          </UBadge>
 
-          <div class="mt-8 space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <div>
-              <p class="text-sm font-semibold mb-2 uppercase tracking-[0.2em] text-rust-600">Téléphone</p>
-              <p v-for="phon in siteContent?.contact_phone" class=" text-lg text-slate-700">{{phon}}</p>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-ink-900 tracking-tight leading-tight">
+            Nous sommes à votre écoute pour préparer <span class="text-rust-600">votre mission</span>
+          </h1>
+
+          <p class="text-base text-slate-600 leading-relaxed font-light">
+            Échangez avec nous pour un premier cadrage sans engagement, un conseil foncier ou le suivi d’une démarche en cours au Cameroun.
+          </p>
+
+          <!-- Contact Cards -->
+          <div class="space-y-4 pt-2">
+            
+            <div class="rounded-2xl bg-white p-5 border border-gold-400/20 shadow-sm flex items-start gap-4">
+              <div class="h-11 w-11 rounded-xl bg-rust-50 border border-rust-200/60 flex items-center justify-center text-rust-600 shrink-0">
+                <UIcon name="i-lucide-phone" class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Téléphone</h3>
+                <USkeleton v-if="loading" class="mt-2 h-5 w-40" />
+                <div v-else class="text-sm font-semibold text-ink-900 mt-1 space-y-0.5">
+                  <p v-for="phon in (siteContent?.contact_phone || ['+237 679 188 336', '+237 691 948 056'])" :key="phon">
+                    <a :href="`tel:${phon.replace(/\s+/g, '')}`" class="hover:text-rust-600 transition-colors">
+                      {{ phon }}
+                    </a>
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <p class="text-sm font-semibold mb-2 uppercase tracking-[0.2em] text-rust-600">Email</p>
-              <p class=" text-lg text-slate-700">sunaconsulting@gmail.com</p>
+
+            <div class="rounded-2xl bg-white p-5 border border-gold-400/20 shadow-sm flex items-start gap-4">
+              <div class="h-11 w-11 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 shrink-0">
+                <UIcon name="i-lucide-message-circle" class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">WhatsApp 7j/7</h3>
+                <p class="text-sm font-semibold text-emerald-700 mt-1">
+                  <a
+                    href="https://wa.me/237679188336"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:underline flex items-center gap-1"
+                  >
+                    +237 679 188 336 (Discussion instantanée)
+                  </a>
+                </p>
+              </div>
             </div>
-            <div>
-              <p class="text-sm font-semibold mb-2 uppercase tracking-[0.2em] text-rust-600">WhatsApp</p>
-              <p v-for="what in siteContent?.contact_whatsapp" class="text-lg text-slate-700">{{what}}</p>
+
+            <div class="rounded-2xl bg-white p-5 border border-gold-400/20 shadow-sm flex items-start gap-4">
+              <div class="h-11 w-11 rounded-xl bg-gold-50 border border-gold-400/30 flex items-center justify-center text-gold-600 shrink-0">
+                <UIcon name="i-lucide-mail" class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Email Officiel</h3>
+                <p class="text-sm font-semibold text-ink-900 mt-1">
+                  <a :href="`mailto:${siteContent?.contact_email || 'sunaconsulting@gmail.com'}`" class="hover:text-rust-600 transition-colors">
+                    {{ siteContent?.contact_email || 'sunaconsulting@gmail.com' }}
+                  </a>
+                </p>
+              </div>
             </div>
+
+            <div class="rounded-2xl bg-white p-5 border border-gold-400/20 shadow-sm flex items-start gap-4">
+              <div class="h-11 w-11 rounded-xl bg-sky-50 border border-sky-200 flex items-center justify-center text-sky-600 shrink-0">
+                <UIcon name="i-lucide-map-pin" class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Bureaux Permanents</h3>
+                <p class="text-sm font-semibold text-ink-900 mt-1">
+                  Yaoundé & Douala, Cameroun
+                </p>
+                <p class="text-xs text-slate-500 mt-0.5">Intervention possible sur l’ensemble des 10 régions.</p>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <div class=" md:border-l md:px-4 border-ink-900">
-          <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gold-400">Prendre rendez-vous</p>
-          <p class="mt-4 text-lg leading-8 text-black/80">Décrivez votre besoin et précisez si vous souhaitez un échange
-            rapide ou un accompagnement plus complet.</p>
-          <div class="mt-2 md:mt-4">
-            <motion.div :initial="{ opacity: 0, scale: 0 }" :animate="{ opacity: 1, scale: 1 }" :transition="{
-              duration: 0.4,
-              scale: { type: 'spring', visualDuration: 0.4, bounce: 0.5 }
-            }">
-              <QuoteForm />
-            </motion.div>
-
-          </div>
+        <!-- Form Right Column -->
+        <div class="lg:col-span-7">
+          <QuoteForm />
         </div>
+
       </div>
-    </section>
+
+    </div>
   </div>
 </template>

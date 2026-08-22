@@ -1,72 +1,99 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-body {
-    background-color: #fffdf9;
-    color: black;
-}
-
 @theme {
+  --color-rust-950: #431b05;
   --color-rust-900: #8a3e12;
-  --color-rust-600: #AD4F09;
+  --color-rust-800: #9c450f;
+  --color-rust-700: #a74b0d;
+  --color-rust-600: #c2590f;
+  --color-rust-500: #dd6b20;
+  --color-rust-400: #e28743;
+  --color-rust-100: #fde8db;
+  --color-rust-50: #fef5ef;
+
+  --color-gold-600: #b88628;
+  --color-gold-500: #c79e46;
   --color-gold-400: #d4a24e;
+  --color-gold-300: #e6be76;
+  --color-gold-200: #f4dcab;
+  --color-gold-100: #faeed3;
+  --color-gold-50: #fdf9f0;
+
+  --color-ink-950: #0d0a08;
   --color-ink-900: #171310;
+  --color-ink-800: #26201b;
+  --color-ink-700: #3c342d;
+
+  --color-sand-100: #ede3d3;
   --color-sand-50: #f7f1e8;
-  --color-success: #22c55e;
-  --color-danger: #B3261E;
+  --color-sand-25: #fffdf9;
+
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
   --color-information: #2563eb;
 }
-:root {
-  /* light theme*/
-  --bg: #fffdf9;
-  --surface: #ffffff;
-  --border: #e2e8f0;
-  --hover: #cfd5dd;
 
-  --text-primary: #0f172a;
-  --text-secondary: #2b4160;
-  --text-third: #64748b;
-
-  --danger: #ef4444;
-  --success: #22c55e;
-  --primary: #2563eb;
-  --warning: #f59e0b;
-
-  --badge-danger-soft: #fee2e2;
-  --badge-success-soft: #dcfce7;
-  --badge-primary-soft: #dbeafe;
-  --badge-warning-soft: #fef3c7;
-
-  /*Button*/
-  --btt-bg: #c79e46;
-  --btt-hover: #ad8136;
-  --bttg-bg: #fcf2e1;
-
-  /* input */
-  --input-bg: #f4f4f4;
-
-  /*Skeleton*/
-  --skeleton-bg: var(--hover);
+html {
+  scroll-behavior: smooth;
 }
-/* dark theme */
-.dark {
-  --bg: rgb(10, 10, 10);
-  --surface: #050505;
-  --border: #212121;
-  --hover: #141414;
 
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-third: #768498;
+body {
+  background-color: var(--color-sand-25);
+  color: var(--color-ink-900);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
 
-  --badge-danger-soft: #7f1d1d;
-  --badge-success-soft: #14532d;
-  --badge-primary-soft: #1e3a8a;
-  --badge-warning-soft: #78350f;
-  
-  --bttg-bg: #c7a46839;
+/* Glassmorphism helpers */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 162, 78, 0.2);
+}
 
-  --input-bg: #2d3e58;
+.glass-panel-dark {
+  background: rgba(23, 19, 16, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
 
-  --skeleton-bg: #334155;
+.glow-effect {
+  position: relative;
+}
+
+.glow-effect::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(212, 162, 78, 0.4), rgba(194, 89, 15, 0.4));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glow-effect:hover::before {
+  opacity: 1;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f7f1e8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4a24e;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2590f;
 }

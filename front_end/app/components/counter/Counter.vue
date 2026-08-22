@@ -1,34 +1,44 @@
 <script setup lang="ts">
-import { animate, useMotionValue, useTransform,RowValue } from "motion-v"
-import { onMounted, onUnmounted } from "vue"
+import { animate, useMotionValue, useTransform, RowValue } from "motion-v";
+import { onMounted, onUnmounted, watch } from "vue";
 
-const count = useMotionValue(0)
-const rounded = useTransform(() => Math.round(count.get()))
-const props = defineProps <{value:number}>()
+const props = withDefaults(
+  defineProps<{
+    value: number;
+    duration?: number;
+    suffix?: string;
+  }>(),
+  {
+    duration: 3,
+    suffix: '',
+  }
+);
 
-let controls: any
+const count = useMotionValue(0);
+const rounded = useTransform(() => Math.round(count.get()));
+
+let controls: any;
 
 onMounted(() => {
-    controls = animate(count, props.value, { duration: 5 })
-})
+  controls = animate(count, props.value, { duration: props.duration });
+});
+
+watch(
+  () => props.value,
+  (newVal) => {
+    controls?.stop();
+    controls = animate(count, newVal, { duration: props.duration });
+  }
+);
 
 onUnmounted(() => {
-    controls?.stop()
-})
+  controls?.stop();
+});
 </script>
 
 <template>
-  <div class="motion-count">
+  <span class="inline-flex items-center font-bold tracking-tight">
     <RowValue :value="rounded" />
-  </div>
+    <span v-if="props.suffix">{{ props.suffix }}</span>
+  </span>
 </template>
-
-<style scoped>
-.motion-count {
-    font-size: 64px;
-    /* color: #4ff0b7; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-</style>

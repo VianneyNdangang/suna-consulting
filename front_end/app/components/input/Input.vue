@@ -1,86 +1,48 @@
 <template>
-  <div class="w-full space-y-1">
-    <label
-      v-if="label"
-      :for="name"
-      class="text-sm font-medium text-(--text-primary)"
-    >
-      {{ label }}
-    </label>
-
-    <input
-    v-if="type !== 'password' && type !== 'image'"
-    v-model="model"
-    :type="props.type"
-    :name="props.name"
-    :placeholder="props.placeholder"
-    class="w-full rounded border bg-(--input-bg) focus:border-(--border) text-sm py-1 md:py-2 px-3 placeholder:text-(--text-third) focus:outline-none"
-    :class="props.error ? 'border-(--danger)' : 'border-(--border)'"
-  />
-
-    <!-- Text, Email, Number -->
-    <!-- <input
-      v-if="type !== 'password' && type !== 'image'"
-      v-model="model"
-      :id="name"
-      :type="type"
+  <UFormField :label="label" :error="error" class="w-full">
+    <UInput
+      v-if="type !== 'image'"
+      v-model="textModel"
+      :type="type === 'password' && showPassword ? 'text' : type"
       :name="name"
       :placeholder="placeholder"
-      :accept="accept"
-      class="w-full rounded border bg-(--input-bg) px-3 py-2 transition"
-      :class="error ? 'border-(--danger)' : 'border-(--border)'"
-    /> -->
-
-    <!-- Password -->
-    <div
-      v-else-if="type === 'password'"
-      class="flex w-full items-center rounded border bg-(--input-bg)"
-      :class="error ? 'border-(--danger)' : 'border-(--border)'"
+      :color="error ? 'error' : 'neutral'"
+      class="w-full"
     >
-      <input
-        v-model="model"
-        :type="showPassword ? 'text' : 'password'"
-        :name="name"
-        :placeholder="placeholder"
-        class="flex-1 bg-transparent text-sm px-3 py-1 md:py-2 focus:outline-none"
-      />
+      <template v-if="type === 'password'" #trailing>
+        <UButton
+          color="neutral"
+          variant="ghost"
+          size="xs"
+          :icon="showPassword ? 'i-lucide-eye-off' : 'i-lucide-eye'"
+          :aria-label="showPassword ? 'Masquer le mot de passe' : 'Afficher le mot de passe'"
+          @click="showPassword = !showPassword"
+        />
+      </template>
+    </UInput>
 
-      <button
-        type="button"
-        class="px-3"
-        @click="showPassword = !showPassword"
-      >
-        <AkEyeOpen v-if="!showPassword" />
-        <AkEyeClosed v-else />
-      </button>
-    </div>
-
-    <!-- Image -->
     <input
       v-else
       :id="name"
       type="file"
-      accept="image/*"
-      class="w-full rounded border bg-bg text-sm px-3 py-1 md:py-2 "
-      :class="error ? 'border-anger' : 'border-rust-600'"
+      :accept="accept || 'image/*'"
+      class="w-full rounded border border-(--border) bg-transparent px-3 py-2 text-sm"
       @change="onFileChange"
     />
-
-    <p
-      v-if="error"
-      class="text-xs text-(--danger)"
-    >
-      {{ error }}
-    </p>
-  </div>
+  </UFormField>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const showPassword = ref(false);
 
 const model = defineModel<string | File>();
+
+const textModel = computed<string | undefined>({
+  get: () => typeof model.value === "string" ? model.value : undefined,
+  set: (value) => { model.value = value; },
+});
 
 const props = defineProps<{
   label?: string;

@@ -6,7 +6,10 @@
       <button @click="openCreate">Créer un devis</button>
     </div>
 
-    <table v-if="quotes.length">
+    <div v-if="loading" class="space-y-3" aria-busy="true" aria-label="Chargement des devis">
+      <USkeleton v-for="index in 5" :key="index" class="h-10 w-full" />
+    </div>
+    <table v-else-if="quotes.length">
       <thead><tr><th>id</th><th>title</th><th>user</th><th></th></tr></thead>
       <tbody>
         <tr v-for="q in quotes" :key="q.id">

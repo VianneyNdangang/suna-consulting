@@ -1,7 +1,9 @@
 <template>
   <CardDesign>
-    <EmptyState title="Aucune utilisateur" message="Aucune donné de ce tableau n'a été trouvé" v-if="!records"/>
-    <!-- <table-skeleton v-else-if="loading"/> -->
+    <div v-if="loading" class="space-y-3 p-2" aria-busy="true" aria-label="Chargement">
+      <USkeleton v-for="index in 6" :key="index" class="h-10 w-full" />
+    </div>
+    <EmptyState v-else-if="!records.length" title="Aucune utilisateur" message="Aucune donné de ce tableau n'a été trouvé"/>
     <div v-else><p class="mt-2 text-lg font-semibold text-(--text-secondary)">
       List of {{ totalRecords }} {{ title }}.
     </p>

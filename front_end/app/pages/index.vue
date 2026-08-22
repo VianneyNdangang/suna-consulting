@@ -1,91 +1,110 @@
 <script setup lang="ts">
-// import BackgroundAnimatio from '~/components/organisms/BackgroundAnimatio.vue';
-import { useToastStore } from "~/stores/toastStore";
-import { type testimonialsType, type faqType, type servicesType, type site_contentType } from "~/types/types";
-import Login from "~/components/login/Login.vue";
-import Button from "~/components/buttons/Button.vue";
-import HeroSection from "~/components/heroSection/HeroSection.vue";
-import ServiceList from "~/components/serviceListe/ServiceList.vue";
-import WhyChooseUs from "~/components/whyChooseUs/WhyChooseUs.vue";
-import TestimonialSection from "~/components/testimonial/TestimonialSection.vue";
-import CallToAction from "~/components/callToAction/CallToAction.vue";
-import FAQSection from "~/components/faqSection/FAQSection.vue";
-import QuoteForm from "~/components/quoteForm/QuoteForm.vue";
+import { ref, onMounted } from 'vue';
+import type { testimonialsType, faqType, servicesType, site_contentType } from '~/types/types';
+import HeroSection from '~/components/heroSection/HeroSection.vue';
+import ServiceList from '~/components/serviceListe/ServiceList.vue';
+import WhyChooseUs from '~/components/whyChooseUs/WhyChooseUs.vue';
+import TestimonialSection from '~/components/testimonial/TestimonialSection.vue';
+import CallToAction from '~/components/callToAction/CallToAction.vue';
+import FAQSection from '~/components/faqSection/FAQSection.vue';
+import QuoteForm from '~/components/quoteForm/QuoteForm.vue';
 
-// const services = [
-//   {
-//     slug: "assistance-administrative",
-//     title: "Assistance administrative",
-//     short_description:
-//       "Démarches, dépôts de documents et suivi de dossiers pour gagner du temps depuis l’étranger.",
-//     icon: "🧾",
-//   },
-//   {
-//     slug: "accompagnement-immobilier-foncier",
-//     title: "Accompagnement immobilier et foncier",
-//     short_description:
-//       "Vérification de parcelles, suivi de transactions et conseils pour sécuriser vos projets.",
-//     icon: "🏠",
-//   },
-//   {
-//     slug: "gestion-de-projets",
-//     title: "Gestion de projets",
-//     short_description:
-//       "Organisation de missions, reporting régulier et coordination avec les parties prenantes.",
-//     icon: "📈",
-//   },
-//   {
-//     slug: "assistance-administrative",
-//     title: "Assistance administrative",
-//     short_description:
-//       "Démarches, dépôts de documents et suivi de dossiers pour gagner du temps depuis l’étranger.",
-//     icon: "🧾",
-//   },
-//   {
-//     slug: "accompagnement-immobilier-foncier",
-//     title: "Accompagnement immobilier et foncier",
-//     short_description:
-//       "Vérification de parcelles, suivi de transactions et conseils pour sécuriser vos projets.",
-//     icon: "🏠",
-//   },
-//   {
-//     slug: "gestion-de-projets",
-//     title: "Gestion de projets",
-//     short_description:
-//       "Organisation de missions, reporting régulier et coordination avec les parties prenantes.",
-//     icon: "📈",
-//   },
-// ];
-
-// const testimonials = [
-//   {
-//     author_name: "Carine N.",
-//     author_location: "Toronto, Canada",
-//     content:
-//       "Súna a géré la rénovation de la maison de mes parents sans que j’aie à me déplacer.",
-//     rating: 5,
-//   },
-//   {
-//     author_name: "Jean M.",
-//     author_location: "Montréal, Canada",
-//     content: "Le suivi a été transparent et très rassurant, même à distance.",
-//     rating: 5,
-//   },
-//   {
-//     author_name: "Aïcha B.",
-//     author_location: "Douala, Cameroun",
-//     content:
-//       "Une équipe à l’écoute qui transforme les démarches les plus complexes en étapes simples.",
-//     rating: 5,
-//   },
-// ];
-
-const whyChooseUsPoints = [
-  "Professionnalisme et discrétion dans chaque mission.",
-  "Communication régulière et comptes rendus détaillés.",
-  "Un accompagnement local et international adapté à votre contexte.",
-  "Des solutions pratiques pour agir vite depuis l’étranger.",
-];
+// SEO & Meta
+useHead({
+  title: 'Súna Consulting | Votre représentant de confiance au Cameroun',
+  meta: [
+    {
+      name: 'description',
+      content: 'Súna Consulting accompagne la diaspora au Cameroun : démarches administratives, vérification foncière au cadastre, suivi de chantiers et gestion de projets avec rigueur et transparence.',
+    },
+    { property: 'og:title', content: 'Súna Consulting | Votre représentant de confiance au Cameroun' },
+    {
+      property: 'og:description',
+      content: 'Pilotez vos démarches administratives, vérifications foncières et projets au Cameroun en toute sérénité depuis l’étranger.',
+    },
+    { property: 'og:url', content: 'https://sunaconsulting.com/' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:image', content: 'https://sunaconsulting.com/logo_primary.png' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Súna Consulting | Votre représentant de confiance au Cameroun' },
+    {
+      name: 'twitter:description',
+      content: 'Pilotez vos démarches, foncier et chantiers au Cameroun depuis l’étranger avec des rapports photos/vidéos en direct.',
+    },
+    { name: 'twitter:image', content: 'https://sunaconsulting.com/logo_primary.png' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://sunaconsulting.com/' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'LocalBusiness',
+            '@id': 'https://sunaconsulting.com/#organization',
+            'name': 'Súna Consulting',
+            'url': 'https://sunaconsulting.com',
+            'logo': 'https://sunaconsulting.com/logo_primary.png',
+            'image': 'https://sunaconsulting.com/logo_primary.png',
+            'description': 'Représentation et accompagnement opérationnel de la diaspora au Cameroun pour démarches administratives, vérifications foncières et suivi de chantiers.',
+            'telephone': '+237679188336',
+            'email': 'sunaconsulting@gmail.com',
+            'priceRange': '$$',
+            'address': {
+              '@type': 'PostalAddress',
+              'addressLocality': 'Yaoundé',
+              'addressRegion': 'Centre',
+              'addressCountry': 'CM'
+            },
+            'geo': {
+              '@type': 'GeoCoordinates',
+              'latitude': 3.8480,
+              'longitude': 11.5021
+            },
+            'areaServed': ['Cameroun', 'France', 'Canada', 'États-Unis', 'Belgique', 'Royaume-Uni', 'Allemagne'],
+            'sameAs': [
+              'https://facebook.com/sunaconsulting',
+              'https://instagram.com/sunaconsulting'
+            ]
+          },
+          {
+            '@type': 'FAQPage',
+            '@id': 'https://sunaconsulting.com/#faq',
+            'mainEntity': [
+              {
+                '@type': 'Question',
+                'name': 'Comment s’effectuent les paiements depuis l’étranger ?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Nous acceptons les règlements sécurisés par virement bancaire international, carte bancaire ou Mobile Money certifié avec reçu horodaté.'
+                }
+              },
+              {
+                '@type': 'Question',
+                'name': 'Comment puis-je suivre l’avancement de ma mission en direct ?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Un canal de communication direct est mis en place avec votre chargé de mission pour recevoir des photos et vidéos horodatées ainsi que des rapports d’étape réguliers.'
+                }
+              },
+              {
+                '@type': 'Question',
+                'name': 'Comment sécurisez-vous une transaction foncière ou immobilière ?',
+                'acceptedAnswer': {
+                  '@type': 'Answer',
+                  'text': 'Nous réalisons une réquisition au cadastre, vérifions l’authenticité du titre foncier, rencontrons les autorités locales et effectuons une visite géolocalisée sur place.'
+                }
+              }
+            ]
+          }
+        ]
+      })
+    }
+  ]
+});
 
 // Stores
 const faqStore = useFaqStore();
@@ -93,43 +112,70 @@ const siteContentStore = usesite_contentStore();
 const serviceStore = useServiceStore();
 const testimonialStore = useTestimonialstore();
 
-// datas
+// State
 const faqs = ref<faqType[]>([]);
 const siteContent = ref<site_contentType | any>();
 const services = ref<servicesType[]>([]);
-const testimonials = ref<testimonialsType[]>([])
+const testimonials = ref<testimonialsType[]>([]);
+const isDataLoaded = ref(false);
 
-// Fetching datas 
 onMounted(async () => {
-  await faqStore.fetchfaq();
-  await siteContentStore.fetchsite_content();
-  await serviceStore.fetchServices();
-  await testimonialStore.fetchTestimonials();
+  try {
+    await Promise.allSettled([
+      faqStore.fetchfaq(),
+      siteContentStore.fetchsite_content(),
+      serviceStore.fetchServices(),
+      testimonialStore.fetchTestimonials(),
+    ]);
 
-  faqs.value = faqStore.faq;
-  siteContent.value = siteContentStore.site_content;
-  services.value = serviceStore.services;
-  testimonials.value = testimonialStore.Testimonials;
-})
-
+    faqs.value = faqStore.faq || [];
+    siteContent.value = siteContentStore.site_content;
+    services.value = serviceStore.services || [];
+    testimonials.value = testimonialStore.Testimonials || [];
+  } catch (e) {
+    // Defaults take over seamlessly without breaking the UI
+  } finally {
+    isDataLoaded.value = true;
+  }
+});
 </script>
 
 <template>
-  <div>
+  <div class="relative overflow-hidden selection:bg-rust-600 selection:text-white">
+    
+    <!-- Hero Section -->
     <HeroSection
-      eyebrow="Súna Consulting"
-      :title="siteContent?.hero_title"
-      :subtitle="siteContent?.hero_subtitle"
+      eyebrow="Súna Consulting • Partenaire Diaspora"
+      :title="siteContent?.hero_title || 'Plus proche du pays, malgré la distance'"
+      :subtitle="siteContent?.hero_subtitle || 'Votre représentant de confiance au Cameroun pour vos démarches administratives, investissements fonciers, suivi de chantiers et coordination de projets.'"
       :stats="siteContent?.stats"
     />
 
+    <!-- Services Showcase -->
     <ServiceList :services="services" />
-    <WhyChooseUs :points="siteContent?.why_choose_us" />
-    <TestimonialSection :testimonials="testimonials" />
-    <CallToAction />
-    <FAQSection :items="faqs" />
 
-    <QuoteForm />
-    <Login />
+    <Carrousel/>
+    <div v-if="!isDataLoaded" class="space-y-10 px-4 py-10 sm:px-6 lg:px-8">
+      <DataSkeleton :count="6" />
+      <DataSkeleton variant="list" :count="4" />
+      <DataSkeleton variant="list" :count="4" />
+    </div>
+    <template v-else>
+      <!-- Why Choose Us & Bento Grid -->
+      <WhyChooseUs :points="siteContent?.why_choose_us" />
+
+      <!-- Testimonials from Diaspora -->
+      <TestimonialSection :testimonials="testimonials" />
+
+      <!-- FAQ Accordion -->
+      <FAQSection :items="faqs" />
+    </template>
+
+    <!-- Call to Action Banner -->
+    <CallToAction />
+
+    <!-- Quote Estimator Form -->
+    <QuoteForm :services="services" />
+
   </div>
 </template>

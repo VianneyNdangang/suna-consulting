@@ -2,7 +2,7 @@
 <CardDesign>
     <section class="flex justify-center md:justify-between items-center flex-col md:flex-row">
         <div class=" flex gat-3 flex-col w-full ">
-            <h1 class="text-3xl font-bold text-(--text-primary)">{{ pageTitle}}</h1>
+            <h1 class="text-3xl font-bold text-(--text-primary)">{{ props.title }}</h1>
             <p class="text-md text-(--text-secondary)">{{ props.subtitle }}</p>
         </div>
         
@@ -36,8 +36,8 @@ const props = defineProps<
 
 const route = useRoute()
 
-const pageTitle = computed(() => {
-    return route.meta.title || "Dashboard"
-})
+// const pageTitle = computed(() => {
+//     return route.meta.title || "Dashboard"
+// })
 
 </script>

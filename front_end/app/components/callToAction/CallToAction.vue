@@ -1,40 +1,80 @@
 <script setup lang="ts">
-import BackgroundAnimatio from "../backgroung/BackgroundAnimatio.vue";
-import Button from "../buttons/Button.vue";
-
-// const props = defineProps<{
-//   points: string[];
-// }>();
+// Modern CallToAction for Súna Consulting
 </script>
 
 <template>
-  <div
-    class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,162,78,0.22),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(138,62,18,0.32),transparent_34%)]"
-  />
-  <section class="mx-auto w-full bg-ink-900">
-    <BackgroundAnimatio>
-      <div
-        class="grid gap-10 border border-slate-200 px-4 py-10 md:px-20 text-white md:grid-cols-[0.8fr_1.2fr] md:py-12"
-      >
-        <div>
-          <p
-            class="text-sm font-semibold uppercase tracking-[0.3em] text-gold-400"
+  <section class="py-16 md:py-20 bg-sand-25 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="relative rounded-3xl bg-gradient-to-br from-ink-950 via-rust-950 to-ink-900 p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-gold-400/30 overflow-hidden text-center">
+        
+        <!-- Ambient lighting background circles -->
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-gold-400/20 rounded-full blur-3xl pointer-events-none" />
+        <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-rust-600/30 rounded-full blur-3xl pointer-events-none" />
+
+        <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+          
+          <UBadge
+            color="primary"
+            variant="subtle"
+            size="md"
+            class="bg-gold-400/20 text-gold-300 border border-gold-400/40 px-4 py-1.5 rounded-full font-semibold text-xs uppercase tracking-widest backdrop-blur-md"
           >
-            Pourquoi nous choisir
-          </p>
-          <h2 class="mt-3 text-3xl font-semibold sm:text-4xl">
-            Une approche claire, humaine et plus proche du terrain
+            <UIcon name="i-lucide-zap" class="w-3.5 h-3.5 mr-1" />
+            Passez à l'action dès aujourd'hui
+          </UBadge>
+
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+            Prêt à concrétiser vos projets au Cameroun <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-amber-200 to-rust-400">sans stress ?</span>
           </h2>
-          <div class="mt-6">
-            <Button
-              label="Faites comme eux !"
-              type="button"
-              variant="primary"
-            />
+
+          <p class="text-base sm:text-lg text-sand-50/90 leading-relaxed font-light">
+            Échangez gratuitement avec un conseiller Súna et recevez un plan d’action détaillé sous 24 heures. Vous pilotez, nous exécutons avec rigueur sur le terrain.
+          </p>
+
+          <!-- CTAs -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <UButton
+              to="/#devis"
+              size="lg"
+              color="primary"
+              icon="i-lucide-calculator"
+              class="w-full sm:w-auto bg-rust-600 hover:bg-rust-500 text-white font-bold px-8 py-3.5 shadow-lg shadow-rust-900/50 justify-center text-base"
+            >
+              Demander mon devis gratuit
+            </UButton>
+
+            <a
+              href="https://wa.me/237679188336"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-950/40 transition-colors"
+            >
+              <UIcon name="i-lucide-message-circle" class="w-5 h-5" />
+              Échanger sur WhatsApp (+237)
+            </a>
           </div>
+
+          <!-- Trust points below CTAs -->
+          <div class="pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs text-sand-50/80">
+            <span class="inline-flex items-center gap-1.5">
+              <UIcon name="i-lucide-check-circle-2" class="w-4 h-4 text-gold-400" />
+              100% Sans engagement
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <UIcon name="i-lucide-clock" class="w-4 h-4 text-gold-400" />
+              Réponse garantie sous 24h
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <UIcon name="i-lucide-lock" class="w-4 h-4 text-gold-400" />
+              Confidentialité absolue
+            </span>
+          </div>
+
         </div>
 
-        <div></div></div
-    ></BackgroundAnimatio>
+      </div>
+
+    </div>
   </section>
 </template>

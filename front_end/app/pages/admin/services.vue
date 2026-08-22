@@ -6,7 +6,10 @@
       <button @click="openCreate">Créer un service</button>
     </div>
 
-    <table v-if="services.length">
+    <div v-if="loading" class="space-y-3" aria-busy="true" aria-label="Chargement des services">
+      <USkeleton v-for="index in 5" :key="index" class="h-10 w-full" />
+    </div>
+    <table v-else-if="services.length">
       <thead><tr><th>id</th><th>title</th><th>price</th><th></th></tr></thead>
       <tbody>
         <tr v-for="s in services" :key="s.id">

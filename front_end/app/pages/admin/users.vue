@@ -1,17 +1,18 @@
 <template>
-  <div class="flex flex-col gap-5">
+  <div class="flex flex-col gap-2">
     <PageHeader
       title="Users"
       subtitle="Manage user accounts, permissions, and access le"
       :refresh="async() => {await userStore.fetchUsers()}"
       :new="newUser"
     />
-    <div class="flex justify-center items-center flex-col md:flex-row gap-5">
-      <DataSommary title="Total Users" :value="users.length" state="success" />
-      <DataSommary title="Total Administrators" :value="users.filter((u: any)=>u.role === 'admin').length" state="success" />
-      <DataSommary title="Total Category Managers" :value="users.filter((u: any)=>u.role === 'CategoryManager').length" state="success" />
-      <DataSommary title="Total Foot Workers" :value="users.filter((u: any)=>u.role === 'FootWorker').length" state="success" />
+    <div class="flex justify-center items-center flex-col md:flex-row gap-2">
+      <DataSommary title="Total Utilisateurs" :value="users.length" state="primary" description="Nombre total d'utilisateurs" />
+      <DataSommary title="Total Administrators" :value="users.filter((u: any)=>u.role === 'admin').length" state="warning" description="Nombre total d'administrateurs" />
+      <DataSommary title="Total Utilisateurs Actifs" :value="users.filter((u: any)=>u.is_active).length" state="success" description="Nombre total d'utilisateurs actifs" />
+      <DataSommary title="Total Utilisateurs Inactifs" :value="users.filter((u: any)=>!u.is_active).length" state="danger" description="Nombre total d'utilisateurs inactifs" />
     </div>
+    <Button variant="secondary" label="Sidebare" :click="rSidebarStore.handleOpen" type="button" />
     <div>
       <!-- <LoadingView v-if="" /> -->
       <div class="flex">
@@ -20,7 +21,6 @@
           :records="users"
           :headers="header"
           :loading="loading"
-          v-if="users"
         />
         <!-- <CategoriesSidebarView
         :record="['Admin', 'Category Manager', 'Food Workers']"
@@ -28,6 +28,9 @@
       </div>
     </div>
   </div>
+  <RightSidebar @close="rSidebarStore.handleClose" >
+    Hello World
+  </RightSidebar>
   <CreateUser
     v-if="isCreateUser"
     :user = "selectedUser"
@@ -50,16 +53,15 @@ import { ref, onMounted, h } from "vue";
 import { IconEdit, IconTrash } from "@tabler/icons-vue";
 // import LoadingView from "@/components/molecules/LoadingView.vue";
 // import CategoriesSidebarView from "@/components/CategoriesSidebarView.vue";
-import type { TTableheaders } from "@/components/dataTable/DataTable.vue";
-import DataTable from "@/components/dataTable/DataTable.vue";
+
 import Badge from "@/components/badge/Badge.vue";
-import DataSommary from "@/components/dataSommary/DataSommary.vue";
 import { storeToRefs } from "pinia";
-import Profile from "@/components/profile/Profile.vue";
 import CreateUser from "~/components/userComponents/CreateUser.vue";
 import DeleteData from "~/components/deletedata/DeleteData.vue";
-import PageHeader from "~/components/pageHeader/PageHeader.vue";
+import Button from "~/components/buttons/Button.vue";
+import type { TTableheaders } from "~/components/admin/dataTable/DataTable.vue";
 
+const rSidebarStore = useRSidebarStore();
 const isCreateUser = ref(false);
 const isDeleteData = ref(false)
 const newUser = {
@@ -68,18 +70,18 @@ const newUser = {
 };
 
 const header: TTableheaders[] = [
-  {
-    textAlign: "left",
-    accessor: "",
-    name: "",
-    render: (record: any) => h("div", { class: "flex justify-end gap-2" }, [
-        h(Profile, {
-          src: record.profileUrl,
-          h: '10'
-        }),
-      ]),
-    width: "28",
-  },
+  // {
+  //   textAlign: "left",
+  //   accessor: "",
+  //   name: "",
+  //   render: (record: any) => h("div", { class: "flex justify-end gap-2" }, [
+  //       h(Profile, {
+  //         src: record.profileUrl,
+  //         h: '10'
+  //       }),
+  //     ]),
+  //   width: "28",
+  // },
   {
     textAlign: "left",
     accessor: "userName",
@@ -107,8 +109,9 @@ const header: TTableheaders[] = [
     name: "Role",
     render: (record: any) =>
       // record?.role
-         h(Badge, {
-            type: "primary",
+        h(Badge, {
+          color: "info",
+          variant: "subtle",
             message: record.role || "-"
           }),
     width: "28",
