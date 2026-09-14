@@ -1,108 +1,134 @@
-import type { NavigationMenuItem } from '@nuxt/ui';
+import type { NavigationMenuItem } from "@nuxt/ui";
 
 export interface AppMenuItem {
   label: string;
-  to: string;
+  to?: string;
   name?: string;
   icon?: string;
   children?: any[];
 }
 
+const serviceStore = useServiceStore();
+const services = computed(() => {
+  const serviceItems = serviceStore.services
+    .filter((service: any) => Number(service.display_order) === 1)
+    .map((service: any) => ({
+      label: service.title,
+      to: `/services/${service.id}`,
+      description: service.description,
+    }));
+  return [
+    ...serviceItems,
+    {
+      label: "Tous nos services",
+      icon: "i-lucide-arrow-right",
+      description: "Découvrez l’ensemble de nos solutions sur-mesure.",
+      to: "/services",
+    },
+  ];
+});
+
 export const appMenus: AppMenuItem[] = [
-  { label: 'Accueil', to: '/', name: 'index' },
-  { label: 'Nos Services', to: '/services', name: 'services', children: [
-      {
-        label: 'Démarches Administratives',
-        icon: 'i-lucide-file-check',
-        description: 'Légalisation, actes, formalités officielles à distance.',
-        to: '/services#administratif',
-      },
-      {
-        label: 'Immobilier & Foncier',
-        icon: 'i-lucide-land-plot',
-        description: 'Vérification de terrains, suivi de chantiers et gestion.',
-        to: '/services#immobilier',
-      },
-      {
-        label: 'Projets & Événements',
-        icon: 'i-lucide-calendar-heart',
-        description: 'Organisation d’événements familiaux, mariages, achats.',
-        to: '/services#evenements',
-      },
-      {
-        label: 'Tous nos services',
-        icon: 'i-lucide-arrow-right',
-        description: 'Découvrez l’ensemble de nos solutions sur-mesure.',
-        to: '/services',
-      }
-    ] },
-  { label: 'Pourquoi Súna', to: '/why-us', name: 'why-us' },
-  { label: 'À Propos', to: '/about', name: 'about' },
-  { label: 'Témoignages', to: '/testimonials', name: 'testimonials' },
-  { label: 'Devis', to: '/quote', name: 'quote' },
-  { label: 'Contact', to: '/contact', name: 'contact' },
+  { label: "Accueil", to: "/", name: "index" },
+  {
+    label: "Nos Services",
+    name: "services",
+    children: services.value,
+  },
+  { label: "Pourquoi Súna", to: "/why-us", name: "why-us" },
+  { label: "À Propos", to: "/about", name: "about" },
+  { label: "Témoignages", to: "/testimonials", name: "testimonials" },
+  { label: "Devis", to: "/quote", name: "quote" },
+  { label: "Contact", to: "/contact", name: "contact" },
 ];
 
 export const menus = ref<NavigationMenuItem[]>([
   {
-    label: 'Accueil',
-    icon: 'i-lucide-home',
-    to: '/',
+    label: "Tableau de bord",
+    icon: "i-tabler-layout-dashboard",
+    to: "/admin",
   },
+
   {
-    label: 'Services',
-    icon: 'i-lucide-briefcase',
-    to: '/services',
+    label: "Gestion du site",
+    icon: "i-tabler-world",
     children: [
       {
-        label: 'Démarches Administratives',
-        icon: 'i-lucide-file-check',
-        description: 'Légalisation, actes, formalités officielles à distance.',
-        to: '/services#administratif',
+        label: "Médiathèque",
+        icon: "i-tabler-photo-video",
+        to: "/admin/pageContent/media",
       },
       {
-        label: 'Immobilier & Foncier',
-        icon: 'i-lucide-land-plot',
-        description: 'Vérification de terrains, suivi de chantiers et gestion.',
-        to: '/services#immobilier',
+        label: "Services",
+        icon: "i-tabler-briefcase",
+        to: "/admin/pageContent/services",
+      },
+      // {
+      //   label: "Pourquoi Súna",
+      //   icon: "i-tabler-shield-check",
+      //   to: "/admin/pageContent/why-us",
+      // },
+      // {
+      //   label: "À propos",
+      //   icon: "i-tabler-info-circle",
+      //   to: "/admin/pageContent/about",
+      // },
+      {
+        label: "Témoignages",
+        icon: "i-tabler-message-star",
+        to: "/admin/pageContent/testimonials",
+      },
+    ],
+  },
+
+  {
+    label: "Demandes",
+    icon: "i-tabler-inbox",
+    children: [
+      {
+        label: "Commandes",
+        icon: "i-tabler-file-invoice",
+        to: "/admin/quotes",
       },
       {
-        label: 'Projets & Événements',
-        icon: 'i-lucide-calendar-heart',
-        description: 'Organisation d’événements familiaux, mariages, achats.',
-        to: '/services#evenements',
+        label: "Messages",
+        icon: "i-tabler-mail",
+        to: "/admin/messages",
+      },
+    ],
+  },
+
+  {
+    label: "Utilisateurs",
+    icon: "i-tabler-users",
+    children: [
+      {
+        label: "Administrateurs",
+        icon: "i-tabler-user-shield",
+        to: "/admin/users",
       },
       {
-        label: 'Tous nos services',
-        icon: 'i-lucide-arrow-right',
-        description: 'Découvrez l’ensemble de nos solutions sur-mesure.',
-        to: '/services',
-      }
-    ]
+        label: "Profils",
+        icon: "i-tabler-user-circle",
+        to: "/admin/profiles",
+      },
+    ],
   },
+
   {
-    label: 'Pourquoi Súna',
-    icon: 'i-lucide-shield-check',
-    to: '/why-us',
-  },
-  {
-    label: 'À Propos',
-    icon: 'i-lucide-users',
-    to: '/about',
-  },
-  {
-    label: 'Témoignages',
-    icon: 'i-lucide-star',
-    to: '/testimonials',
-  },
-  {
-    label: 'Devis Express',
-    icon: 'i-lucide-calculator',
-    to: '/quote',
-  },
-  {
-    label: 'Contact',
-    icon: 'i-lucide-mail',
-    to: '/contact',
+    label: "Paramètres",
+    icon: "i-tabler-settings",
+    children: [
+      {
+        label: "Général",
+        icon: "i-tabler-adjustments",
+        to: "/admin/settings",
+      },
+      {
+        label: "Sécurité",
+        icon: "i-tabler-lock",
+        to: "/admin/settings/security",
+      },
+    ],
   },
 ]);

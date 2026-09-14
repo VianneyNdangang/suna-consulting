@@ -1,17 +1,24 @@
-<script setup lang="ts">
-import ToastContainer from '~/components/toast/ToastContainer.vue';
 
-const colorMode = useColorMode()
-colorMode.preference = 'light'
-</script>
 
 <template>
   <div>
     <AppHeader />
-    <main class="min-h-screen">
+    <UMain class="min-h-screen">
       <slot />
-    </main>
-    <ToastContainer/>
+    </UMain>
     <AppFooter />
   </div>
 </template>
+<script setup lang="ts">
+
+const store = usesite_contentStore()
+const serviceStore = useServiceStore()
+onMounted(async ()=>{
+  await store.fetchsite_content()
+  await serviceStore.fetchServices()
+})
+
+const colorMode = useColorMode()
+colorMode.preference = 'light'
+</script>
+<style src="../assets/css/main.css"></style>

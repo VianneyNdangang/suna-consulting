@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { icons } from '@tabler/icons-vue';
 import { computed, onMounted } from 'vue';
-import QuoteForm from '~/components/quoteForm/QuoteForm.vue';
+import QuoteForm from '~/components/forms/QuoteForm.vue';
+import { IconGmail, IconLinkedin, IconWhatsApp } from '~/components/svg/svg';
 
 useHead({
   title: 'Contactez Súna Consulting | Yaoundé, Douala & Diaspora',
@@ -34,7 +36,7 @@ onMounted(() => {
   <div class="bg-sand-25 py-12 md:py-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div class="flex flex-col gap-5">
         
         <!-- Contact Info Left Column -->
         <div class="lg:col-span-5 space-y-6">
@@ -78,7 +80,7 @@ onMounted(() => {
 
             <div class="rounded-2xl bg-white p-5 border border-gold-400/20 shadow-sm flex items-start gap-4">
               <div class="h-11 w-11 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 shrink-0">
-                <UIcon name="i-lucide-message-circle" class="w-5 h-5" />
+                <UIcon :name="IconWhatsApp" class="w-5 h-5" />
               </div>
               <div>
                 <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">WhatsApp 7j/7</h3>
@@ -97,10 +99,24 @@ onMounted(() => {
 
             <div class="rounded-2xl bg-white p-5 border border-gold-400/20 shadow-sm flex items-start gap-4">
               <div class="h-11 w-11 rounded-xl bg-gold-50 border border-gold-400/30 flex items-center justify-center text-gold-600 shrink-0">
-                <UIcon name="i-lucide-mail" class="w-5 h-5" />
+                <UIcon :name="IconGmail" class="w-5 h-5" />
               </div>
               <div>
                 <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Email Officiel</h3>
+                <p class="text-sm font-semibold text-ink-900 mt-1">
+                  <a :href="`mailto:${siteContent?.contact_email || 'sunaconsulting@gmail.com'}`" class="hover:text-rust-600 transition-colors">
+                    {{ siteContent?.contact_email || 'sunaconsulting@gmail.com' }}
+                  </a>
+                </p>
+              </div>
+            </div>
+
+             <div class="rounded-2xl bg-white p-5 border border-gold-400/20 shadow-sm flex items-start gap-4">
+              <div class="h-11 w-11 rounded-xl bg-gold-50 border border-gold-400/30 flex items-center justify-center text-gold-600 shrink-0">
+                <UIcon :name="IconLinkedin" class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Linkedin Officiel</h3>
                 <p class="text-sm font-semibold text-ink-900 mt-1">
                   <a :href="`mailto:${siteContent?.contact_email || 'sunaconsulting@gmail.com'}`" class="hover:text-rust-600 transition-colors">
                     {{ siteContent?.contact_email || 'sunaconsulting@gmail.com' }}
@@ -116,7 +132,7 @@ onMounted(() => {
               <div>
                 <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Bureaux Permanents</h3>
                 <p class="text-sm font-semibold text-ink-900 mt-1">
-                  Yaoundé & Douala, Cameroun
+                  Douala, Cameroun
                 </p>
                 <p class="text-xs text-slate-500 mt-0.5">Intervention possible sur l’ensemble des 10 régions.</p>
               </div>

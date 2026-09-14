@@ -238,7 +238,6 @@ declare global {
   const useThemeStore: typeof import('../../app/stores/themeStore').useThemeStore
   const useTime: typeof import('motion-v').useTime
   const useToast: typeof import('../../node_modules/@nuxt/ui/dist/runtime/composables/useToast').useToast
-  const useToastStore: typeof import('../../app/stores/toastStore').useToastStore
   const useTour: typeof import('../../node_modules/@nuxt/ui/dist/runtime/composables/useTour').useTour
   const useTransform: typeof import('motion-v').useTransform
   const useTransitionState: typeof import('vue').useTransitionState
@@ -271,8 +270,8 @@ declare global {
   export type { PageMeta } from '../../node_modules/nuxt/dist/app/composables/pages'
   import('../../node_modules/nuxt/dist/app/composables/pages')
   // @ts-ignore
-  export type { ToastType, Toast } from '../../app/stores/toastStore'
-  import('../../app/stores/toastStore')
+  export type { ToastType, Toast } from '../../app/stores/'
+  import('../../app/stores/')
 }
 // for vue template auto import
 import { UnwrapRef } from 'vue'
@@ -515,7 +514,7 @@ declare module 'vue' {
     readonly useThemeStore: UnwrapRef<typeof import('../../app/stores/themeStore')['useThemeStore']>
     readonly useTime: UnwrapRef<typeof import('motion-v')['useTime']>
     readonly useToast: UnwrapRef<typeof import('../../node_modules/@nuxt/ui/dist/runtime/composables/useToast')['useToast']>
-    readonly useToastStore: UnwrapRef<typeof import('../../app/stores/toastStore')['useToastStore']>
+    readonly : UnwrapRef<typeof import('../../app/stores/')['']>
     readonly useTour: UnwrapRef<typeof import('../../node_modules/@nuxt/ui/dist/runtime/composables/useTour')['useTour']>
     readonly useTransform: UnwrapRef<typeof import('motion-v')['useTransform']>
     readonly useTransitionState: UnwrapRef<typeof import('vue')['useTransitionState']>

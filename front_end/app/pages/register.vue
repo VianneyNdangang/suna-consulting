@@ -2,44 +2,46 @@
   <div class="auth-page">
     <h1>Inscription</h1>
     <form @submit.prevent="onSubmit">
-      <label>Nom</label>
-      <input v-model="name" required />
-
-      <label>Email</label>
-      <input v-model="email" type="email" required />
-
-      <label>Mot de passe</label>
-      <input v-model="password" type="password" required />
-
+      <Input v-model="name" name="name" label="Nom" type="text" placeholder="Votre nom" :error="errors.name" />
+      <Input v-model="email" name="email" label="Email" type="email" placeholder="vous@email.com" :error="errors.email" />
+      <Input v-model="password" name="password" label="Mot de passe" type="password" placeholder="8 caractères minimum" :error="errors.password" />
       <button :disabled="loading">S'inscrire</button>
     </form>
-    <p v-if="error" class="error">{{ error }}</p>
+    <p v-if="submitError" class="error">{{ submitError }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useForm } from 'vee-validate';
+import { toTypedSchema } from '@vee-validate/zod';
 import { useAuthStore } from '~/stores/authStore';
+import { registerSchema } from '~/schemas/forms.schema';
+import Input from '~/components/input/Input.vue';
 
-const name = ref('');
-const email = ref('');
-const password = ref('');
-const error = ref<string | null>(null);
-const router = useRouter();
 const auth = useAuthStore();
-
+const router = useRouter();
+const submitError = ref('');
 const loading = computed(() => auth.loading);
 
-const onSubmit = async () => {
-  error.value = null;
-  const ok = await auth.register({ name: name.value, email: email.value, password: password.value });
+const { defineField, errors, handleSubmit } = useForm({
+  validationSchema: toTypedSchema(registerSchema),
+});
+
+const [name] = defineField('name');
+const [email] = defineField('email');
+const [password] = defineField('password');
+
+const onSubmit = handleSubmit(async (values) => {
+  submitError.value = '';
+  const ok = await auth.register(values);
   if (ok) {
     await router.push('/dashboard');
   } else {
-    error.value = 'Échec de l\'inscription';
+    submitError.value = 'Échec de l\'inscription';
   }
-};
+});
 </script>
 
 <style scoped>

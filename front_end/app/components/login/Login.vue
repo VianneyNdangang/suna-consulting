@@ -96,12 +96,12 @@ import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import Input from "../input/Input.vue";
 
-// import { loginSchema } from "~/schemas/auth.schema";
+import { loginSchema } from '~/schemas/forms.schema';
 
 const log = useUserStore();
 
 const { defineField, errors, handleSubmit } = useForm({
-  // validationSchema: toTypedSchema(loginSchema),
+  validationSchema: toTypedSchema(loginSchema),
 });
 
 const [email] = defineField("email");

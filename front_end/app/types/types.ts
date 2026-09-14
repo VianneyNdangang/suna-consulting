@@ -1,21 +1,23 @@
 export type servicesType = {
-  id: string;
+  id?: string;
   slug: string;
   title: string;
-  short_description: string;
-  icon: string;
-  is_active: boolean;
-  display_order: number;
+  description: string;
+  icon?: string;
+  is_active?: boolean;
+  display_order?: number;
 };
 
 export type testimonialsType = {
-  id: "t1";
+  id: string;
   author_name: string;
   author_location: string;
   content: string;
   rating: number;
   photo_url: string;
   is_published: boolean;
+  flag?: string;
+  service_used?: string;
 };
 
 export type teamType = {

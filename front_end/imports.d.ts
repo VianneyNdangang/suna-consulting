@@ -40,7 +40,7 @@ export { usesite_contentStore } from '../app/stores/site-contentStore';
 export { useTeamtore } from '../app/stores/teamStore';
 export { useTestimonialstore } from '../app/stores/testimonialsStore';
 export { useThemeStore } from '../app/stores/themeStore';
-export { useToastStore, ToastType, Toast } from '../app/stores/toastStore';
+export { , ToastType, Toast } from '../app/stores/';
 export { useUiStore } from '../app/stores/uiStore';
 export { useUserStore } from '../app/stores/userStore';
 export { defineStore, acceptHMRUpdate, usePinia, storeToRefs } from '../node_modules/@pinia/nuxt/dist/runtime/composables';

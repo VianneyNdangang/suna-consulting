@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import Card from '@/components/card/Card.vue';
 import Button from '../buttons/Button.vue';
-import Modal from '../modal/Modal.vue';
+import Modal from '../admin/forms/ServiceForm.vue/index.js';
 import CardDesign from '../cardDesign/CardDesign.vue';
 
 

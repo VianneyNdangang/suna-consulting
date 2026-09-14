@@ -9,7 +9,6 @@ export const usequotestore = defineStore("quotes", () => {
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
-  const toast = useToastStore()
 
   const fetchquotes = async () => {
     try {
@@ -27,31 +26,16 @@ export const usequotestore = defineStore("quotes", () => {
     }
   };
 
-  const createquotes = async (newProduct: quotesType) => {
-    try {
+  const createquotes = async (newQuote: any) => {
       loading.value = true;
-      const response = await api.post("/quotes", newProduct);
+      const response = await api.post("/quotes", newQuote);
       const created = response.data ?? response;
-      quotes.value = [...quotes.value, created as quotesType];
-      toast.show(
-        "Operation réussie",
-        "success",
-        "Votre requette a bien été soumise"
-      )
-    } catch (error) {
-      toast.show(
-        "Operation échouée",
-        "danger",
-        "Erreur lors de la soumission de votre requette"
-      )
-    } finally {
-      loading.value = false;
-    }
+      fetchquotes()
+    return response.data
   };
 
   const updatequotes = async (id: string, data:any) => {
     try {
-      loading.value = true;
       const response = await api({
         method: "PATCH",
         url: `quotes/${id}`,

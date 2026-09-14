@@ -1,67 +1,36 @@
 <template>
   <div class="flex flex-col gap-2">
-    <PageHeader
+    <!-- <PageHeader
       title="Users"
       subtitle="Manage user accounts, permissions, and access le"
       :refresh="async() => {await userStore.fetchUsers()}"
       :new="newUser"
-    />
-    <div class="flex justify-center items-center flex-col md:flex-row gap-2">
-      <DataSommary title="Total Utilisateurs" :value="users.length" state="primary" description="Nombre total d'utilisateurs" />
-      <DataSommary title="Total Administrators" :value="users.filter((u: any)=>u.role === 'admin').length" state="warning" description="Nombre total d'administrateurs" />
-      <DataSommary title="Total Utilisateurs Actifs" :value="users.filter((u: any)=>u.is_active).length" state="success" description="Nombre total d'utilisateurs actifs" />
-      <DataSommary title="Total Utilisateurs Inactifs" :value="users.filter((u: any)=>!u.is_active).length" state="danger" description="Nombre total d'utilisateurs inactifs" />
-    </div>
-    <Button variant="secondary" label="Sidebare" :click="rSidebarStore.handleOpen" type="button" />
-    <div>
+    /> -->
+    
       <!-- <LoadingView v-if="" /> -->
       <div class="flex">
+        <UCard class="bg-(--card) w-full rounded-(--radius) border border-(--border)">
         <DataTable
-          title="Users"
-          :records="users"
-          :headers="header"
-          :loading="loading"
+          :data="data"
+          :columns="columns"
         />
+        </UCard>
         <!-- <CategoriesSidebarView
         :record="['Admin', 'Category Manager', 'Food Workers']"
       /> -->
       </div>
-    </div>
   </div>
-  <RightSidebar @close="rSidebarStore.handleClose" >
-    Hello World
-  </RightSidebar>
-  <CreateUser
-    v-if="isCreateUser"
-    :user = "selectedUser"
-    :isOpen="isCreateUser"
-    @close="()=>{isCreateUser = false; selectedUser = null}"
-  />
-  <DeleteData
-  :action="()=>handleDelete"
-    :id="selectedUser?.id"
-    :name="selectedUser?.userNme"
-    message="Cette action supprimera définitivement cet utilisateur ainsi que les données qui lui sont associées. Cette opération est irréversible. Voulez-vous continuer ?"
-    title="Supprimer l'utilisateur"
-    :isOpen="isDeleteData"
-    @close="()=>{isDeleteData = false; selectedUser = null}"
-  />
 </template>
 <script setup lang="ts">
 definePageMeta({ layout: 'admin' });
 import { ref, onMounted, h } from "vue";
-import { IconEdit, IconTrash } from "@tabler/icons-vue";
 // import LoadingView from "@/components/molecules/LoadingView.vue";
 // import CategoriesSidebarView from "@/components/CategoriesSidebarView.vue";
 
-import Badge from "@/components/badge/Badge.vue";
 import { storeToRefs } from "pinia";
-import CreateUser from "~/components/userComponents/CreateUser.vue";
-import DeleteData from "~/components/deletedata/DeleteData.vue";
-import Button from "~/components/buttons/Button.vue";
-import type { TTableheaders } from "~/components/admin/dataTable/DataTable.vue";
+import type { TableColumn } from "@nuxt/ui";
+import DataTable from "~/components/admin/dataTable/DataTable.vue";
 
-const rSidebarStore = useRSidebarStore();
 const isCreateUser = ref(false);
 const isDeleteData = ref(false)
 const newUser = {
@@ -69,87 +38,58 @@ const newUser = {
   action: () => (isCreateUser.value = true),
 };
 
-const header: TTableheaders[] = [
-  // {
-  //   textAlign: "left",
-  //   accessor: "",
-  //   name: "",
-  //   render: (record: any) => h("div", { class: "flex justify-end gap-2" }, [
-  //       h(Profile, {
-  //         src: record.profileUrl,
-  //         h: '10'
-  //       }),
-  //     ]),
-  //   width: "28",
-  // },
+const UButton = resolveComponent('UButton')
+const UBadge = resolveComponent('UBadge')
+
+
+type Payment = {
+  id: string
+  date: string
+  status: 'paid' | 'failed' | 'refunded'
+  email: string
+  amount: number
+}
+
+
+const data = ref<Payment[]>([
   {
-    textAlign: "left",
-    accessor: "userName",
-    name: "User Name",
-    render: (record: any) => (record?.userName ? record?.userName : "-"),
-    width: "28",
+    id: '4600',
+    date: '2024-03-11T15:30:00',
+    status: 'paid',
+    email: 'james.anderson@example.com',
+    amount: 594
   },
   {
-    textAlign: "left",
-    accessor: "lastName",
-    name: "Last Name",
-    render: (record: any) => (record?.lastName ? record?.lastName : "-"),
-    width: "28",
+    id: '4599',
+    date: '2024-03-11T10:10:00',
+    status: 'failed',
+    email: 'mia.white@example.com',
+    amount: 276
   },
   {
-    textAlign: "left",
-    accessor: "email",
-    name: "E-mail",
-    render: (record: any) => (record?.email ? record?.email : "-"),
-    width: "auto",
+    id: '4598',
+    date: '2024-03-11T08:50:00',
+    status: 'refunded',
+    email: 'william.brown@example.com',
+    amount: 315
   },
   {
-    textAlign: "center",
-    accessor: "role",
-    name: "Role",
-    render: (record: any) =>
-      // record?.role
-        h(Badge, {
-          color: "info",
-          variant: "subtle",
-            message: record.role || "-"
-          }),
-    width: "28",
+    id: '4597',
+    date: '2024-03-10T19:45:00',
+    status: 'paid',
+    email: 'emma.davis@example.com',
+    amount: 529
   },
   {
-    textAlign: "left",
-    accessor: "phone",
-    name: "Phone",
-    render: (record: any) => (record?.phone ? record?.phone : "-"),
-    width: "auto",
-  },
-  {
-    textAlign: "right",
-    accessor: "actions",
-    name: "Actions",
-    render: (record: any) =>
-      h("div", { class: "flex justify-end gap-2" }, [
-        h(IconEdit, {
-          size: 18,
-          class: "cursor-pointer text-slate-900 hover:text-blue-700",
-          onClick: ()=>{
-            selectedUser.value = record;
-            isCreateUser.value = true;
-          }
-         
-        }),
-        h(IconTrash, {
-          size: 18,
-          class: "cursor-pointer text-red-500 hover:text-red-700",
-          onClick: ()=>{
-            selectedUser.value = record;
-            isDeleteData.value = true;
-          }
-        }),
-      ]),
-    width: "28",
-  },
-];
+    id: '4596',
+    date: '2024-03-10T15:55:00',
+    status: 'paid',
+    email: 'ethan.harris@example.com',
+    amount: 639
+  }
+])
+
+
 const selectedUser = ref();
 const userStore = useUserStore();
 const { users } = storeToRefs(userStore);
@@ -162,4 +102,78 @@ onMounted(async () => {
   await userStore.fetchUsers();
 });
 
+const columns: TableColumn<Payment>[] = [
+  {
+    id: 'expand',
+    cell: ({ row }) =>
+      h(UButton, {
+        color: 'neutral',
+        variant: 'ghost',
+        icon: 'i-lucide-chevron-down',
+        square: true,
+        'aria-label': 'Expand',
+        ui: {
+          leadingIcon: [
+            'transition-transform',
+            row.getIsExpanded() ? 'duration-200 rotate-180' : ''
+          ]
+        },
+        onClick: () => row.toggleExpanded()
+      })
+  },
+  {
+    accessorKey: 'id',
+    header: '#',
+    cell: ({ row }) => `#${row.getValue('id')}`
+  },
+  {
+    accessorKey: 'date',
+    header: 'Date',
+    cell: ({ row }) => {
+      return new Date(row.getValue('date')).toLocaleString('en-US', {
+        day: 'numeric',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false
+      })
+    }
+  },
+  {
+    accessorKey: 'status',
+    header: 'Status',
+    cell: ({ row }) => {
+      const color = {
+        paid: 'success' as const,
+        failed: 'error' as const,
+        refunded: 'neutral' as const
+      }[row.getValue('status') as string]
+
+      return h(UBadge, { class: 'capitalize', variant: 'subtle', color }, () =>
+        row.getValue('status')
+      )
+    }
+  },
+  {
+    accessorKey: 'email',
+    header: 'Email'
+  },
+  {
+    accessorKey: 'amount',
+    header: 'Amount',
+    meta: {
+      class: {
+        th: 'text-right',
+        td: 'text-right font-medium'
+      }
+    },
+    cell: ({ row }) => {
+      const amount = Number.parseFloat(row.getValue('amount'))
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'EUR'
+      }).format(amount)
+    }
+  }
+]
 </script>

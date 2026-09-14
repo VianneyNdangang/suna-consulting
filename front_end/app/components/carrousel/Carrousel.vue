@@ -7,6 +7,7 @@ const items = [
   'https://picsum.photos/640/640?random=5',
   'https://picsum.photos/640/640?random=6'
 ]
+const isLoadingImage = ref(false)
 </script>
 
 <template>
@@ -45,15 +46,16 @@ const items = [
           viewport: 'overflow-hidden'
         }"
       >
-        <div class="group relative overflow-hidden rounded-2xl border border-gold-200/80 bg-white p-2 shadow-[0_16px_36px_rgba(67,27,5,0.14)] transition duration-300 hover:-translate-y-1">
+        <div class="group relative overflow-hidden rounded-2xl mx-1 border border-gold-200/80 bg-white p-2 shadow-[0_16px_36px_rgba(67,27,5,0.14)] transition duration-300 hover:-translate-y-1">
           <div class="pointer-events-none absolute inset-3 z-10 rounded-xl border border-white/40" aria-hidden="true" />
           <img
-            :src="item"
+            :src="`/suna_loadingImage.png`"
             width="640"
             height="640"
             alt="Réalisation de Suna Consulting sur le terrain"
-            class="aspect-4/3 w-full rounded-xl object-cover transition duration-700 group-hover:scale-105"
+            class="aspect-4/3 w-full rounded object-cover transition duration-700 group-hover:scale-105"
             loading="lazy"
+            @loadeddata="isLoadingImage = true"
           >
           <div class="pointer-events-none absolute inset-x-2 bottom-2 rounded-b-xl bg-linear-to-t from-ink-950/80 via-ink-950/25 to-transparent px-5 pb-4 pt-12">
             <span class="text-xs font-semibold uppercase tracking-[0.16em] text-white/90">Projet suivi sur le terrain</span>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { IconWhatsApp } from '../svg/svg';
+
 // Modern CallToAction for Súna Consulting
 </script>
 
@@ -6,7 +8,7 @@
   <section class="py-16 md:py-20 bg-sand-25 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="relative rounded-3xl bg-gradient-to-br from-ink-950 via-rust-950 to-ink-900 p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-gold-400/30 overflow-hidden text-center">
+      <div class="relative rounded-3xl bg-linear-to-br from-ink-900 via-rust-900 to-ink-800 p-8 sm:p-12 lg:p-16 text-white border border-gold-400/30 overflow-hidden text-center">
         
         <!-- Ambient lighting background circles -->
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-gold-400/20 rounded-full blur-3xl pointer-events-none" />
@@ -25,7 +27,7 @@
           </UBadge>
 
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
-            Prêt à concrétiser vos projets au Cameroun <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-300 via-amber-200 to-rust-400">sans stress ?</span>
+            Prêt à concrétiser vos projets au Cameroun <span class="text-transparent bg-clip-text bg-linear-to-r from-gold-300 via-amber-200 to-rust-400">sans stress ?</span>
           </h2>
 
           <p class="text-base sm:text-lg text-sand-50/90 leading-relaxed font-light">
@@ -39,7 +41,7 @@
               size="lg"
               color="primary"
               icon="i-lucide-calculator"
-              class="w-full sm:w-auto bg-rust-600 hover:bg-rust-500 text-white font-bold px-8 py-3.5 shadow-lg shadow-rust-900/50 justify-center text-base"
+              class="w-full sm:w-auto bg-rust-600 hover:bg-rust-500 text-white font-bold px-8 py-3.5 justify-center text-base"
             >
               Demander mon devis gratuit
             </UButton>
@@ -48,9 +50,9 @@
               href="https://wa.me/237679188336"
               target="_blank"
               rel="noopener noreferrer"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl shadow-lg shadow-emerald-950/40 transition-colors"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-base font-bold text-white bg-emerald-600 hover:bg-emerald-500 rounded-xl transition-colors"
             >
-              <UIcon name="i-lucide-message-circle" class="w-5 h-5" />
+              <UIcon :name="IconWhatsApp" class="w-5 h-5" />
               Échanger sur WhatsApp (+237)
             </a>
           </div>

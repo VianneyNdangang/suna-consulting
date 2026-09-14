@@ -1,31 +1,31 @@
 <template>
-  <div class="space-y-1">
-    <label :for="props.name" class="text-sm font-medium text-rust-600">
-      {{ props.label }}
-    </label>
 
-    <div class="relative">
-      <textarea
+      <UFormField
+    :label="label"
+    :error="error"
+    :ui="{ label: labelClass }"
+    class="w-full"
+  >
+      <UTextarea
         v-model="model"
         :name="props.name"
         :placeholder="props.placeholder"
-        class="w-full rounded-md border-2 focus:border-rust-600 py-2 pl-3 placeholder:text-gray-500 focus:outline-none"
-        :class="props.error ? 'border-danger' : 'border-rust-600'"
+        :id="props.name"
+        class="w-full rounded"
       />
-    </div>
-
-    <p class="text-xs text-(--danger)">
-      {{ props.error }}
-    </p>
-  </div>
+      </UFormField>
 </template>
 <script setup lang="ts">
 const model = defineModel<string>();
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   label?: string;
   name: string;
-  placeholder: string;
+  placeholder?: string;
   error?: string;
   icon?: any;
-}>();
+  labelClass?: string;
+}>(), {
+  labelClass: 'text-sm font-semibold text-slate-700'
+});
+
 </script>

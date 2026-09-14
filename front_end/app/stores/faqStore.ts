@@ -9,7 +9,7 @@ export const useFaqStore = defineStore("faq", () => {
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
-  const toast = useToastStore();
+  const toast = useToast();
 
   const fetchfaq = async () => {
     try {
@@ -26,46 +26,16 @@ export const useFaqStore = defineStore("faq", () => {
   };
 
   const createfaq = async (newFaq: faqType) => {
-    try {
-      loading.value = true;
       const response = await api.post("/faq", newFaq);
-      faq.value = [...faq.value, response.data as faqType];
-      toast.show(
-        "Opération réussie",
-        "success",
-        "Enregistrement effectué avec succes",
-      );
-    } catch (error) {
-      toast.show(
-        "Opération échoué",
-        "danger",
-        "Une erreur est survenue lors de l'enregistrement",
-      );
-    } finally {
-      loading.value = false;
-    }
+    return response.data
   };
 
   const updatefaq = async (id: string, data: any) => {
-    try {
-      loading.value = true;
       const response = api({
         method: "PATCH",
         url: `users/${id}/faq`,
         data: data,
       });
-      toast.show(
-        "Opération réussie",
-        "success",
-        "Modification efectuée avec succes",
-      );
-    } catch (error) {
-      toast.show(
-        "Opération échoué",
-        "danger",
-        "Une erreur est survenue lors de la modification",
-      );
-    }
   };
 
   return { fetchfaq, faq, loading, createfaq, updatefaq };

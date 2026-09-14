@@ -21,7 +21,7 @@
                     type="text"
                     name="firstName"
                     label="First Name"
-                    v-model="firstName"
+                    v-model="fullname"
                     :error="errors.firstName"
                   />
                   <Input
@@ -74,13 +74,13 @@
                 <div
                   class="flex flex-col md:flex-row justify-center items-center gap-0 md:gap-2"
                 >
-                  <!-- <Input
-                v-model="image"
+                  <Input
+                v-model="avatar"
                 type="image"
                 name="image"
                 label="Photo de profil"
-                :error="errors.image"
-              /> -->
+                :error="errors.avatar"
+              />
                   <Select
                     v-model="role"
                     name="role"
@@ -189,7 +189,7 @@ const [phone] = defineField("phone");
 const [role] = defineField("role");
 const [confirmPassword] = defineField("confirmPassword");
 const [password] = defineField("password");
-const toast = useToastStore()
+const toast = ()
 const onSubmit = handleSubmit(async (values) => {
   try {
      await store.createUser(values, props?.user?.id);

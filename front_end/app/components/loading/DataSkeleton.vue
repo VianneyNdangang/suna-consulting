@@ -10,8 +10,8 @@ withDefaults(defineProps<{
 
 <template>
   <div v-if="variant === 'cards'" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" aria-busy="true" aria-label="Chargement">
-    <div v-for="index in count" :key="index" class="rounded-2xl border border-gold-200/60 bg-white p-5 shadow-sm">
-      <USkeleton class="mb-5 h-12 w-12 rounded-xl" />
+    <div v-for="index in count" :key="index" class="rounded border border-gold-200/60 bg-white p-5 shadow-xs">
+      <USkeleton class="mb-5 h-12 w-12 rounded" />
       <USkeleton class="mb-3 h-5 w-4/5" />
       <USkeleton class="mb-2 h-4 w-full" />
       <USkeleton class="h-4 w-2/3" />

@@ -3,51 +3,56 @@ import { ref } from "vue";
 import type { AxiosInstance } from "axios";
 import { useNuxtApp } from "#imports";
 import type { testimonialsType } from "~/types/types";
+import useFetchData from "~/hooks/request";
 
 export const useTestimonialstore = defineStore("Testimonials", () => {
-  const Testimonials = ref<testimonialsType[]>([]);
-  const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
-  const toast = useToastStore();
+  const Url = `/testimonials`;
+  // const page = ref(1);
+  // const limit = ref(20);
+  // const filters = ref()
+  // const { data, fetchData, loading, pagination} = useFetchData({
+  //   url: Url,
+  //   page,
+  //   limit,
+  //   filters,
+  // })
 
+  // const testimonials = computed(()=>data.value)
+  // const fetchTestimonials = async (newPage?: number) => {
+  //   if(newPage){
+  //     page.value = newPage
+  //   }
+  //   fetchData()
+  // };
+
+  const testimonials = ref<testimonialsType[]>([]);
+  const loading = ref(false);
   const fetchTestimonials = async () => {
+    loading.value = true;
     try {
-      loading.value = true;
-      const response = await api.get("/testimonials");
-      const items: testimonialsType[] = Array.isArray(response.data)
-        ? response.data
-        : (response.data?.Testimonials ?? []);
-      Testimonials.value = items.filter(
-        (item: any) => item.is_published === true,
-      );
+      const response = await api.get(Url);
+      testimonials.value = response.data;
     } catch (error) {
-      console.error("Error fetching Testimonials", error);
-      Testimonials.value = [];
+      console.error("Error fetching testimonials:", error);
     } finally {
       loading.value = false;
     }
   };
-
-  const createTestimonials = async (newProduct: testimonialsType) => {
-    try {
-      loading.value = true;
-      const response = await api.post("/testimonials", newProduct);
-      Testimonials.value = [
-        ...Testimonials.value,
-        response.data as testimonialsType,
-      ];
-      toast.show(
-        "Opération réussie",
-        "success",
-        "Votre temoignage a été envoyé avec succès.",
-      );
-    } catch (error) {
-      console.error("Error creating product", error);
-    } finally {
-      loading.value = false;
-    }
+  const createTestimonials = async (newProduct: any) => {
+    await api.post(Url, newProduct);
   };
 
-  return { fetchTestimonials, Testimonials, loading, createTestimonials };
+  const updateTestominials = async (id: string, items: any) => {
+    await api.patch(`${Url}/${id}`, items);
+  };
+  return {
+    fetchTestimonials,
+    testimonials,
+    loading,
+    createTestimonials,
+    updateTestominials,
+    // pagination,
+  };
 });

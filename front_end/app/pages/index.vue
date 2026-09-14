@@ -2,12 +2,13 @@
 import { ref, onMounted } from 'vue';
 import type { testimonialsType, faqType, servicesType, site_contentType } from '~/types/types';
 import HeroSection from '~/components/heroSection/HeroSection.vue';
-import ServiceList from '~/components/serviceListe/ServiceList.vue';
 import WhyChooseUs from '~/components/whyChooseUs/WhyChooseUs.vue';
 import TestimonialSection from '~/components/testimonial/TestimonialSection.vue';
 import CallToAction from '~/components/callToAction/CallToAction.vue';
 import FAQSection from '~/components/faqSection/FAQSection.vue';
-import QuoteForm from '~/components/quoteForm/QuoteForm.vue';
+import DataSkeleton from '~/components/loading/DataSkeleton.vue';
+import ServiceList from '~/components/serviceListe/ServiceList.vue';
+import QuoteForm from '~/components/forms/QuoteForm.vue';
 
 // SEO & Meta
 useHead({
@@ -115,7 +116,7 @@ const testimonialStore = useTestimonialstore();
 // State
 const faqs = ref<faqType[]>([]);
 const siteContent = ref<site_contentType | any>();
-const services = ref<servicesType[]>([]);
+const {services} = storeToRefs(serviceStore);
 const testimonials = ref<testimonialsType[]>([]);
 const isDataLoaded = ref(false);
 
@@ -123,15 +124,13 @@ onMounted(async () => {
   try {
     await Promise.allSettled([
       faqStore.fetchfaq(),
-      siteContentStore.fetchsite_content(),
-      serviceStore.fetchServices(),
       testimonialStore.fetchTestimonials(),
     ]);
 
     faqs.value = faqStore.faq || [];
     siteContent.value = siteContentStore.site_content;
-    services.value = serviceStore.services || [];
-    testimonials.value = testimonialStore.Testimonials || [];
+    services.value = serviceStore.services;
+    testimonials.value = testimonialStore.testimonials || [];
   } catch (e) {
     // Defaults take over seamlessly without breaking the UI
   } finally {
@@ -146,13 +145,13 @@ onMounted(async () => {
     <!-- Hero Section -->
     <HeroSection
       eyebrow="Súna Consulting • Partenaire Diaspora"
-      :title="siteContent?.hero_title || 'Plus proche du pays, malgré la distance'"
-      :subtitle="siteContent?.hero_subtitle || 'Votre représentant de confiance au Cameroun pour vos démarches administratives, investissements fonciers, suivi de chantiers et coordination de projets.'"
+      :title="siteContent?.hero_title"
+      :subtitle="siteContent?.hero_subtitle"
       :stats="siteContent?.stats"
     />
 
     <!-- Services Showcase -->
-    <ServiceList :services="services" />
+    <ServiceList :services="services" :loading="serviceStore.loading" />
 
     <Carrousel/>
     <div v-if="!isDataLoaded" class="space-y-10 px-4 py-10 sm:px-6 lg:px-8">

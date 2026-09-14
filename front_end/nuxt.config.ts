@@ -4,10 +4,18 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
-  
+  // devServer: {
+  //   port:4000
+  // },
+  colorMode: {
+    preference: 'light',
+    fallback: 'light',
+    classSuffix: '',
+    storageKey: 'nuxt-ui-color-mode',
+  },
   // Only import public main.css (adminStyle.css is scoped to admin layout to prevent double-tailwind compilation)
   css: [
-    './app/assets/css/main.css'
+    './app/assets/css/main.css',
   ],
 
   vite: {
@@ -71,15 +79,15 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: '/logo_primary.png' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/icon.png' },
         { rel: 'canonical', href: 'https://sunaconsulting.com' },
       ],
     },
   },
 
-  runtimeConfig: {
-    public: {
-      apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:3000/'
-    }
-  }
+  // runtimeConfig: {
+  //   public: {
+  //     apiUrl: process.env.NUXT_PUBLIC_API_URL || 'http://localhost:3000/'
+  //   }
+  // }
 });

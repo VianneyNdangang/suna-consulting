@@ -1,4 +1,4 @@
-@source "D:/Projets/Projets/site_suna_consulting/app/**/*";
+/* @source "D:/Projets/Projets/site_suna_consulting/app*"; */
 @source inline("isolate");
 @source "./ui";
 

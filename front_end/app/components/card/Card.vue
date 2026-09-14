@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import type { servicesType } from '~/types/types';
+import QuoteFormModal from '../forms/QuoteFormModal.vue';
 
 const props = defineProps<{
   item: servicesType | any;
 }>();
 
-const emit = defineEmits<{
-  (e: 'selectService', item: servicesType): void;
-}>();
+// const emit = defineEmits<{
+//   (e: 'selectService', item: servicesType): void;
+// }>();
 
+const isForm = ref(false)
 // Map icons to Lucide icons
 const getIcon = (iconName: string) => {
   if (!iconName) return 'i-lucide-briefcase';
@@ -50,7 +52,7 @@ const getIcon = (iconName: string) => {
 
       <!-- Service Short Description -->
       <p class="mt-3 text-sm text-slate-600 leading-relaxed line-clamp-3">
-        {{ props.item.short_description }}
+        {{ props.item.description }}
       </p>
     </div>
 
@@ -70,11 +72,12 @@ const getIcon = (iconName: string) => {
         variant="soft"
         icon="i-lucide-send"
         class="bg-rust-50 hover:bg-rust-100 text-rust-700 border border-rust-200 font-medium"
-        :to="`/#devis?service=${props.item.slug || ''}`"
-        @click="emit('selectService', props.item)"
+        @click="isForm = true"
       >
         Commander
       </UButton>
     </div>
   </article>
+
+  <QuoteFormModal :service="item" v-model="isForm"/>
 </template>

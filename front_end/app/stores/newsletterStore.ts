@@ -9,7 +9,7 @@ export const usenewslettertore = defineStore("newsletter", () => {
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
-  const toast = useToastStore();
+  const toast = ();
 
   const fetchnewsletter = async () => {
     try {

@@ -1,17 +1,14 @@
 <script setup lang="ts">
-const colorMode = useColorMode()
+// const colorMode = useColorMode()
 </script>
 
 <template>
-    <div class="admin-layout" :class="{ dark: colorMode.value === 'dark' }">
+    <div class="admin-layout">
         <AdminSidebar>
-            <UMain class="h-full w-full bg-(--background) p-3 text-(--text-primary)">
-                <slot />
+            <UMain class="h-full w-full p-5 ">
+                <NuxtPage/>
             </UMain>
         </AdminSidebar>
     </div>
-
 </template>
 <style src="../assets/css/adminStyle.css"></style>
-
-

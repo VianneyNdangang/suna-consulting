@@ -1,18 +1,22 @@
 <script setup lang="ts">
+import type { ToasterProps } from '@nuxt/ui';
 
-</script>
+const toaster: ToasterProps = {
+  position: 'top-right',
+  expand: true,
+  duration: 5000,
+  ui: {
+    // viewport: 'fixed top-4 right-4 z-[100]',
+    base: 'rounded-mg shadow-xl',
+  },
+}</script>
 <template>
-  <UApp>
+  <UApp :toaster="toaster">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
+    <ScrollToTop />
   </UApp>
-
-
-  <!-- <About/> -->
-
-  <!-- <NuxtRouteAnnouncer />
-    <NuxtWelcome /> -->
 </template>
 <style>
 .page-enter-active,

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import HeroVideo from '../heroVideo/HeroVideo.vue';
 import Counter from '../counter/Counter.vue';
+import Button from '../buttons/Button.vue';
 
 interface StatItem {
   label: string;
@@ -96,7 +97,7 @@ const steps = [
                 size="lg"
                 color="primary"
                 icon="i-lucide-calculator"
-                class="bg-rust-600 hover:bg-rust-500 text-white font-semibold px-6 py-3.5 shadow-lg shadow-rust-900/40 justify-center"
+                class="bg-rust-600 hover:bg-rust-500 text-white font-semibold px-6 py-3.5 justify-center"
               >
                 Demander un devis gratuit
               </UButton>
@@ -139,7 +140,7 @@ const steps = [
                   { label: 'Pays de diaspora', value: 12, suffix: '+' }
                 ])"
                 :key="stat.label"
-                class="glass-panel-dark rounded-xl p-3 sm:p-4 text-center border border-white/10 backdrop-blur-md transition-transform hover:scale-105 duration-200"
+                class="glass-panel rounded-xl p-3 sm:p-4 text-center border border-white/10 backdrop-blur-md transition-transform hover:scale-105 duration-200"
               >
                 <div class="text-2xl sm:text-3xl font-black text-gold-400 flex items-center justify-center gap-0.5">
                   <Counter :value="stat.value" />
@@ -154,10 +155,9 @@ const steps = [
           </div>
 
           <!-- Right Column: Interactive 3-Step Process Card -->
-          <div class="lg:col-span-5">
-            <div class="glass-panel-dark rounded-2xl p-6 sm:p-8 border border-gold-400/30 shadow-2xl backdrop-blur-xl relative overflow-hidden">
+          <!-- <div class="lg:col-span-5">
+            <div class="glass-panel-dark rounded-2xl p-6 sm:p-8 border border-gold-400/30 backdrop-blur-xl relative overflow-hidden">
               
-              <!-- Subtle card badge -->
               <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
                 <div>
                   <span class="text-xs uppercase tracking-widest font-semibold text-gold-400">
@@ -172,14 +172,13 @@ const steps = [
                 </div>
               </div>
 
-              <!-- Steps List -->
               <div class="space-y-4">
                 <div
                   v-for="(step, idx) in steps"
                   :key="step.num"
                   class="group relative flex items-start gap-4 p-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-200"
                 >
-                  <div class="shrink-0 w-10 h-10 rounded-lg bg-rust-600/80 border border-gold-400/30 flex items-center justify-center text-white font-bold text-sm shadow-md">
+                  <div class="shrink-0 w-10 h-10 rounded-lg bg-rust-600/80 border border-gold-400/30 flex items-center justify-center text-white font-bold text-sm">
                     {{ step.num }}
                   </div>
                   <div class="flex-1">
@@ -196,7 +195,6 @@ const steps = [
                 </div>
               </div>
 
-              <!-- Bottom interactive helper -->
               <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
                 <div class="flex items-center gap-2">
                   <div class="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -212,7 +210,7 @@ const steps = [
               </div>
 
             </div>
-          </div>
+          </div> -->
 
         </div>
       </div>

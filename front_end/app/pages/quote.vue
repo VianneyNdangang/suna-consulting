@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
-import QuoteForm from '~/components/quoteForm/QuoteForm.vue';
 import FAQSection from '~/components/faqSection/FAQSection.vue';
+import DataSkeleton from '~/components/loading/DataSkeleton.vue';
+import QuoteForm from '~/components/forms/QuoteForm.vue';
 
 useHead({
   title: 'Demande de Devis Express | Súna Consulting Cameroun',

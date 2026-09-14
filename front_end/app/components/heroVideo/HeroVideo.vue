@@ -5,7 +5,6 @@ const videoRef = ref<HTMLVideoElement | null>(null);
 const isVideoLoaded = ref(false);
 
 onMounted(() => {
-  // Defer video loading until after critical page rendering (FCP / LCP optimization)
   if ('requestIdleCallback' in window) {
     (window as any).requestIdleCallback(() => {
       loadVideo();
@@ -26,7 +25,7 @@ const loadVideo = () => {
 </script>
 
 <template>
-  <div class="relative overflow-hidden bg-gradient-to-br from-ink-950 via-rust-950 to-ink-900 min-h-[520px]">
+  <div class="relative min-h-130 overflow-hidden bg-linear-to-br from-ink-900/50 via-rust-900/50 to-ink-800/50">
     <!-- Video background with lazy preload for instant LCP -->
     <video
       ref="videoRef"
@@ -42,7 +41,7 @@ const loadVideo = () => {
     </video>
 
     <!-- Deep warm overlay for readability and instant first paint -->
-    <div class="absolute inset-0 bg-gradient-to-r from-ink-950/95 via-ink-900/85 to-rust-950/80 backdrop-blur-[1px]" />
+    <div class="absolute inset-0 bg-linear-to-r from-ink-950/78 via-ink-900/62 to-rust-900/58 backdrop-blur-[1px]" />
     
     <!-- Ambient radial glow -->
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,162,78,0.18),transparent_60%)]" />

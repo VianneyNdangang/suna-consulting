@@ -5,9 +5,11 @@ export default defineNuxtPlugin((nuxtApp) => {
   const runtimeConfig = useRuntimeConfig();
   
   const api = axios.create({
-    baseURL: runtimeConfig.public.apiUrl || 'http://localhost:4000/',
-    timeout: 2500, // Shorter 2.5s timeout prevents long freezing when server is offline
-    headers: { 'Content-Type': 'application/json' },
+    // baseURL: runtimeConfig.public.apiUrl ,
+    baseURL: 'http://localhost:5000/',
+    timeout: 10000, // Shorter 1s timeout prevents long freezing when server is offline
+    // headers: { 'Content-Type': 'application/json' },
+    // withCredentials: true
   });
 
   api.interceptors.request.use((config: any) => {
@@ -23,7 +25,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   api.interceptors.response.use(
     (response) => response,
     (error) => {
-      // Quietly reject so stores can gracefully fallback without breaking page hydration
       return Promise.reject(error);
     }
   );

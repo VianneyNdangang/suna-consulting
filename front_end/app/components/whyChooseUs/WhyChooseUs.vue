@@ -17,28 +17,24 @@ const pillars: Pillar[] = [
     description: 'Chaque mission fait l’objet de photos, vidéos et rapports détaillés en temps réel. Vous savez exactement ce qui se passe sur place.',
     icon: 'i-lucide-shield-check',
     tag: 'Zéro Mauvaise Surprise',
-    color: 'text-amber-400',
   },
   {
     title: 'Ancrage Local & Réactivité Terrain',
     description: 'Nos équipes basées à Yaoundé et Douala interviennent rapidement auprès des administrations, familles et chantiers.',
     icon: 'i-lucide-map-pin',
     tag: 'Yaoundé & Douala',
-    color: 'text-emerald-400',
   },
   {
     title: 'Confidentialité & Sécurité Juridique',
     description: 'Nous agissons sous mandat strict avec une confidentialité absolue pour protéger vos avoirs, parcelles et démarches privées.',
     icon: 'i-lucide-lock',
     tag: 'Cadre Rigoureux',
-    color: 'text-sky-400',
   },
   {
     title: 'Impact Social Diaspora (15%)',
     description: '15% de nos bénéfices et actions sont réinvestis dans des forages d’eau potable, du mobilier scolaire et l’aide aux communautés locales.',
     icon: 'i-lucide-heart-handshake',
     tag: 'Entreprise Engagée',
-    color: 'text-rose-400',
   },
 ];
 </script>
@@ -80,12 +76,12 @@ const pillars: Pillar[] = [
         <div
           v-for="pillar in pillars"
           :key="pillar.title"
-          class="glass-panel-dark rounded-2xl p-6 border border-white/10 hover:border-gold-400/40 transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between group shadow-xl"
+          class="glass-panel-dark rounded-2xl p-6 border border-white/10 duration-300 flex flex-col justify-between group"
         >
           <div>
             <div class="flex items-center justify-between mb-4">
-              <div class="h-12 w-12 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center group-hover:bg-rust-600 transition-colors duration-300">
-                <UIcon :name="pillar.icon" class="w-6 h-6 text-gold-400 group-hover:text-white transition-colors" />
+              <div class="h-12 w-12 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center transition-colors duration-300">
+                <UIcon :name="pillar.icon" class="w-6 h-6 text-gold-400 transition-colors" />
               </div>
               <span v-if="pillar.tag" class="text-[10px] uppercase tracking-wider font-semibold px-2.5 py-0.5 rounded-full bg-white/10 text-gold-300 border border-gold-400/20">
                 {{ pillar.tag }}
@@ -109,11 +105,10 @@ const pillars: Pillar[] = [
       </div>
 
       <!-- Social Commitment Banner -->
-      <div class="mt-12 rounded-2xl bg-linear-to-r from-rust-900/90 via-rust-950 to-ink-900 p-6 sm:p-8 border border-rust-600/40 shadow-2xl relative overflow-hidden">
+      <div class="mt-12 rounded-2xl bg-linear-to-r from-rust-800/90 via-rust-900 to-ink-800 p-6 sm:p-8 border border-rust-600/40 relative overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-8 space-y-2">
             <div class="inline-flex items-center gap-1.5 text-xs font-bold text-gold-300 uppercase tracking-widest">
-              <UIcon name="i-lucide-heart" class="w-4 h-4 text-rose-400" />
               Notre engagement sociétal au Cameroun
             </div>
             <h3 class="text-xl sm:text-2xl font-bold text-white">

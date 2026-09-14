@@ -33,7 +33,7 @@ const toggle = () => {
     :class="[
       model
         ? 'bg-rust-600'
-        : 'bg-gray-300 dark:bg-gray-700',
+        : 'bg-gray-300',
       disabled
         ? 'cursor-not-allowed opacity-50'
         : 'cursor-pointer'

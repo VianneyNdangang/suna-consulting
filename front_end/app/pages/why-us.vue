@@ -2,6 +2,7 @@
 import WhyChooseUs from '~/components/whyChooseUs/WhyChooseUs.vue';
 import CallToAction from '~/components/callToAction/CallToAction.vue';
 import { computed, onMounted } from 'vue';
+import DataSkeleton from '~/components/loading/DataSkeleton.vue';
 
 useHead({
   title: 'Pourquoi Choisir Súna Consulting | Transparence & Impact Diaspora',
