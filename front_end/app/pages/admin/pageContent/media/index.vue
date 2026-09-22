@@ -121,6 +121,7 @@ div
                 v-model.number="stat.value"
                 type="number"
                 name="value"
+                :min="0"
                 label-class="text-(--text-secondary)"
               />
             </div>
@@ -128,91 +129,83 @@ div
         </div>
       </CardDesign>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-      <!-- ================= OBJECTIFS ================= -->
-      <CardDesign>
-        <template #header>
-          <div class="flex items-start gap-2">
-            <Icon
-              name="i-tabler-target-arrow"
-              class="mt-0.5 size-5 shrink-0 text-(--text-muted)"
-            />
-            <div>
-              <h2 class="font-bold">Notre objectif</h2>
-              <p class="text-sm font-normal text-(--text-muted)">
-                Présentation de la mission de l'entreprise
-              </p>
-            </div>
-          </div>
-        </template>
-        <UFormField label="Description">
-          <UTextarea v-model="content.our_goals" :rows="6" class="w-full" />
-        </UFormField>
-      </CardDesign>
-      <div class=" col-span-2">
-      <!-- ================= VALEURS ================= -->
-      <CardDesign >
-        <template #header>
-          <div class="flex w-full items-start justify-between gap-4">
+        <CardDesign>
+          <template #header>
             <div class="flex items-start gap-2">
               <Icon
-                name="i-tabler-heart"
+                name="i-tabler-target-arrow"
                 class="mt-0.5 size-5 shrink-0 text-(--text-muted)"
               />
               <div>
-                <h2 class="font-bold">Nos valeurs</h2>
+                <h2 class="font-bold">Notre objectif</h2>
                 <p class="text-sm font-normal text-(--text-muted)">
-                  Principes fondamentaux de Súna Consulting
+                  Présentation de la mission de l'entreprise
                 </p>
               </div>
             </div>
+          </template>
+          <UFormField label="Description">
+            <UTextarea v-model="content.our_goals" :rows="6" class="w-full" />
+          </UFormField>
+        </CardDesign>
+        <div class="md:col-span-2">
+          <CardDesign>
+            <template #header>
+              <div class="flex w-full items-start justify-between gap-4">
+                <div class="flex items-start gap-2">
+                  <Icon
+                    name="i-tabler-heart"
+                    class="mt-0.5 size-5 shrink-0 text-(--text-muted)"
+                  />
+                  <div>
+                    <h2 class="font-bold">Nos valeurs</h2>
+                    <p class="text-sm font-normal text-(--text-muted)">
+                      Principes fondamentaux de Súna Consulting
+                    </p>
+                  </div>
+                </div>
 
-            <Button
-              variant="secondary"
-              type="button"
-              icon="i-tabler-plus"
-              @click="addValue()"
-              label="Ajouter"
-            />
-          </div>
-        </template>
-        <div class="space-y-5">
-          <Input
-            v-model="content.our_values.title"
-            :name="`our_values`"
-            label="Titre"
-            label-class="text-(--text-secondary)"
-          />
-          <div class="space-y-3">
-            <div
-              v-for="(_, index) in content.our_values.items"
-              :key="index"
-              class="flex gap-2"
-            >
+                <Button
+                  variant="secondary"
+                  type="button"
+                  icon="i-tabler-plus"
+                  @click="addValue()"
+                  label="Ajouter"
+                />
+              </div>
+            </template>
+            <div class="space-y-5">
               <Input
-                v-model="content.our_values.items[index]"
-                :name="`our_values${index}`"
+                v-model="content.our_values.title"
+                :name="`our_values`"
+                label="Titre"
+                label-class="text-(--text-secondary)"
               />
-              <!-- <UInput
-                
-                class="flex-1"
-              /> -->
-
-              <Button
-                variant="ghost"
-                color="error"
-                type="button"
-                icon="i-tabler-trash"
-                @click="removeValue(Number(index))"
-              />
+              <div class="space-y-3">
+                <div
+                  v-for="(_, index) in content.our_values.items"
+                  :key="index"
+                  class="flex gap-2"
+                >
+                  <Input
+                    v-model="content.our_values.items[index]"
+                    :name="`our_values${index}`"
+                  />
+                  <Button
+                    variant="ghost"
+                    color="error"
+                    type="button"
+                    icon="i-tabler-trash"
+                    @click="removeValue(Number(index))"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
+          </CardDesign>
         </div>
-      </CardDesign>
-      </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <div class="col-span-2">
-          <!-- ================= ENGAGEMENT ================= -->
+        <div class="md:col-span-2">
           <CardDesign>
             <template #header>
               <div class="flex w-full items-start justify-between gap-4">
@@ -288,7 +281,9 @@ div
                         color="error"
                         type="button"
                         icon="i-tabler-trash"
-                        @click="removeEngagementItem(Number(index), Number(itemIndex))"
+                        @click="
+                          removeEngagementItem(Number(index), Number(itemIndex))
+                        "
                       />
                     </div>
                   </div>
@@ -468,8 +463,7 @@ div
           variant="primary"
           type="button"
           icon="i-tabler-device-floppy"
-          :loading="saving"
-          @click="() => saveContent()"
+          @click="() => (showConfirmModal = true)"
           label="Enregistrer les modifications"
         />
       </div>
@@ -481,9 +475,15 @@ div
       title="Aucun contenu"
       description="Le contenu du site n'a pas encore été chargé."
     />
+    <ConfirmContentModal
+    v-model="showConfirmModal"
+    :loading="saving"
+    @confirm="saveContent"
+  />
   </div>
 </template>
 <script setup lang="ts">
+import ConfirmContentModal from "~/components/admin/forms/ConfirmContentModal.vue";
 import PageHeader from "~/components/admin/pageHeader/PageHeader.vue";
 import Button from "~/components/buttons/Button.vue";
 import CardDesign from "~/components/cardDesign/CardDesign.vue";
@@ -497,11 +497,12 @@ const store = usesite_contentStore();
 const toast = useToast();
 const saving = ref(false);
 
-onMounted( async()=>{
-    await store.fetchsite_content();
-})
+onMounted(async () => {
+  await store.fetchsite_content();
+});
 
 const content = computed(() => store.site_content);
+const showConfirmModal = ref(false);
 
 const addStat = () => {
   content.value?.stats.push({
@@ -562,18 +563,18 @@ const removeWhatsapp = (index: any) => {
   content.value?.contact_whatsapp.splice(index, 1);
 };
 
-const saveContent = async () => {
+const saveContent = async (data: { password: string }) => {
   if (!content.value) return;
 
   try {
     saving.value = true;
-
-    await store.updatesite_content(content.value);
-    await store.fetchsite_content();
+    const requestData = { ...content.value, password: data.password };
+    await store.updatesite_content(requestData);
+    showConfirmModal.value = false;
     toast.add({
-        title: 'Contenu du site mis a jour.',
-        color: 'success',
-    })
+      title: "Contenu du site mis a jour.",
+      color: "success",
+    });
   } catch (error) {
     console.error("Erreur lors de la sauvegarde :", error);
   } finally {

@@ -31,7 +31,7 @@
               class="mr-1 h-3.5 w-3.5"
             />
 
-            Avis de nos clients
+            {{ t('testimonialsPage.badge') }}
           </UBadge>
 
           <h1
@@ -39,13 +39,7 @@
                    text-white
                    sm:text-5xl"
           >
-            La satisfaction de
-            <span
-              class="bg-linear-to-r from-gold-300 to-amber-200
-                     bg-clip-text text-transparent"
-            >
-              nos clients à distance
-            </span>
+            {{ t('testimonialsPage.title') }}
           </h1>
 
           <p
@@ -53,30 +47,29 @@
                    text-sand-50/85
                    sm:text-lg"
           >
-            De Toronto à Paris, en passant par Montréal et Dallas,
-            découvrez comment Súna Consulting accompagne au quotidien
-            les Camerounais du monde entier.
+            {{ t('testimonialsPage.description') }}
           </p>
 
         </div>
       </div>
     </section>
 
-    <div>
-      <Button
-        type="button"
-        name="Laiser un témoignage"
-        variant="primary"
-        icon="i-tabler-plus"
-        label="Ajouter un témoignage"
-        @click="isTestimonialForm = true"
-      />
-    </div>
     <!-- ================= CONTENT ================= -->
     <main
       class="mx-auto max-w-7xl px-4 py-12
              sm:px-6 lg:px-8 lg:py-16"
     >
+      <div class="mb-8 flex justify-end">
+        <Button
+          type="button"
+          name="add-testimonial"
+          variant="primary"
+          icon="i-tabler-message-star"
+          :label="t('testimonialsPage.add')"
+          class="w-full sm:w-auto"
+          @click="isTestimonialForm = true"
+        />
+      </div>
 
       <!-- Loading -->
       <div v-if="loading">
@@ -104,12 +97,11 @@
         </div>
 
         <h2 class="text-lg font-semibold text-ink-900">
-          Aucun témoignage pour le moment
+          {{ t('testimonialsPage.emptyTitle') }}
         </h2>
 
         <p class="mt-2 max-w-md text-sm text-slate-500">
-          Nous n'avons pas encore publié de témoignages.
-          Revenez bientôt pour découvrir les retours de nos clients.
+          {{ t('testimonialsPage.emptyDescription') }}
         </p>
       </div>
 
@@ -137,24 +129,23 @@ import CallToAction from "~/components/callToAction/CallToAction.vue"
 import TestimonialCard from "~/components/card/TestimonialCard.vue"
 import TestimonialForm from "~/components/forms/TestimonialForm.vue"
 import DataSkeleton from "~/components/loading/DataSkeleton.vue"
+const { t } = useI18n()
 
 useHead({
-  title: "Témoignages & Avis Clients Diaspora | Súna Consulting",
+  title: () => t('testimonialsPage.seoTitle'),
 
   meta: [
     {
       name: "description",
-      content:
-        "Découvrez les avis et retours d’expérience de nos clients de la diaspora accompagnés par Súna Consulting au Cameroun.",
+      content: () => t('testimonialsPage.seoDescription'),
     },
     {
       property: "og:title",
-      content: "Témoignages & Avis Clients Diaspora | Súna Consulting",
+      content: () => t('testimonialsPage.seoTitle'),
     },
     {
       property: "og:description",
-      content:
-        "Découvrez ce que nos clients de la diaspora pensent de leur expérience avec Súna Consulting.",
+      content: () => t('testimonialsPage.seoDescription'),
     },
     {
       property: "og:url",

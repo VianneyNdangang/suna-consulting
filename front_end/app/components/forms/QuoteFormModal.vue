@@ -16,7 +16,7 @@
 
         <div class="min-w-0">
           <h2 class="text-base font-bold text-rust-600 sm:text-lg">
-            Demander un devis
+            {{ t('common.quote') }}
           </h2>
 
           <p class="mt-0.5 text-md text-rust-500">
@@ -32,9 +32,7 @@
         <UAlert
           color="info"
           variant="subtle"
-          description="Remplissez les informations ci-dessous afin que notre équipe
-              puisse comprendre votre besoin et vous proposer une offre
-              adaptée."
+            :description="t('quoteForm.description')"
           icon="i-tabler-info-circle"
         />
 
@@ -45,12 +43,12 @@
               <UIcon name="i-tabler-user" class="size-4 text-rust-600" />
 
               <h3 class="text-sm font-semibold text-rust-600">
-                Vos coordonnées
+                {{ t('quoteForm.contactDetails') }}
               </h3>
             </div>
 
             <p class="mt-1 text-xs text-rust-500">
-              Ces informations nous permettront de vous contacter.
+              {{ t('quoteForm.contactDetailsDescription') }}
             </p>
           </div>
 
@@ -59,9 +57,9 @@
               v-model="name"
               name="name"
               icon="i-tabler-user"
-              label="Nom complet"
+              :label="t('quoteForm.name')"
               type="text"
-              placeholder="Ex. Paul Biya"
+              :placeholder="t('quoteForm.namePlaceholder')"
               :error="formErrors.name"
             />
 
@@ -69,9 +67,9 @@
               v-model="email"
               name="email"
               icon="i-tabler-mail"
-              label="Adresse email"
+              :label="t('auth.email')"
               type="email"
-              placeholder="vous@exemple.com"
+              :placeholder="t('quoteForm.emailPlaceholder')"
               :error="formErrors.email"
             />
 
@@ -79,7 +77,7 @@
               v-model="phone"
               name="phone"
               icon="i-tabler-phone"
-              label="Téléphone / WhatsApp"
+              :label="t('auth.phone')"
               type="tel"
               placeholder="+237 6XX XXX XXX"
               :error="formErrors.phone"
@@ -92,8 +90,8 @@
               option-label="name"
               icon="i-tabler-map-pin"
               name="residence_country"
-              label="Pays de résidence"
-              placeholder="Sélectionnez votre pays"
+              :label="t('quoteForm.residenceCountry')"
+              :placeholder="t('quoteForm.selectCountry')"
               :error="formErrors.residence_country"
             />
           </div>
@@ -109,12 +107,12 @@
               />
 
               <h3 class="text-sm font-semibold text-rust-600">
-                Quand souhaitez-vous démarrer ?
+                {{ t('quoteForm.startWhen') }}
               </h3>
             </div>
 
             <p class="mt-1 text-xs text-rust-500">
-              Choisissez le délai qui correspond le mieux à votre besoin.
+              {{ t('quoteForm.startWhenDescription') }}
             </p>
           </div>
 
@@ -189,20 +187,19 @@
             <div class="flex items-center gap-2">
               <UIcon name="i-tabler-message-2" class="size-4 text-rust-600" />
 
-              <h3 class="text-sm font-semibold text-rust-600">Votre besoin</h3>
+              <h3 class="text-sm font-semibold text-rust-600">{{ t('quoteForm.need') }}</h3>
             </div>
 
             <p class="mt-1 text-xs text-rust-500">
-              Plus votre demande est précise, mieux nous pourrons vous
-              accompagner.
+              {{ t('quoteForm.needDescription') }}
             </p>
           </div>
 
           <Textarea
             v-model="description"
             name="details"
-            label="Décrivez votre projet"
-            placeholder="Expliquez votre besoin, les objectifs, la localisation, les contraintes ou toute autre information utile..."
+            :label="t('quoteForm.projectDetails')"
+            :placeholder="t('quoteForm.projectDetailsPlaceholder')"
             :error="formErrors.details"
           />
         </section>
@@ -215,14 +212,14 @@
             variant="primary"
             w="full"
             icon="i-tabler-send"
-            label="Envoyer ma demande"
+            :label="t('quoteForm.sendRequest')"
           />
 
           <div class="flex items-center justify-center gap-1.5 text-center">
             <UIcon name="i-tabler-shield-check" class="size-3.5" />
 
             <p class="text-[11px] text-slate-500">
-              Vos informations restent confidentielles.
+              {{ t('quoteForm.confidentialInfo') }}
             </p>
           </div>
         </div>
@@ -242,6 +239,8 @@ const props = defineProps<{
   service?: any;
   modelValue: boolean;
 }>();
+const { t } = useI18n();
+const authStore = useAuthStore();
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
 }>();
@@ -252,11 +251,11 @@ const isOpen = computed({
   },
 });
 
-const urgencyOptions = [
-  { label: "Normal (1-2 semaines)", value: "normal" },
-  { label: "Urgent (dans la semaine)", value: "urgent" },
-  { label: "Très urgent (48h-72h)", value: "tres_urgent" },
-];
+const urgencyOptions = computed(() => [
+  { label: t('quoteForm.normal'), value: "normal" },
+  { label: t('quoteForm.urgent'), value: "urgent" },
+  { label: t('quoteForm.veryUrgent'), value: "tres_urgent" },
+]);
 
 const toast = useToast();
 const {
@@ -287,22 +286,31 @@ const [description] = defineField("details");
 const loading = ref(false);
 const isSubmitted = ref(false);
 const store = usequotestore();
+
+const prefillFromUser = (user: any) => {
+  if (!user) return;
+  if (!name.value && user.full_name) name.value = user.full_name;
+  if (!email.value && user.email) email.value = user.email;
+  if (!phone.value && user.phone) phone.value = user.phone;
+  if (!residenceCountry.value && user.country) residenceCountry.value = user.country;
+};
+
+watch(() => authStore.user, prefillFromUser, { immediate: true });
+
 const submitQuote = handleSubmit(async (values) => {
   loading.value = true;
-  console.log("valuesvalues", values);
   try {
     await store.createquotes(values);
     toast.add({
-      title: `Demande de devis pour le service ${props.service.title} transmise !`,
-      description:
-        "Votre dossier a été enregistré. Un conseiller Súna vous contactera sous 24h.",
+      title: t('quoteForm.sentToast'),
+      description: t('quoteForm.sentDescription'),
       color: "success",
       icon: `i-tabler-check`,
     });
   } catch (error) {
     toast.add({
-      title: `Demande de devis pour le service ${props.service.title} transmise !`,
-      description: "",
+      title: t('quoteForm.errorToast'),
+      description: t('quoteForm.errorDescription'),
       color: "error",
       icon: `i-tabler-x`,
     });

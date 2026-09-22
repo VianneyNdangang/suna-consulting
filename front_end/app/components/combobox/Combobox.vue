@@ -16,6 +16,9 @@
       :name="name"
       value-key="value"
       label-key="label"
+      :ui="{
+        base:'focus-visible:border-default focus-visible:ring-0'
+      }"
       class="w-full"
       @update:search-term="onSearch"
     />
@@ -68,7 +71,7 @@ const onSearch = (query: string) => {
       loading.value = true
 
       const response = await axios(
-        `${props.url}/${encodeURIComponent(query)}`
+        `${props.url}${encodeURIComponent(query)}`
       )
 
       options.value = response.data.map(

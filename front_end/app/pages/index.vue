@@ -40,7 +40,7 @@ useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@graph': [
           {
@@ -115,10 +115,20 @@ const testimonialStore = useTestimonialstore();
 
 // State
 const faqs = ref<faqType[]>([]);
-const siteContent = ref<site_contentType | any>();
-const {services} = storeToRefs(serviceStore);
-const testimonials = ref<testimonialsType[]>([]);
+const { site_content } = storeToRefs(siteContentStore);
+const {testimonials} = storeToRefs(testimonialStore);
 const isDataLoaded = ref(false);
+const services = computed(() => {
+  const datas = [] as servicesType[];
+  if (serviceStore.services && serviceStore.services.length > 0) {
+    serviceStore.services.forEach((service: any) => {
+      if (service.is_active) {
+        datas.push(service);
+      }
+    });
+  }
+  return datas;
+})
 
 onMounted(async () => {
   try {
@@ -126,11 +136,6 @@ onMounted(async () => {
       faqStore.fetchfaq(),
       testimonialStore.fetchTestimonials(),
     ]);
-
-    faqs.value = faqStore.faq || [];
-    siteContent.value = siteContentStore.site_content;
-    services.value = serviceStore.services;
-    testimonials.value = testimonialStore.testimonials || [];
   } catch (e) {
     // Defaults take over seamlessly without breaking the UI
   } finally {
@@ -145,9 +150,9 @@ onMounted(async () => {
     <!-- Hero Section -->
     <HeroSection
       eyebrow="Súna Consulting • Partenaire Diaspora"
-      :title="siteContent?.hero_title"
-      :subtitle="siteContent?.hero_subtitle"
-      :stats="siteContent?.stats"
+      :title="site_content?.hero_title"
+      :subtitle="site_content?.hero_subtitle"
+      :stats="site_content?.stats"
     />
 
     <!-- Services Showcase -->
@@ -160,10 +165,8 @@ onMounted(async () => {
       <DataSkeleton variant="list" :count="4" />
     </div>
     <template v-else>
-      <!-- Why Choose Us & Bento Grid -->
-      <WhyChooseUs :points="siteContent?.why_choose_us" />
+      <WhyChooseUs :points="site_content?.why_choose_us" />
 
-      <!-- Testimonials from Diaspora -->
       <TestimonialSection :testimonials="testimonials" />
 
       <!-- FAQ Accordion -->

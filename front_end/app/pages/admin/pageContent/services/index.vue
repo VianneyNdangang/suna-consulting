@@ -7,7 +7,7 @@
       :refresh="() => store.fetchServices()"
       :new="newData"
     />
-
+    <FilterBar/>
     <section>
       <div
         v-if="loading"
@@ -43,6 +43,7 @@
         }
       "
     />
+    <ActiveteService :service="selectedService || null" v-model="isActiveForm"/>
   </div>
   
 </template>
@@ -54,6 +55,8 @@ definePageMeta({
 });
 import type { TableColumn } from "@nuxt/ui";
 import DataTable from "~/components/admin/dataTable/DataTable.vue";
+import FilterBar from "~/components/admin/filter/FilterBar.vue";
+import ActiveteService from "~/components/admin/forms/ActiveteService.vue";
 import ServiceForm from "~/components/admin/forms/ServiceForm.vue";
 import PageHeader from "~/components/admin/pageHeader/PageHeader.vue";
 import { type servicesType } from "~/types/types";
@@ -69,6 +72,7 @@ const loading = computed(() => store.loading);
 
 const selectedService = ref<servicesType | null>(null);
 const isServiceForm = ref(false);
+const isActiveForm = ref(false);
 function closeServiceForm() {
   isServiceForm.value = false;
   selectedService.value = null;
@@ -82,11 +86,6 @@ const UButton = resolveComponent("UButton");
 const UBadge = resolveComponent("UBadge");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
 const columns: TableColumn<any>[] = [
-  {
-    accessorKey: "id",
-    header: "#",
-    cell: ({ row }) => `#${row.getValue("id")}`,
-  },
   {
     accessorKey: "slug",
     header: "Slug",
@@ -164,12 +163,12 @@ function getRowItems(row: any) {
       type: "separator",
     },
     {
-      label: "Detail",
+      label: row.original.is_active? "Désactiver" : "Activer",
       onSelect() {
         selectedService.value = row.original;
+        isActiveForm.value = true;
       },
     },
-
     {
       label: "Modifier",
       onSelect() {

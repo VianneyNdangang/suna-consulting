@@ -5,7 +5,7 @@
 <template>
     <div class="admin-layout">
         <AdminSidebar>
-            <UMain class="h-full w-full p-5 ">
+            <UMain class="h-full w-full p-3 md:p-5 ">
                 <NuxtPage/>
             </UMain>
         </AdminSidebar>

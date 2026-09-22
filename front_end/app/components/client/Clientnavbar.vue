@@ -1,5 +1,5 @@
 <template>
-  <div class="sticky top-0 z-100">
+  <div class="sticky top-0 z-100 bg-(--surface) text-(--text-primary)">
     <!-- Top banner with Cameroonian touch & direct contact info -->
     <div
       class="bg-linear-to-r from-rust-900 via-rust-800 to-rust-950 text-sand-50 text-xs py-1.5 px-4 hidden md:block"
@@ -8,11 +8,11 @@
         <div class="flex items-center gap-4">
           <span class="inline-flex items-center gap-1.5 text-gold-300">
             <UIcon name="i-lucide-map-pin" class="w-3.5 h-3.5" />
-            {{ t('header.location') }}
+            Douala, Cameroun
           </span>
           <span class="text-white/30">•</span>
           <span class="text-white/80"
-            >{{ t('header.tagline') }}</span
+            >Accompagnement & Représentation de la Diaspora</span
           >
         </div>
         <div class="flex items-center gap-5">
@@ -42,22 +42,19 @@
       class="sticky top-0 z-100 transition-all duration-300 border-b"
       :class="
         isScrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-sm border-gold-400/20 py-2.5'
-          : 'bg-sand-25/95 backdrop-blur-sm border-rust-900/10 py-3.5'
+          ? 'backdrop-blur-md shadow-sm border-gold-400/20 py-2.5'
+          : 'backdrop-blur-sm border-rust-900/10 py-3.5'
       "
     >
       <div
         class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8"
       >
         <NuxtLink to="/" class="flex items-center gap-3 group">
-          <NuxtImg
-            src="/SC-H01.png"
-            :alt="t('header.logoAlt')"
-            width="200"
-            height="48"
-            sizes="180px md:220px"
-            quality="100"
-            format="webp"
+          <UColorModeImage
+            light="/SC-H01.png"
+            dark="/SC-H03.png"
+            :width="200"
+            :height="48"
             class="h-10 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
           />
         </NuxtLink>
@@ -69,77 +66,45 @@
             orientation="horizontal"
             disableHoverTrigger
             :ui="{
-              link: 'px-3 py-2 text-sm font-medium text-ink-700 hover:text-rust-700',
-              // linkActive: 'text-rust-700 underline decoration-gold-500 decoration-2 underline-offset-8',
-              linkLeadingIcon: 'text-rust-600',
+              link: 'px-3 py-2 text-sm font-medium text-(--text-secondary) hover:text-(--secondary)',
             }"
           />
         </nav>
-
-        <!-- Header Actions -->
         <div class="flex items-center gap-3">
-          <LocaleButton/>
-          <!-- Auth / Client Space Button -->
-          <span class="hidden lg:flex">
-            
+          <!-- Header Actions -->
+          <div class="flex items-center gap-3">
+            <span
+              class="hidden lg:flex text-(--text-secondary) p-1 rounded-md border border-(--border) hover:bg-(--hover)"
+            >
+              <UIcon name="i-lucide-user" size="20" />
+            </span>
+            <LocaleButton />
+            <UColorModeButton class="border border-(--border)" />
+          </div>
+
+          <!-- Mobile Burger Menu Button -->
+          <div class="flex items-center gap-2 lg:hidden">
             <Button
+              type="button"
               variant="ghost"
-              type="button"
-              icon="i-lucide-user"
-              @click="handleAuthClick"
-              :label="t('nav.clientArea')"
+              :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-menu'"
+              @click="isMenuOpen = !isMenuOpen"
+              aria-label="Menu"
             />
-          </span>
-
-          <!-- Quote CTA Button -->
-          <span class="hidden sm:flex">
-            <Button
-              to="/quote"
-              variant="primary"
-              type="button"
-              icon="i-lucide-calculator"
-              size="sm"
-              :label="t('common.quote')"
-            />
-          </span>
-        </div>
-
-        <!-- Mobile Burger Menu Button -->
-        <div class="flex items-center gap-2 lg:hidden">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            icon="i-lucide-user"
-            size="sm"
-            class="text-rust-900"
-            @click="isAuthFormOpen = true"
-            :aria-label="t('nav.clientArea')"
-          />
-
-          <UButton
-            color="neutral"
-            variant="ghost"
-            :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-menu'"
-            size="md"
-            class="text-rust-900"
-            @click="isMenuOpen = !isMenuOpen"
-            :aria-label="t('nav.menu')"
-          />
+          </div>
         </div>
       </div>
       <!-- <div class="bg-rust-600 w-full p-2"> -->
-      <Breadcrumb :menus="appMenus" />
       <!-- </div> -->
       <!-- Mobile Slideover / Dropdown Menu -->
-      <UDrawer :title="t('nav.menu')" v-model:open="isMenuOpen" direction="top">
+      <UDrawer title="Menu" v-model:open="isMenuOpen" direction="top">
         <template #body>
           <USeparator />
           <UNavigationMenu
-            :items="mobileMenu"
+            :items="appMenus"
             orientation="vertical"
             :ui="{
               link: 'px-3 py-2 text-sm font-medium text-ink-700 hover:text-rust-700',
-              // linkActive: 'text-rust-700 underline decoration-gold-500 decoration-2 underline-offset-8',
               linkLeadingIcon: 'text-rust-600',
             }"
           />
@@ -151,7 +116,7 @@
               type="button"
               icon="i-lucide-calculator"
               size="sm"
-              :label="t('common.quote')"
+              label="Demander un devis"
               @click="isMenuOpen = false"
             />
             <Button
@@ -161,85 +126,35 @@
               color="success"
               :icon="IconWhatsApp"
               size="sm"
-              :label="t('common.whatsapp')"
+              label="WhatsApp Direct"
             />
           </div>
         </template>
       </UDrawer>
     </header>
-
-    <!-- Client Auth Modal -->
-    <AuthForm v-model="isAuthFormOpen" />
   </div>
 </template>
+
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from "vue";
-import { useAppMenus } from "../menu/menu";
-import AuthForm from "./forms/AuthForm.vue";
-import Button from "./buttons/Button.vue";
-import { IconWhatsApp } from "./svg/svg";
-import Breadcrumb from "./breadcrumb/Breadcrumb.vue";
-import LocaleButton from "./locale/LocaleButton.vue";
+import { IconWhatsApp } from "../svg/svg";
+import Button from "../buttons/Button.vue";
+import { useAppMenus } from "~/menu/menu";
+import LocaleButton from "../locale/LocaleButton.vue";
 
-const route = useRoute();
 const isMenuOpen = ref(false);
-const isAuthFormOpen = ref(false);
 const isScrolled = ref(false);
-const appMenus = useAppMenus().appMenus;
 const serviceStore = useServiceStore();
-const authStore = useAuthStore();
-const { t } = useI18n();
+const appMenus = useAppMenus().appMenus;
 
-const mobileMenu = computed(() => {
-  let menu = [] as any[];
-  appMenus.value.forEach((item) => {
-    const newChildren = [] as any[];
-
-    if (item.children?.length) {
-      item.children.forEach((element) => {
-        newChildren.push({
-          ...element,
-          onSelect: () => {
-            isMenuOpen.value = false;
-          },
-        });
-      });
-    }
-    menu.push({
-      ...item,
-      children: newChildren,
-      onSelect: () => {
-        if (!item.children?.length) {
-          isMenuOpen.value = false;
-        }
-      },
-    });
-  });
-  return menu;
-});
-
-const handleAuthClick = () => {
-  if (authStore.isAuthenticated) {
-    if (authStore.user?.role === "CLIENT") {
-      return navigateTo("/dashboard");
-    } else {
-      return navigateTo("/admin");
-    }
-  } else {
-    isAuthFormOpen.value = true;
-  }
-};
 const handleScroll = () => {
   if (typeof window !== "undefined") {
     isScrolled.value = window.scrollY > 20;
   }
 };
-
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
-  serviceStore.fetchServices();
 });
-
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
 });

@@ -11,15 +11,15 @@
           class="bg-rust-100 text-rust-800 border border-rust-200 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase"
         >
           <UIcon name="i-lucide-help-circle" class="w-3.5 h-3.5 mr-1" />
-          Questions Fréquentes
+          {{ t('faq.badge') }}
         </UBadge>
 
         <h2 class="text-3xl sm:text-4xl font-extrabold text-ink-900 tracking-tight">
-          Tout ce que vous devez savoir sur <span class="text-rust-600">nos services</span>
+          {{ t('faq.title') }}
         </h2>
 
         <p class="text-base text-slate-600 leading-relaxed font-normal">
-          Vous avez des questions sur la gestion de vos démarches à distance ? Trouvez rapidement vos réponses ci-dessous.
+          {{ t('faq.description') }}
         </p>
 
         <!-- Search Bar -->
@@ -29,7 +29,7 @@
             icon="i-lucide-search"
             type="text"
             name="search"
-            placeholder="Rechercher une question (paiement, foncier, délais...)"
+            :placeholder="t('faq.search')"
             
           />
         </div>
@@ -53,10 +53,10 @@
       <div class="mt-12 text-center rounded-lg bg-white p-6 border border-gold-400/20 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="text-left">
           <h4 class="text-base font-bold text-ink-900">
-            Une question spécifique à votre dossier ?
+            {{ t('faq.specificQuestion') }}
           </h4>
           <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
-            Notre équipe vous répond avec précision dans la journée.
+            {{ t('faq.answerToday') }}
           </p>
         </div>
         <div class="flex items-center gap-3">
@@ -68,7 +68,7 @@
             icon="i-lucide-mail"
             class=" items-center gap-1.5 px-3.5 py-2 text-xs font-semibold rounded shadow-sm"
           >
-            Nous écrire
+            {{ t('faq.writeUs') }}
           </UButton>
           <a
             href="https://wa.me/237679188336"
@@ -95,6 +95,8 @@ import { IconWhatsApp } from '../svg/svg.js';
 const props = defineProps<{
   items?: faqType[];
 }>();
+
+const { t } = useI18n();
 
 const defaultFaqs = [
   {

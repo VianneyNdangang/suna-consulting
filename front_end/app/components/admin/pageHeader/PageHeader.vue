@@ -1,9 +1,9 @@
 <template>
-      <UPageHeader headline="Admin" :title="title" :description="subtitle"
+      <UPageHeader :title="title" :description="subtitle"
       :ui="{
-        title:' font-bold text-xl text-(--text-primary)',
-        description:'text-md',
-        root: 'py-3',
+        title:' font-bold text-lg text-(--text-primary)',
+        description:'text-md text-lg text-(--text-secondary)',
+        root: 'py-0 ',
         container: 'gap-3',
         wrapper:'gap-3'
       }"

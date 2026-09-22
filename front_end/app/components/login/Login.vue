@@ -12,11 +12,11 @@
         />
 
         <h1 class="mt-4 text-xl font-bold text-rust-600">
-          Connexion
+          {{ t('auth.loginTitle') }}
         </h1>
 
         <p class="mt-2 text-center text-gray-500">
-          Connectez-vous pour accéder à votre espace.
+          {{ t('auth.loginDescription') }}
         </p>
       </div>
 
@@ -26,16 +26,16 @@
       >
         <Input
           v-model="email"
-          label="Adresse e-mail"
+          :label="t('auth.email')"
           name="email"
           type="email"
-          placeholder="exemple@email.com"
+          placeholder="example@email.com"
           :error="errors.email"
         />
 
         <Input
           v-model="password"
-          label="Mot de passe"
+          :label="t('auth.password')"
           name="password"
           type="password"
           placeholder="********"
@@ -44,7 +44,7 @@
 
         <Button
           type="submit"
-          label="Se connecter"
+          :label="t('auth.loginSubmit')"
           variant="primary"
           bg="[#c79e46]"
           w="full"
@@ -54,14 +54,14 @@
 
       <div class="my-6 flex items-center">
         <div class="h-px flex-1 bg-gray-300" />
-        <span class="mx-4 text-sm text-gray-400">OU</span>
+        <span class="mx-4 text-sm text-gray-400">{{ t('auth.or') }}</span>
         <div class="h-px flex-1 bg-gray-300" />
       </div>
 
       <!-- Bouton Google -->
       <Button
         type="button"
-        label="Continuer avec Google"
+        :label="t('auth.continueGoogle')"
         variant="secondary"
         w="full"
         @click="loginWithGoogle"
@@ -76,13 +76,13 @@
       </Button>
 
       <p class="mt-6 text-center text-sm">
-        Vous n'avez pas encore de compte ?
+        {{ t('auth.noAccount') }}
 
         <NuxtLink
           to="/register"
           class="font-semibold text-rust-600 hover:underline"
         >
-          S'inscrire
+          {{ t('auth.signUp') }}
         </NuxtLink>
       </p>
     </div>
@@ -99,6 +99,8 @@ import Input from "../input/Input.vue";
 import { loginSchema } from '~/schemas/forms.schema';
 
 const log = useUserStore();
+const authStore = useAuthStore();
+const { t } = useI18n();
 
 const { defineField, errors, handleSubmit } = useForm({
   validationSchema: toTypedSchema(loginSchema),
@@ -106,6 +108,14 @@ const { defineField, errors, handleSubmit } = useForm({
 
 const [email] = defineField("email");
 const [password] = defineField("password");
+
+watch(
+  () => authStore.user?.email,
+  (userEmail) => {
+    if (!email.value && userEmail) email.value = userEmail;
+  },
+  { immediate: true },
+);
 
 const onSubmit = handleSubmit(async (values) => {
   // await log.loginUser(values);

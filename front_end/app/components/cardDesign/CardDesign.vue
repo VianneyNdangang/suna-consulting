@@ -3,8 +3,11 @@
     :title="title"
     :description="description"
     variant="solid"
-    class="bg-(--card) text-(--text-primary) shadow"
+    class="bg-(--card) text-(--text-primary) shadow rounded-(--radius)"
     :class="props.w ? `w-${props.w} max-h-${maxH}` : `w-full max-h-${maxH}`"
+    :ui="{
+      title: 'text-(--text-primary)'
+    }"
   >
     <template v-if="$slots.header" #header>
       <slot name="header"/>

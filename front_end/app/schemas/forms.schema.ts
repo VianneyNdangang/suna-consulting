@@ -13,7 +13,7 @@ export const loginSchema = z.object({
 
 export const registerSchema = z
   .object({
-    fullname: z.string().trim().min(1, "Le nom complet est requis"),
+    full_name: z.string().trim().min(1, "Le nom complet est requis"),
 
     email: z
       .string()
@@ -64,9 +64,10 @@ export const newsletterSchema = z.object({
 
 export const serviceFormSchema = z.object({
   title: nonEmptyText("Le titre du service est requis"),
-  slug:nonEmptyText(""),
+  slug:nonEmptyText("Le slug du service est requis"),
   description: nonEmptyText('La description du service est requise'),
-  is_active:z.boolean()
+  is_active:z.boolean(),
+  display_order: z.number().min(1, "L'ordre d'affichage doit être un nombre positif")
 });
 
 export const adminQuoteSchema = z.object({
@@ -109,7 +110,7 @@ export const testimonialFormSchema = z.object({
     .min(2, "Veuillez renseigner votre ville ou votre pays."),
 
   service_used: z.string().min(2, "Veuillez indiquer le service utilisé."),
-
+ flag: z.string(),
   rating: z
     .number()
     .min(1, "Veuillez attribuer une note.")

@@ -1,13 +1,12 @@
-```vue
 <template>
   <UPageCard
     :description="testimonial.content"
     variant="solid"
     :class="w?`w-${w}`: `w-full`"
-    class="flex flex-col rounded border border-gold-400/25 bg-white p-4 shadow-sm"
+    class="flex flex-col rounded  bg-white shadow-sm"
     :ui="{
       description:
-        'text-sm leading-relaxed text-slate-600 before:content-[open-quote] after:content-[close-quote]',
+        'text-sm leading-relaxed text-slate-600 before:content-[open-quote] after:content-[close-quote] overflow-scroll',
       footer: 'w-full',
       header: 'w-full',
     }"
@@ -17,33 +16,7 @@
       <div class="w-full space-y-3">
 
         <!-- Rating + Flag -->
-        <div class="flex w-full items-center justify-between">
-
-          <!-- Rating -->
-          <div class="flex items-center gap-1">
-            <UIcon
-              v-for="n in 5"
-              :key="n"
-              name="i-tabler-star-filled"
-              class="h-4 w-4"
-              :class="
-                n <= testimonial.rating
-                  ? 'text-gold-400'
-                  : 'text-slate-200'
-              "
-            />
-          </div>
-
-          <!-- Flag -->
-          <img
-            v-if="testimonial.flag"
-            :src="testimonial.flag"
-            :alt="`Drapeau de ${testimonial.author_location}`"
-            :title="testimonial.author_location"
-            class="h-5 w-7 rounded-sm object-cover"
-          />
-
-        </div>
+        
 
         <!-- Service -->
         <div v-if="testimonial.service_used">
@@ -64,7 +37,8 @@
 
     <!-- Card footer -->
     <template #footer>
-      <div
+      <div class="flex w-full items-center justify-between">
+        <div
         class="flex w-full items-center gap-3.5 border-t border-slate-200 pt-4"
       >
 
@@ -77,11 +51,22 @@
 
         <!-- Author -->
         <div class="min-w-0">
-          <h3
+          <div class="flex gap-2">
+             <h3
             class="truncate text-sm font-bold leading-tight text-ink-900"
           >
             {{ testimonial.author_name }}
           </h3>
+          <!-- Flag -->
+          <img
+            v-if="testimonial.flag"
+            :src="testimonial.flag"
+            :alt="`Drapeau de ${testimonial.author_location}`"
+            :title="testimonial.author_location"
+            class="h-5 w-7 rounded-sm object-cover"
+          />
+          </div>
+         
 
           <p
             v-if="testimonial.author_location"
@@ -97,6 +82,20 @@
         </div>
 
       </div>
+          <!-- Rating -->
+           <UInputRating
+            v-model="testimonial.rating"
+            :readonly="true"
+            :max="5"
+            :size="'sm'"
+            :class="'text-gold-400'"
+            icon="i-tabler-star-filled"
+          />
+
+          
+
+        </div>
+      
     </template>
   </UPageCard>
 </template>

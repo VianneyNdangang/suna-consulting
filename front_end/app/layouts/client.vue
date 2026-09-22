@@ -1,15 +1,17 @@
-<script setup lang="ts">
-import AppHeader from '~/components/AppHeader.vue';
-
-const colorMode = useColorMode()
-</script>
-
 <template>
-    <div class="admin-layout">
-        <AppHeader />
-            <UMain class="h-full w-full bg-(--background) p-3 text-(--text-primary)">
-                <slot />
-            </UMain>
-    </div>
+  <div class="admin-layout">
+    <!-- <AppHeader /> -->
+    <Clientnavbar/>
+    <UMain class="h-full w-full  bg-(--bacgroung)">
+      <NuxtPage />
+    </UMain>
+  </div>
 </template>
+<script setup lang="ts">
+import Clientnavbar from '~/components/client/Clientnavbar.vue';
+
+// const colorMode = useColorMode();
+// colorMode.preference = "dark";
+</script>
+<!-- <style src="../assets/css/main.css"></style> -->
 <style src="../assets/css/adminStyle.css"></style>

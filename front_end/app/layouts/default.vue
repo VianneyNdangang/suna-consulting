@@ -10,7 +10,6 @@
   </div>
 </template>
 <script setup lang="ts">
-
 const store = usesite_contentStore()
 const serviceStore = useServiceStore()
 onMounted(async ()=>{

@@ -13,31 +13,25 @@
             class="bg-rust-100 text-rust-800 border border-rust-200 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase"
           >
             <UIcon name="i-lucide-users" class="w-3.5 h-3.5 mr-1" />
-            Notre Histoire & Vision
+            {{ t('about.badge') }}
           </UBadge>
 
           <h1
             class="text-3xl sm:text-5xl font-extrabold text-ink-900 tracking-tight leading-tight"
           >
-            Votre partenaire de confiance
-            <span class="text-rust-600">sur le sol camerounais</span>
+            {{ t('about.title') }}
           </h1>
 
           <p
             class="text-base sm:text-lg text-slate-700 leading-relaxed font-normal"
           >
-            Súna Consulting est née d’une conviction profonde : permettre à
-            chaque membre de la diaspora camerounaise de piloter ses démarches,
-            ses investissements fonciers et ses projets familiaux avec la même
-            tranquillité d’esprit que s’il était sur place.
+            {{ t('about.intro') }}
           </p>
 
           <p
             class="text-sm sm:text-base text-slate-600 leading-relaxed font-light"
           >
-            Basés à Douala, nous mettons à votre disposition une
-            équipe de professionnels fiables, réactifs et discrets, garantissant
-            des comptes-rendus rigoureux et une exécution irréprochable.
+            {{ t('about.team') }}
           </p>
 
           <div class="pt-2 flex items-center gap-4">
@@ -47,7 +41,7 @@
               type="button"
               icon="i-lucide-calculator"
               size="sm"
-              label="Prendre contact"
+              :label="t('about.contact')"
             />
             <Button
               to="https://wa.me/237679188336"
@@ -56,7 +50,7 @@
               color="success"
               :icon="IconWhatsApp"
               size="sm"
-              label="WhatsApp Direct"
+              :label="t('common.whatsapp')"
             />
           </div>
         </div>
@@ -79,11 +73,10 @@
             <div class="absolute bottom-6 left-6 right-6 text-gold-300">
               <span
                 class="text-xs uppercase tracking-widest text-white font-bold"
-                >Présence Terrain</span
+                >{{ t('about.presence') }}</span
               >
               <p class="text-base font-semibold mt-1">
-                Interventions à Yaoundé, Douala et dans les 10 régions du
-                Cameroun.
+                {{ t('about.presenceDescription') }}
               </p>
             </div>
           </div>
@@ -96,23 +89,23 @@
       >
         <div class="text-center md:text-left space-y-1">
           <div class="text-4xl sm:text-5xl font-black text-gold-400">8+</div>
-          <h3 class="text-lg font-bold text-white">Années d'expérience</h3>
+          <h3 class="text-lg font-bold text-white">{{ t('about.years') }}</h3>
           <p class="text-xs text-sand-50/75">
-            Au service de la diaspora camerounaise mondiale.
+            {{ t('about.yearsDescription') }}
           </p>
         </div>
         <div class="text-center md:text-left space-y-1">
           <div class="text-4xl sm:text-5xl font-black text-gold-400">500+</div>
-          <h3 class="text-lg font-bold text-white">Missions réussies</h3>
+          <h3 class="text-lg font-bold text-white">{{ t('about.missions') }}</h3>
           <p class="text-xs text-sand-50/75">
-            Dossiers administratifs, fonciers et chantiers livrés.
+            {{ t('about.missionsDescription') }}
           </p>
         </div>
         <div class="text-center md:text-left space-y-1">
           <div class="text-4xl sm:text-5xl font-black text-gold-400">12+</div>
-          <h3 class="text-lg font-bold text-white">Pays de résidence</h3>
+          <h3 class="text-lg font-bold text-white">{{ t('about.countries') }}</h3>
           <p class="text-xs text-sand-50/75">
-            Canada, France, USA, Belgique, Allemagne, Suisse...
+            {{ t('about.countriesDescription') }}
           </p>
         </div>
       </div>
@@ -124,35 +117,31 @@
         >
           <h3 class="text-xl font-bold text-ink-900 flex items-center gap-2">
             <UIcon name="i-lucide-shield-check" class="w-5 h-5 text-rust-600" />
-            Nos 4 Principes Fondamentaux
+            {{ t('about.principles') }}
           </h3>
           <ul class="space-y-3 text-sm text-slate-700">
             <li class="flex items-start gap-2.5">
               <span class="text-gold-500 font-bold">•</span>
               <span
-                ><strong>Confiance :</strong> Nous agissons dans le strict
-                respect de vos intérêts privés et financiers.</span
+                ><strong>{{ t('about.trust') }} :</strong> {{ t('about.trustDescription') }}</span
               >
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-gold-500 font-bold">•</span>
               <span
-                ><strong>Transparence :</strong> Chaque mission fait l’objet de
-                photos, vidéos et rapports détaillés en direct.</span
+                ><strong>{{ t('about.transparency') }} :</strong> {{ t('about.transparencyDescription') }}</span
               >
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-gold-500 font-bold">•</span>
               <span
-                ><strong>Rigueur :</strong> Une méthode éprouvée pour éviter les
-                lenteurs administratives et les litiges.</span
+                ><strong>{{ t('about.rigor') }} :</strong> {{ t('about.rigorDescription') }}</span
               >
             </li>
             <li class="flex items-start gap-2.5">
               <span class="text-gold-500 font-bold">•</span>
               <span
-                ><strong>Proximité :</strong> Vos yeux, vos oreilles et vos
-                mains sur place au pays.</span
+                ><strong>{{ t('about.proximity') }} :</strong> {{ t('about.proximityDescription') }}</span
               >
             </li>
           </ul>
@@ -164,15 +153,13 @@
           <div
             class="inline-flex items-center gap-1.5 text-xs font-bold text-gold-300 uppercase tracking-widest"
           >
-            Engagement Sociétal
+            {{ t('about.socialTitle') }}
           </div>
           <h3 class="text-xl font-bold text-white">
-            15% réinvestis dans le développement local
+            {{ t('about.socialHeading') }}
           </h3>
           <p class="text-sm text-sand-50/85 leading-relaxed">
-            Nous consacrons 15% de nos ressources à des forages d’eau potable,
-            l’acquisition de tables-bancs scolaires et l’aide aux orphelinats
-            dans les villages et quartiers au Cameroun.
+            {{ t('about.socialDescription') }}
           </p>
         </div>
       </div>
@@ -184,6 +171,7 @@
 import { computed, onMounted } from "vue";
 import Button from "~/components/buttons/Button.vue";
 import { IconWhatsApp } from "~/components/svg/svg";
+const { t } = useI18n();
 
 useHead({
   title: "À Propos de Súna Consulting | Notre Histoire & Engagements",

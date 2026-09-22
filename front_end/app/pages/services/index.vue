@@ -21,54 +21,23 @@ useHead({
   link: [{ rel: 'canonical', href: 'https://sunaconsulting.com/services' }],
 });
 
-const defaultServices: any[] = [
-  {
-    id: '1',
-    slug: 'assistance-administrative',
-    title: 'Démarches administratives & formalités',
-    description: 'Obtention d’actes d’état civil, légalisations, dépôts de dossiers et suivi rigoureux auprès des ministères et administrations au Cameroun.',
-    icon: 'shield-doc',
-  },
-  {
-    id: 'b2',
-    slug: 'accompagnement-immobilier-foncier',
-    title: 'Vérification foncière & suivi de chantiers',
-    description: 'Contrôle préalable des titres fonciers au cadastre, visite de parcelles avec rapport vidéo et suivi régulier de vos constructions.',
-    icon: 'home',
-  },
-  {
-    id: 'b3',
-    slug: 'achats-livraisons-proches',
-    title: 'Achat & livraison de biens pour vos proches',
-    description: 'Achat de vivres, matériaux, médicaments ou cadeaux et livraison en mains propres à vos familles à Yaoundé, Douala et environs.',
-    icon: 'heart',
-  },
-  {
-    id: 'b4',
-    slug: 'logistique-reservations',
-    title: 'Réservations de séjours & véhicules',
-    description: 'Organisation complète de vos séjours au Cameroun : appartements meublés sécurisés, hôtels et location de véhicules avec chauffeur.',
-    icon: 'car',
-  },
-  {
-    id: 'b5',
-    slug: 'evenements-familiaux',
-    title: 'Organisation d’événements familiaux',
-    description: 'Coordination locale pour vos dots, mariages coutumiers, baptêmes, anniversaires ou obsèques avec respect strict de votre budget.',
-    icon: 'users',
-  },
-  {
-    id: 'b6',
-    slug: 'sur-mesure',
-    title: 'Assistance personnalisée & conciergerie',
-    description: 'Missions spéciales sur le terrain selon votre cahier des charges avec un interlocuteur dédié et des rapports réguliers.',
-    icon: 'trending',
-  },
-];
-
 const store = useServiceStore();
 const loading = computed(() => store.loading);
-const {services} = storeToRefs(store)
+const services = computed(() => {
+  const datas = [] as any[];
+  if (store.services && store.services.length > 0) {
+    store.services.forEach((service: any) => {
+      if (service.is_active) {
+        datas.push(service);
+      }
+    });
+  }
+  return  datas 
+  });
+
+  onMounted(() => {
+    store.fetchServices();
+  });
 </script>
 
 <template>

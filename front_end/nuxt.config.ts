@@ -17,7 +17,22 @@ export default defineNuxtConfig({
   css: [
     './app/assets/css/main.css',
   ],
+  i18n: {
+  defaultLocale: 'fr',
 
+  locales: [
+    {
+      code: 'fr',
+      name: 'Français',
+      file: 'fr.json',
+    },
+    {
+      code: 'en',
+      name: 'English',
+      file: 'en.json',
+    },
+  ],
+},
   vite: {
     plugins: [
       tailwindcss(),
@@ -26,14 +41,16 @@ export default defineNuxtConfig({
       cssMinify: true,
     }
   },
-
+  ssr:true,
   modules: [
     "@nuxt/icon",
     "@pinia/nuxt",
+    'pinia-plugin-persistedstate/nuxt',
     'motion-v/nuxt',
     '@nuxt/ui',
     '@vee-validate/nuxt',
-    '@nuxt/image'
+    '@nuxt/image',
+    "@nuxtjs/i18n",
   ],
 
   app: {

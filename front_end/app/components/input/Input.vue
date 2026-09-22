@@ -7,19 +7,20 @@
   >
     <!-- TEXT / EMAIL / PASSWORD / NUMBER / TEL -->
     <UInput
-      v-if="type !== 'image'"
+      v-if="type !== 'file' && type !== 'number'"
       v-model="textModel"
       :type="type === 'password' && showPassword ? 'text' : type"
       :name="name"
+      :ui="{
+        base:'focus-visible:border-default focus-visible:ring-0'
+      }"
       :placeholder="placeholder"
-      :color="error ? 'error' : 'neutral'"
+      :color=" undefined"
       :id="name"
       :icon="icon"
-      :min="type === 'number' ? min : undefined"
-      :max="type === 'number' ? max : undefined"
-      :step="type === 'number' ? step : undefined"
-      class="w-full rounded"
+      class="w-full rounded focus:ring-0 "
     >
+   
       <!-- Trailing -->
       <template #trailing>
         <div class="flex items-center gap-1">
@@ -55,17 +56,33 @@
         </div>
       </template>
     </UInput>
-
+     <UInputNumber
+      v-model="model"
+      v-if="type === 'number'"
+      :name="name"
+      :placeholder="placeholder"
+      :id="name"
+      :icon="icon"
+      :min=" min "
+      :max="max"
+      :step="step "
+      :ui="{
+        base:'focus-visible:border-default focus-visible:ring-0'
+      }"
+      class="w-full rounded"
+    />
     <!-- IMAGE -->
-    <div v-else class="relative w-full">
+    <div v-if="type === 'file'" class="relative w-full">
       <UInput
         ref="fileInput"
         :id="name"
         type="file"
         :name="name"
         :accept="accept || 'image/*'"
-        :color="error ? 'error' : 'neutral'"
         class="w-full rounded"
+        :ui="{
+        base:'focus-visible:border-default focus-visible:ring-0'
+      }"
         @change="onFileChange"
       />
 
@@ -93,7 +110,7 @@ import { computed, ref } from "vue";
 const props = withDefaults(
   defineProps<{
     label?: string;
-    type?: "text" | "email" | "password" | "number" | "tel" | "image";
+    type?: "text" | "email" | "password" | "number" | "tel" | "file";
     name: string;
     placeholder?: string;
     error?: string;
@@ -112,7 +129,7 @@ const props = withDefaults(
   },
 );
 
-const model = defineModel<string | number | File | null>();
+const model = defineModel<any>();
 
 const showPassword = ref(false);
 
@@ -120,17 +137,17 @@ const fileInput = ref<any>(null);
 
 const textModel = computed<string>({
   get: () => {
-    if (props.type === "number") {
-      if (
-        model.value === null ||
-        model.value === undefined ||
-        model.value === ""
-      ) {
-        return "";
-      }
+  //   if (props.type === "number") {
+  //     if (
+  //       model.value === null ||
+  //       model.value === undefined ||
+  //       model.value === ""
+  //     ) {
+  //       return "";
+  //     }
 
-      return String(model.value);
-    }
+  //     return String(model.value);
+  //   }
 
     return typeof model.value === "string" ? model.value : "";
   },

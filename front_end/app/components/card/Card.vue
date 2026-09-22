@@ -33,7 +33,7 @@ const getIcon = (iconName: string) => {
       <!-- Icon + Category header -->
       <div class="flex items-center justify-between gap-4 mb-4">
         <div class="h-12 w-12 rounded-lg bg-sand-50 border border-gold-400/30 flex items-center justify-center text-rust-600 group-hover:bg-rust-600 group-hover:text-white transition-colors duration-300">
-          <UIcon :name="getIcon(props.item.icon)" class="w-6 h-6" />
+          <UIcon :name="getIcon(item.icon)" class="w-6 h-6" />
         </div>
         <!-- <UBadge
           color="neutral"
@@ -47,19 +47,19 @@ const getIcon = (iconName: string) => {
 
       <!-- Service Title -->
       <h3 class="text-lg font-bold text-ink-900 group-hover:text-rust-600 transition-colors line-clamp-2">
-        {{ props.item.title }}
+        {{ item.title }}
       </h3>
 
       <!-- Service Short Description -->
       <p class="mt-3 text-sm text-slate-600 leading-relaxed line-clamp-3">
-        {{ props.item.description }}
+        {{ item.description }}
       </p>
     </div>
 
     <!-- Card Action Buttons -->
     <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
       <NuxtLink
-        :to="props.item.id ? `/services/${props.item.id}` : '/services'"
+        :to=" `/services/${item.slug}`"
         class="text-xs font-semibold text-slate-600 hover:text-rust-900 inline-flex items-center gap-1 transition-colors"
       >
         Détails

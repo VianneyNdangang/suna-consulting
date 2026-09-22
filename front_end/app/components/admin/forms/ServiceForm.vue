@@ -9,7 +9,7 @@
         : 'Remplissez le formulaire pour créer un nouveau service'
     "
     :ui="{
-      title: 'text-xl'
+      title: 'text-xl',
     }"
   >
     <template #body>
@@ -44,6 +44,18 @@
                 label="Description"
                 name="description"
                 :error="errors.description"
+                label-class="text-(--text-secondary)"
+              />
+              <Input
+                v-model="display_order"
+                type="number"
+                placeholder="Ordre d'affichage"
+                class="w-full"
+                :min="1"
+                :max="2"
+                label="Ordre d'affichage"
+                name="display_order"
+                :error="errors.display_order"
                 label-class="text-(--text-secondary)"
               />
             </div>
@@ -93,14 +105,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
 }>();
-// const isOpen = computed({
-//   get: () => props.modelValue,
-//   set: (value) => {
-//     emit("update:modelValue", value);
-//   },
-// });
 
-console.log("service", props.service);
 const toast = useToast();
 const loading = ref(false);
 
@@ -111,6 +116,7 @@ const { defineField, errors, handleSubmit, resetForm } = useForm({
     title: "",
     description: "",
     is_active: true,
+    display_order: 1,
   },
 });
 
@@ -124,6 +130,7 @@ watch(
           title: service.title ?? "",
           description: service.description ?? "",
           is_active: service.is_active ?? true,
+          display_order: service.display_order ?? 1,
         },
       });
     } else {
@@ -133,6 +140,7 @@ watch(
           title: "",
           description: "",
           is_active: true,
+          display_order: 1,
         },
       });
     }
@@ -142,6 +150,7 @@ watch(
 const [title] = defineField("title");
 const [slug] = defineField("slug");
 const [description] = defineField("description");
+const [display_order] = defineField("display_order");
 
 const store = useServiceStore();
 

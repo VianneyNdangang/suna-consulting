@@ -1,111 +1,105 @@
-```vue
 <template>
-  <UHeader
+  <UDashboardNavbar
+    :toggle="false"
     :ui="{
-      root: 'border-0 p-0 w-full bg-(--surface) text-(--text-primary)',
-      container: 'px-3 sm:px-4 h-16 flex items-center gap-2 sm:gap-4'
+      root: 'border-0 w-full h-16 bg-(--surface) text-(--text-primary)',
     }"
   >
     <!-- Menu mobile -->
-    <template #left>
-      <UButton
-        icon="i-lucide-menu"
-        color="neutral"
-        variant="ghost"
-        size="lg"
-        aria-label="Ouvrir le menu"
-        class="lg:hidden"
+    <template #leading>
+      <UDashboardSidebarToggle
+        variant="outline"
         @click="isMenuOpen = true"
+        active-color="primary"
       />
-
-      <!-- Branding -->
-      <NuxtLink
-        to="/admin"
-        class="flex items-center gap-2 shrink-0"
-      >
-        <div class="hidden sm:block leading-tight">
-          <p class="font-semibold text-sm">
-            Súna Consulting
-          </p>
-
-          <p class="text-xs text-(--secondary)">
-            Administration
-          </p>
-        </div>
+    </template>
+    <template #default>
+      <NuxtLink to="/" class="flex items-center gap-2 shrink-0">
+        <Icon name="i-tabler-world" class="text-(--secondary)" />
+        <p class="font-semibold">Revenir au site</p>
       </NuxtLink>
-    </template> 
-
+    </template>
     <!-- Actions -->
     <template #right>
       <div class="flex items-center gap-1 sm:gap-2 shrink-0">
-        <!-- Thème -->
-        <UColorModeButton />
+       
 
         <!-- Profil -->
-        <UButton
-          icon="i-lucide-user"
-          color="neutral"
-          variant="ghost"
-          size="lg"
-          aria-label="Profil"
-        />
+        <UDropdownMenu>
+          <UButton
+            icon="i-lucide-user"
+            color="neutral"
+            variant="ghost"
+            size="lg"
+            aria-label="Profil"
+          />
+        </UDropdownMenu>  
+        <LocaleButton/>
+        <!-- Thème -->
+        <UColorModeButton />
+       
       </div>
     </template>
-  </UHeader>
+  </UDashboardNavbar>
 
   <!-- Mobile Slideover / Dropdown Menu -->
-       <UDrawer title="Menu" v-model:open="isMenuOpen" direction="left" 
-       :ui="{
-        container: 'bg-(--surface)'
-       }"
-       >
-        <template #body>
-          <USeparator/>
-           <UNavigationMenu
-            :items="menus"
-            orientation="vertical"
-            :ui="{
-              link: 'px-3 py-1.5 text-md font-medium w-full',
-              // linkActive: 'text-rust-700 underline decoration-gold-500 decoration-2 underline-offset-8',
-            }"
-          />
-        </template>
-       </UDrawer>
-       
+  <UDrawer
+    title="Menu"
+    v-model:open="isMenuOpen"
+    direction="left"
+    siz
+    :ui="{
+      content: 'bg-(--surface) w-70',
+    }"
+  >
+    <template #body>
+      <USeparator />
+      <UNavigationMenu
+        :items="mobileMenu"
+        orientation="vertical"
+        :ui="{
+          link: 'px-3 py-1.5 text-md font-medium w-full',
+        }"
+      />
+    </template>
+  </UDrawer>
 </template>
 
 <script setup lang="ts">
-import type { CommandPaletteGroup } from '#ui/types'
-import { menus } from '~/menu/menu';
-import Breadcrumb from '../breadcrumb/Breadcrumb.vue';
+import { menus } from "~/menu/menu";
+import LocaleButton from "../locale/LocaleButton.vue";
 
 const emit = defineEmits<{
-  'toggle-sidebar': []
-}>()
+  "toggle-sidebar": [];
+}>();
 
-const isMenuOpen = ref(false)
+const isMenuOpen = ref(false);
 
-const groups = ref<CommandPaletteGroup[]>([
-  {
-    id: 'pages',
-    label: 'Pages',
-    items: [
-      {
-        label: 'Accueil',
-        icon: 'i-lucide-house',
-        to: '/'
+const mobileMenu = computed(() => {
+  let menu = [] as any[];
+  menus.value.forEach((item) => {
+    const newChildren = [] as any[];
+
+    if (item.children?.length) {
+      item.children.forEach((element) => {
+        newChildren.push({
+          ...element,
+          onSelect: () => {
+            isMenuOpen.value = false;
+          },
+        });
+      });
+    }
+    menu.push({
+      ...item,
+      children: newChildren,
+      onSelect: () => {
+        if (!item.children?.length) {
+          isMenuOpen.value = false;
+        }
       },
-      {
-        label: 'Services',
-        icon: 'i-lucide-briefcase',
-        to: '/services'
-      },
-      {
-        label: 'Contact',
-        icon: 'i-lucide-mail',
-        to: '/contact'
-      }
-    ]
-  }
-])
+    });
+  });
+  return menu;
+});
 </script>

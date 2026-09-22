@@ -11,6 +11,8 @@ const props = defineProps<{
   loading?: boolean;
 }>();
 
+const { t } = useI18n();
+
 const emit = defineEmits<{
   (e: "selectService", item: servicesType): void;
 }>();
@@ -70,12 +72,12 @@ const emit = defineEmits<{
 const selectedCategory = ref("all");
 
 const categories = [
-  { id: "all", label: "Tous nos services", icon: "i-lucide-grid" },
-  { id: "admin", label: "Administratif & Légal", icon: "i-lucide-file-text" },
-  { id: "immo", label: "Immobilier & Terrains", icon: "i-lucide-home" },
+  { id: "all", label: t("services.all"), icon: "i-lucide-grid" },
+  { id: "admin", label: t("services.administrative"), icon: "i-lucide-file-text" },
+  { id: "immo", label: t("services.realEstate"), icon: "i-lucide-home" },
   {
     id: "projets",
-    label: "Projets & Famille",
+    label: t("services.projects"),
     icon: "i-lucide-heart-handshake",
   },
 ];
@@ -134,22 +136,19 @@ const filteredServices = computed(() => {
           class="bg-rust-100 text-rust-800 border border-rust-200 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase"
         >
           <UIcon name="i-lucide-briefcase" class="w-3.5 h-3.5 mr-1" />
-          Nos Domaines d'Expertise
+          {{ t("services.badge") }}
         </UBadge>
 
         <h2
           class="text-3xl sm:text-4xl font-extrabold text-ink-900 tracking-tight"
         >
-          Des accompagnements pensés pour des
-          <span class="text-rust-600">décisions plus sûres</span>
+          {{ t("services.title") }}
         </h2>
 
         <p
           class="text-base sm:text-lg text-slate-600 leading-relaxed font-normal"
         >
-          Chaque mission combine rigueur administrative, présence locale
-          vérifiée à Yaoundé et Douala, et un accompagnement humain sur-mesure
-          pour vous simplifier la vie à distance.
+          {{ t("services.description") }}
         </p>
 
         <!-- Category Filters -->

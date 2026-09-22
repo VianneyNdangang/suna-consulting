@@ -3,11 +3,11 @@
   <UModal
     :open="props.modelValue"
     @update:open="(val: any) => emit('update:modelValue', val)"
-    :title="isRegister ? 'Créer mon compte' : 'Espace Client Súna'"
+    :title="isRegister ? t('auth.createAccount') : t('auth.clientSpace')"
     :description="
       isRegister
-        ? 'Rejoignez la diaspora qui pilote ses projets au Cameroun en toute sécurité.'
-        : 'Accédez au suivi en temps réel de vos missions et démarches.'
+        ? t('auth.registerDescription')
+        : t('auth.loginDescription')
     "
   >
     <template #body>
@@ -35,7 +35,7 @@
             "
             @click="isRegister = false"
           >
-            Connexion
+            {{ t('auth.login') }}
           </button>
 
           <button
@@ -48,7 +48,7 @@
             "
             @click="isRegister = true"
           >
-            Inscription
+            {{ t('auth.register') }}
           </button>
         </div>
 
@@ -56,37 +56,36 @@
         <form @submit.prevent="onSubmit" class="space-y-3.5">
           <section v-if="isRegister">
             <p class="text-xs text-(--secondary) font-semibold">
-              Informations personnelles
+              {{ t('auth.personalInfo') }}
             </p>
 
             <div class="mt-2">
               <Input
-                v-model="fullname"
+                v-model="full_name"
                 type="text"
-                placeholder="ex: Jean Dupont"
+                :placeholder="t('auth.fullNamePlaceholder')"
                 class="w-full"
-                label="Nom complet"
-                name="fullname"
-                :error="errors.fullname"
+                :label="t('auth.fullName')"
+                name="full_name"
+                :error="errors.full_name"
               />
               <Input
                 v-model="avatar"
-                type="image"
-                placeholder="Téléchargez une photo"
+                type="file"
+                :placeholder="t('auth.uploadPhoto')"
                 class="w-full"
-                label="Photo de profil"
+                :label="t('auth.profilePhoto')"
                 name="avatar"
                 :error="errors.avatar"
               />
             </div>
           </section>
-
           <section>
             <p
               v-if="isRegister"
               class="text-xs text-(--secondary) font-semibold mt-5"
             >
-              Contacts
+              {{ t('auth.contacts') }}
             </p>
 
             <div
@@ -99,9 +98,9 @@
               <Input
                 v-model="email"
                 type="email"
-                placeholder="vous@email.com"
+                placeholder="you@email.com"
                 class="w-full"
-                label="Adresse email"
+                :label="t('auth.email')"
                 name="email"
                 :error="errors.email"
               />
@@ -113,35 +112,34 @@
                 type="tel"
                 placeholder="+237 6 52 34 56 78"
                 class="w-full"
-                
-                label="Numéro WhatsApp / Téléphone"
+                :label="t('auth.phone')"
                 name="phone"
                 :error="errors.phone"
               />
             </div>
           </section>
           <section v-if="isRegister">
-            <p class="text-xs text-(--secondary) font-semibold mt-5">Profil</p>
+            <p class="text-xs text-(--secondary) font-semibold mt-5">{{ t('auth.profile') }}</p>
 
             <div class="mt-2">
               <Combobox
                 v-model="country"
-                url="https://countries.dev/name"
+                url="https://countries.dev/name/"
                 option-value="name"
                 option-label="name"
                 name="country"
-                label="Pays de residence"
-                placeholder="Rechercher un pays..."
+                :label="t('auth.country')"
+                :placeholder="t('auth.searchCountry')"
                 :error="errors.country"
               />
               <Combobox
                 v-model="city"
-                url="https://countries.dev/cities?q"
+                url="https://countries.dev/cities?q="
                 option-value="name"
                 option-label="name"
-                name="country"
-                label="Pays de residence"
-                placeholder="Rechercher un pays..."
+                name="city"
+                :label="t('auth.city')"
+                :placeholder="t('auth.searchCity')"
                 :error="errors.city"
               />
             </div>
@@ -149,18 +147,22 @@
 
           <section>
             <p class="text-xs text-(--secondary) font-semibold mt-5">
-              Sécurité
+              {{ t('auth.security') }}
             </p>
 
             <div
-              :class="isRegister? 'grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-2 mt-2': 'mt-2'"
+              :class="
+                isRegister
+                  ? 'grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-2 mt-2'
+                  : 'mt-2'
+              "
             >
               <Input
                 v-model="password"
                 type="password"
-                placeholder="8 caractères minimum"
+                :placeholder="t('auth.passwordPlaceholder')"
                 class="w-full"
-                label="Mot de passe"
+                :label="t('auth.password')"
                 name="password"
                 :error="errors.password"
               />
@@ -171,8 +173,8 @@
                 v-if="isRegister"
                 v-model="confirmPassword"
                 type="password"
-                placeholder="Confirmez votre mot de passe"
-                label="Confirmer le mot de passe"
+                :placeholder="t('auth.confirmPasswordPlaceholder')"
+                :label="t('auth.confirmPassword')"
                 name="confirm_password"
                 :error="errors.confirm_password"
               />
@@ -192,43 +194,43 @@
                 class="rounded border-slate-300 text-rust-600 focus:ring-rust-500"
               />
 
-              <span>Se souvenir de moi</span>
+              <span>{{ t('auth.remember') }}</span>
             </label>
 
             <NuxtLink
               to="#"
               class="text-rust-600 hover:text-rust-900 font-medium"
             >
-              Mot de passe oublié ?
+              {{ t('auth.forgotPassword') }}
             </NuxtLink>
           </div>
           <USeparator />
-            <Button
-              name="submitform"
-              type="submit"
-              w="full"
-              variant="primary"
-              :loading="loading"
-              :label="
-                isRegister ? `Créer mon compte client` : `Accéder à mon espace`
-              "
-            />
+          <Button
+            name="submitform"
+            type="submit"
+            w="full"
+            variant="primary"
+            :loading="loading"
+            :label="
+              isRegister ? t('auth.createClientAccount') : t('auth.accessSpace')
+            "
+          />
         </form>
 
-        <USeparator label="Ou" />
+        <USeparator :label="t('auth.or')" />
 
         <!-- Google -->
         <UButton
-  type="button"
-  variant="outline"
-  block
-  color="neutral"
-  class="border-slate-300 text-slate-700 hover:bg-slate-50"
-  @click="loginWithGoogle"
->
-  <UIcon :name="IconGoogle" class="size-5" />
-  <span>Continuer avec Google</span>
-</UButton>
+          type="button"
+          variant="outline"
+          block
+          color="neutral"
+          class="border-slate-300 text-slate-700 hover:bg-slate-50"
+          @click="loginWithGoogle"
+        >
+          <UIcon :name="IconGoogle" class="size-5" />
+          <span>{{ t('auth.continueGoogle') }}</span>
+        </UButton>
       </div>
     </template>
   </UModal>
@@ -247,6 +249,7 @@ import { IconGoogle } from "../svg/svg.js";
 const props = defineProps<{
   modelValue: boolean;
 }>();
+const { t } = useI18n();
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
 }>();
@@ -267,7 +270,7 @@ const { defineField, errors, handleSubmit, resetForm } = useForm({
     toTypedSchema(isRegister.value ? registerSchema : loginSchema),
   ),
   initialValues: {
-    fullname: "",
+    full_name: "",
     email: "",
     country: "",
     city: "",
@@ -277,7 +280,7 @@ const { defineField, errors, handleSubmit, resetForm } = useForm({
     avatar: "",
   },
 });
-const [fullname] = defineField("fullname");
+const [full_name] = defineField("full_name");
 const [email] = defineField("email");
 const [country] = defineField("country");
 const [city] = defineField("city");
@@ -287,6 +290,18 @@ const [phone] = defineField("phone");
 const [avatar] = defineField("avatar");
 
 const store = useAuthStore();
+const toast = useToast();
+
+const prefillFromUser = (user: any) => {
+  if (!user) return;
+  if (!full_name.value && user.full_name) full_name.value = user.full_name;
+  if (!email.value && user.email) email.value = user.email;
+  if (!phone.value && user.phone) phone.value = user.phone;
+  if (!country.value && user.country) country.value = user.country;
+  if (!city.value && user.city) city.value = user.city;
+};
+
+watch(() => store.user, prefillFromUser, { immediate: true });
 
 const onSubmit = handleSubmit(async (values) => {
   try {
@@ -296,12 +311,19 @@ const onSubmit = handleSubmit(async (values) => {
     } else {
       const success = await store.login(values);
     }
-    console.log("Valeurs du formulaire :", values);
     // await new Promise((resolve) => setTimeout(resolve, 1000));
-    // emit("update:modelValue", false);
+    emit("update:modelValue", false);
+    toast.add({
+      title: store.message,
+      color: "success",
+    });
     resetForm();
   } catch (err) {
     console.error(err);
+    toast.add({
+      title: store.message || t('auth.error'),
+      color: "error",
+    });
   } finally {
     loading.value = false;
   }
@@ -310,8 +332,4 @@ const onSubmit = handleSubmit(async (values) => {
 const loginWithGoogle = () => {
   console.log("Connexion avec Google");
 };
-
-// onMounted(() => {
-//   fetchCountries();
-// });
 </script>

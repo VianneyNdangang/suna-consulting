@@ -11,32 +11,34 @@ const props = defineProps<{
   points?: string[];
 }>();
 
-const pillars: Pillar[] = [
+const { t } = useI18n();
+
+const pillars = computed<Pillar[]>(() => [
   {
-    title: 'Transparence & Preuves Horodatées',
-    description: 'Chaque mission fait l’objet de photos, vidéos et rapports détaillés en temps réel. Vous savez exactement ce qui se passe sur place.',
+    title: t('whyUs.pillars.0.title'),
+    description: t('whyUs.pillars.0.description'),
     icon: 'i-lucide-shield-check',
-    tag: 'Zéro Mauvaise Surprise',
+    tag: t('whyUs.pillars.0.tag'),
   },
   {
-    title: 'Ancrage Local & Réactivité Terrain',
-    description: 'Nos équipes basées à Yaoundé et Douala interviennent rapidement auprès des administrations, familles et chantiers.',
+    title: t('whyUs.pillars.1.title'),
+    description: t('whyUs.pillars.1.description'),
     icon: 'i-lucide-map-pin',
-    tag: 'Yaoundé & Douala',
+    tag: t('whyUs.pillars.1.tag'),
   },
   {
-    title: 'Confidentialité & Sécurité Juridique',
-    description: 'Nous agissons sous mandat strict avec une confidentialité absolue pour protéger vos avoirs, parcelles et démarches privées.',
+    title: t('whyUs.pillars.2.title'),
+    description: t('whyUs.pillars.2.description'),
     icon: 'i-lucide-lock',
-    tag: 'Cadre Rigoureux',
+    tag: t('whyUs.pillars.2.tag'),
   },
   {
-    title: 'Impact Social Diaspora (15%)',
-    description: '15% de nos bénéfices et actions sont réinvestis dans des forages d’eau potable, du mobilier scolaire et l’aide aux communautés locales.',
+    title: t('whyUs.pillars.3.title'),
+    description: t('whyUs.pillars.3.description'),
     icon: 'i-lucide-heart-handshake',
-    tag: 'Entreprise Engagée',
+    tag: t('whyUs.pillars.3.tag'),
   },
-];
+]);
 </script>
 
 <template>
@@ -57,16 +59,16 @@ const pillars: Pillar[] = [
             class="bg-gold-400/20 text-gold-300 border border-gold-400/40 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase backdrop-blur-sm"
           >
             <UIcon name="i-lucide-check-circle" class="w-3.5 h-3.5 mr-1" />
-            Pourquoi Choisir Súna
+            {{ t('whyUs.badge') }}
           </UBadge>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Une approche claire, humaine et <span class="text-transparent bg-clip-text bg-linear-to-r from-gold-300 to-amber-200">ancrée sur le terrain</span>
+            {{ t('whyUs.title') }}
           </h2>
         </div>
 
         <div class="lg:col-span-4 lg:text-right">
           <p class="text-sm sm:text-base text-sand-50/80 leading-relaxed font-light">
-            Nous comblons le fossé de la distance en devenant vos yeux, vos oreilles et votre bras droit opérationnel au pays.
+            {{ t('whyUs.description') }}
           </p>
         </div>
       </div>
@@ -98,7 +100,7 @@ const pillars: Pillar[] = [
           </div>
 
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center text-xs font-semibold text-gold-400 group-hover:text-gold-300">
-            <span>Engagement garanti</span>
+            <span>{{ t('whyUs.guaranteed') }}</span>
             <UIcon name="i-lucide-check" class="w-4 h-4 ml-1" />
           </div>
         </div>
@@ -109,13 +111,13 @@ const pillars: Pillar[] = [
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-8 space-y-2">
             <div class="inline-flex items-center gap-1.5 text-xs font-bold text-gold-300 uppercase tracking-widest">
-              Notre engagement sociétal au Cameroun
+              {{ t('whyUs.socialTitle') }}
             </div>
             <h3 class="text-xl sm:text-2xl font-bold text-white">
-              Chaque contrat avec la diaspora contribue directement au développement local.
+              {{ t('whyUs.socialHeading') }}
             </h3>
             <p class="text-xs sm:text-sm text-sand-50/80 leading-relaxed">
-              Forages d’eau potable, dons de tables-bancs aux écoles, soutien aux orphelinats : nous redistribuons 15% de nos ressources pour un impact durable au pays.
+              {{ t('whyUs.socialDescription') }}
             </p>
           </div>
 
@@ -128,7 +130,7 @@ const pillars: Pillar[] = [
               icon="i-lucide-arrow-right"
               trailing
             >
-              En savoir plus sur notre mission
+              {{ t('whyUs.mission') }}
             </UButton>
           </div>
         </div>

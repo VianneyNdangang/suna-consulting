@@ -1,7 +1,7 @@
 <template>
   <UTable
     sticky
-    v-model:expanded="props.expanded"
+    v-model:expanded="expanded"
     :data="data"
     :columns="columns"
     :loading="loading"
@@ -18,15 +18,15 @@
     class="flex-1 max-h-200"
     debug-headers
   >
-    <template #expanded="{ row }" v-if="expanded">
-      <pre><p>{{ row.original.date }}</p></pre>
+    <template #expanded="{ row }" v-if="expandedKey">
+      <pre><p>{{ row.original[expandedKey] }}</p></pre>
     </template>
   </UTable>
-  <div class="flex justify-between items-center">
+  <div v-if="totalPages" class="flex justify-between items-center">
     <p class="text-sm text-(--text-muted) whitespace-nowrap">
       Page {{ page }} sur {{ totalPages }}
     </p>
-    <UPagination :total="total" :items-per-page="limit" :sibling-count="3" />
+    <UPagination v-if="totalPages > 1" :total="total" :items-per-page="limit" :sibling-count="3" variant="ghost" :page="page" active-variant="outline" @update:page="changePage"  />
   </div>
 </template>
 <script setup lang="ts">
@@ -34,15 +34,16 @@ const props = defineProps<{
   data: any[];
   columns?: TableColumn<any>[];
   loading?: boolean;
-  expanded?: { number: boolean };
+  expandedKey?:string;
   maxH?: string;
   page?: number;
   total?: number;
   limit?: number;
   totalPages?: number;
+  changePage?: (param: number)=>{}
 }>();
 // import { getPaginationRowModel } from '@tanstack/vue-table'
 import type { TableColumn } from "@nuxt/ui";
 
-// const expanded = ref({ 1: true })
+const expanded = ref()
 </script>

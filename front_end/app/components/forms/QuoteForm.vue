@@ -22,23 +22,17 @@
             class="bg-gold-400/20 text-gold-300 border border-gold-400/40 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase backdrop-blur-md"
           >
             <UIcon name="i-lucide-calculator" class="w-3.5 h-3.5 mr-1" />
-            Devis Gratuit & Sans Engagement
+            {{ t('quoteForm.badge') }}
           </UBadge>
 
           <h2
             class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight"
           >
-            Décrivez votre besoin, nous vous répondons
-            <span
-              class="text-transparent bg-clip-text bg-linear-to-r from-gold-300 to-amber-200"
-              >sous 24 heures</span
-            >
+            {{ t('quoteForm.heading') }}
           </h2>
 
           <p class="text-base text-sand-50/85 leading-relaxed font-light">
-            Ce formulaire permet de recueillir les paramètres essentiels de
-            votre mission pour vous transmettre une estimation claire et un
-            calendrier d’exécution réaliste.
+            {{ t('quoteForm.description') }}
           </p>
 
           <!-- Why trust this process -->
@@ -51,11 +45,10 @@
               </div>
               <div>
                 <h4 class="text-sm font-bold text-white">
-                  Tarification claire et sans frais cachés
+                  {{ t('quoteForm.clearPricing') }}
                 </h4>
                 <p class="text-xs text-sand-50/75 mt-0.5">
-                  Nos devis détaillent chaque poste de dépense et frais de
-                  déplacement.
+                  {{ t('quoteForm.clearPricingDescription') }}
                 </p>
               </div>
             </div>
@@ -68,11 +61,10 @@
               </div>
               <div>
                 <h4 class="text-sm font-bold text-white">
-                  Interlocuteur dédié à Yaoundé / Douala
+                  {{ t('quoteForm.dedicatedAdvisor') }}
                 </h4>
                 <p class="text-xs text-sand-50/75 mt-0.5">
-                  Un chargé de dossier suit votre projet de A à Z avec
-                  comptes-rendus.
+                  {{ t('quoteForm.dedicatedAdvisorDescription') }}
                 </p>
               </div>
             </div>
@@ -85,11 +77,10 @@
               </div>
               <div>
                 <h4 class="text-sm font-bold text-white">
-                  Confidentialité garantie
+                  {{ t('quoteForm.confidentiality') }}
                 </h4>
                 <p class="text-xs text-sand-50/75 mt-0.5">
-                  Vos informations personnelles et démarches restent strictement
-                  protégées.
+                  {{ t('quoteForm.confidentialityDescription') }}
                 </p>
               </div>
             </div>
@@ -98,7 +89,7 @@
           <!-- Fast contact -->
           <div class="pt-6 border-t border-white/10">
             <p class="text-xs text-sand-50/70 mb-2">
-              Vous préférez un échange direct par messagerie ?
+              {{ t('quoteForm.directMessage') }}
             </p>
             <a
               href="https://wa.me/237679188336"
@@ -130,14 +121,12 @@
 
             <div class="space-y-2">
               <h3 class="text-2xl font-bold text-white">
-                Demande reçue avec succès !
+                {{ t('quoteForm.successTitle') }}
               </h3>
               <p
                 class="text-sm text-sand-50/80 max-w-md mx-auto leading-relaxed"
               >
-                Merci {{ name || "cher client" }}. Votre demande pour
-                <strong>{{ service_slug }}</strong> a bien été prise en charge. Un
-                conseiller Súna vous recontactera sous 24h ouvrées.
+                {{ name || t('quoteForm.dearClient') }}. {{ t('quoteForm.successDescription') }}
               </p>
             </div>
 
@@ -149,7 +138,7 @@
                 class="bg-rust-600 hover:bg-rust-500 text-white font-semibold px-6 py-2.5"
                 @click="resetQuoteForm"
               >
-                Envoyer une autre demande
+                {{ t('quoteForm.anotherRequest') }}
               </UButton>
               <a
                 href="https://wa.me/237679188336"
@@ -158,7 +147,7 @@
                 class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-500 transition-colors"
               >
                 <UIcon :name="IconWhatsApp" class="w-4 h-4" />
-                Accélérer sur WhatsApp
+                {{ t('quoteForm.accelerateWhatsapp') }}
               </a>
             </div>
           </div>
@@ -174,9 +163,9 @@
                   v-model="name"
                   name="name"
                   icon="i-tabler-user"
-                  label="Nom complet"
+                  :label="t('quoteForm.name')"
                   type="text"
-                  placeholder="ex: Paul Biya / Carine N."
+                  :placeholder="t('quoteForm.namePlaceholder')"
                   label-class="text-sm font-semibold text-white"
                   :error="formErrors.name"
                 />
@@ -184,9 +173,9 @@
                   v-model="email"
                   name="email"
                   icon="i-tabler-mail"
-                  label="Adresse email"
+                  :label="t('auth.email')"
                   type="email"
-                  placeholder="votre.email@domaine.com"
+                  :placeholder="t('quoteForm.emailPlaceholder')"
                   label-class="text-sm font-semibold text-white"
                   :error="formErrors.email"
                 />
@@ -194,9 +183,9 @@
                   v-model="phone"
                   name="phone"
                   icon="i-tabler-phone"
-                  label="WhatsApp / Téléphone"
+                  :label="t('auth.phone')"
                   type="tel"
-                  placeholder="+1 (514) ... ou +33 6 ..."
+                  :placeholder="t('quoteForm.phonePlaceholder')"
                   label-class="text-sm font-semibold text-white"
                   :error="formErrors.phone"
                 />
@@ -207,8 +196,8 @@
                   option-label="name"
                   icon="i-tabler-map-pin"
                   name="residence_country"
-                  label="Pays de résidence"
-                  placeholder="ex: Canada, France, USA, Belgique..."
+                  :label="t('quoteForm.residenceCountry')"
+                  :placeholder="t('quoteForm.residencePlaceholder')"
                   label-class="text-sm font-semibold text-white"
                   :error="formErrors.residence_country"
                 />
@@ -216,19 +205,17 @@
               <Select
                 v-model="service_slug"
                 name="service"
-                label="Service ou besoin principal"
-                placeholder="Sélectionner un service"
+                :label="t('quoteForm.service')"
+                :placeholder="t('quoteForm.servicePlaceholder')"
                 label-class="text-sm font-semibold text-white"
-                :options="
-                  serviceOptions
-                "
+                :options="serviceOptions"
                 :error="formErrors.service_slug"
               />
 
               <!-- Urgency radio tags -->
               <div class="space-y-1.5">
                 <label class="text-xs font-semibold text-sand-50"
-                  >Délai souhaité pour la mission</label
+                  >{{ t('quoteForm.deadline') }}</label
                 >
                 <div class="grid grid-cols-3 gap-2">
                   <button
@@ -258,8 +245,8 @@
               <Textarea
                 v-model="description"
                 name="details"
-                label="Détails de votre mission"
-                placeholder="Indiquez la localisation, l’objectif de la mission et toute contrainte particulière..."
+                :label="t('quoteForm.details')"
+                :placeholder="t('quoteForm.detailsPlaceholder')"
                 label-class="text-sm font-semibold text-white"
                 :error="formErrors.details"
               />
@@ -272,13 +259,12 @@
                   variant="primary"
                   w="full"
                   icon="i-lucide-send"
-                  label="Envoyer ma demande de devis"
+                  :label="t('quoteForm.send')"
                 />
               </div>
 
               <p class="text-center text-[11px] text-sand-50/60 pt-1">
-                🔒 Vos données restent strictement confidentielles et ne seront
-                jamais partagées avec des tiers.
+                {{ t('quoteForm.privacy') }}
               </p>
             </form>
           </div>
@@ -292,59 +278,39 @@
 import { ref, onMounted } from "vue";
 import type { servicesType } from "~/types/types";
 import { quoteSchema } from "~/schemas/forms.schema";
-import Select from "~/components/select/Select.vue";
 import Textarea from "~/components/textarea/Textarea.vue";
 import { useForm } from "vee-validate";
 import { toTypedSchema } from "@vee-validate/zod";
 import Button from "../buttons/Button.vue";
 import Input from "~/components/input/Input.vue";
 import Combobox from "../combobox/Combobox.vue";
+import Select from "../select/Select.vue";
 import { IconWhatsApp } from "../svg/svg.js";
 
 const props = defineProps<{
   services?: servicesType[];
 }>();
+const { t } = useI18n();
+const authStore = useAuthStore();
 
 const toast = useToast();
 const route = useRoute();
+const serviceStore = useServiceStore();
 
-const serviceOptions = [
-  {
-    label: "Démarches administratives & formalités",
-    value: "assistance-administrative",
-  },
-  {
-    label: "Vérification foncière & Titre foncier",
-    value: "verification-fonciere",
-  },
-  {
-    label: "Suivi de chantier de construction",
-    value: "suivi-chantier",
-  },
-  {
-    label: "Achat & livraison de biens pour proches",
-    value: "achats-proches",
-  },
-  {
-    label: "Organisation d’événements familiaux (Dot, Mariage)",
-    value: "evenements-familiaux",
-  },
-  {
-    label: "Réservation séjours & véhicules",
-    value: "logistique-sejours",
-    icon: "i-lucide-car",
-  },
-  {
-    label: "Mission personnalisée / Autre besoin",
-    value: "sur-mesure",
-  },
-];
+const serviceOptions = computed(() =>
+  serviceStore.services
+    .filter((service: servicesType) => service.is_active !== false)
+    .map((service: servicesType) => ({
+      label: service.title,
+      value: service.slug,
+    })),
+);
 
-const urgencyOptions = [
-  { label: "Normal (1-2 semaines)", value: "normal" },
-  { label: "Urgent (dans la semaine)", value: "urgent" },
-  { label: "Très urgent (48h-72h)", value: "tres_urgent" },
-];
+const urgencyOptions = computed(() => [
+  { label: t("quoteForm.normal"), value: "normal" },
+  { label: t("quoteForm.urgent"), value: "urgent" },
+  { label: t("quoteForm.veryUrgent"), value: "tres_urgent" },
+]);
 
 const {
   defineField,
@@ -358,7 +324,7 @@ const {
     email: "",
     phone: "",
     residence_country: "",
-    service_slug: serviceOptions[0]?.value,
+    service_slug: serviceOptions.value[0]?.value,
     urgency: "normal",
     details: "",
   },
@@ -373,9 +339,37 @@ const [urgency] = defineField("urgency");
 const [description] = defineField("details");
 const isSubmitting = ref(false);
 const isSubmitted = ref(false);
+
+const prefillFromUser = (user: any) => {
+  if (!user) return;
+  if (!name.value && user.full_name) name.value = user.full_name;
+  if (!email.value && user.email) email.value = user.email;
+  if (!phone.value && user.phone) phone.value = user.phone;
+  if (!residenceCountry.value && user.country) residenceCountry.value = user.country;
+};
+
+watch(() => authStore.user, prefillFromUser, { immediate: true });
+
+watch(
+  serviceOptions,
+  (options) => {
+    if (!service_slug.value && options.length) {
+      const requestedService = route.query.service;
+      const selected = typeof requestedService === "string"
+        ? options.find((service) => service.value === requestedService || service.value.includes(requestedService))
+        : undefined;
+      service_slug.value = selected?.value ?? options[0]?.value;
+    }
+  },
+  { immediate: true },
+);
+
 onMounted(() => {
+  if (!serviceStore.services.length) {
+    serviceStore.fetchServices();
+  }
   if (route.query.service && typeof route.query.service === "string") {
-    const match = serviceOptions.find(
+    const match = serviceOptions.value.find(
       (s) =>
         s.value === route.query.service ||
         s.value.includes(route.query.service as string),
@@ -394,9 +388,9 @@ const submitQuote = handleSubmit(async (values) => {
     isSubmitting.value = false;
     isSubmitted.value = true;
     toast.add({
-      title: "Demande de devis transmise !",
+      title: t('quoteForm.sentToast'),
       color: "success",
-      description:  "Votre dossier a été enregistré. Un conseiller Súna vous contactera sous 24h.",
+      description: t('quoteForm.sentDescription'),
     });
   }, 1200);
 });

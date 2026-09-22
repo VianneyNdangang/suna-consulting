@@ -9,7 +9,6 @@ export const useFaqStore = defineStore("faq", () => {
   const loading = ref(false);
   const { $axios } = useNuxtApp();
   const api = $axios as AxiosInstance;
-  const toast = useToast();
 
   const fetchfaq = async () => {
     try {

@@ -66,25 +66,24 @@ onMounted(async () => {
 const UButton = resolveComponent("UButton");
 const UBadge = resolveComponent("UBadge");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
+const UUser = resolveComponent("UUser");
+
 const columns: TableColumn<any>[] = [
-  {
-    accessorKey: "id",
-    header: "#",
-    cell: ({ row }) => `#${row.getValue("id")}`,
-  },
-  {
-    accessorKey: "author_name",
-    header: "Nom",
-    meta: {
-      class: {
-        td: "text-(--text-primary) font-bold",
+ {
+  header: "Nom",
+  cell: ({ row }) => {
+    const testimonial = row.original
+
+    return h(UUser, {
+      name: testimonial.author_name,
+      description: testimonial.author_location,
+      avatar: {
+        src: testimonial.photo_url,
+        alt: testimonial.author_name,
       },
-    },
+    })
   },
-  {
-    accessorKey: "author_location",
-    header: "Location",
-  },
+},
   {
     accessorKey: "rating",
     header: "Note",
@@ -174,13 +173,6 @@ function getRowItems(row: any) {
       onSelect() {
         selectedTestimonial.value = row.original;
         isActivatForm.value = true;
-      },
-    },
-
-    {
-      label: "Modifier",
-      onselect() {
-        ((selectedService.value = row), (isServiceForm.value = true));
       },
     },
   ];

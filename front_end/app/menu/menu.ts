@@ -5,42 +5,83 @@ export interface AppMenuItem {
   to?: string;
   name?: string;
   icon?: string;
-  children?: any[];
+  children?: NavigationMenuItem[];
 }
 
-const serviceStore = useServiceStore();
-const services = computed(() => {
-  const serviceItems = serviceStore.services
-    .filter((service: any) => Number(service.display_order) === 1)
-    .map((service: any) => ({
-      label: service.title,
-      to: `/services/${service.id}`,
-      description: service.description,
-    }));
-  return [
-    ...serviceItems,
-    {
-      label: "Tous nos services",
-      icon: "i-lucide-arrow-right",
-      description: "Découvrez l’ensemble de nos solutions sur-mesure.",
-      to: "/services",
-    },
-  ];
-});
+export const useAppMenus = () => {
+  const serviceStore = useServiceStore();
+  const { t } = useI18n();
 
-export const appMenus: AppMenuItem[] = [
-  { label: "Accueil", to: "/", name: "index" },
-  {
-    label: "Nos Services",
-    name: "services",
-    children: services.value,
-  },
-  { label: "Pourquoi Súna", to: "/why-us", name: "why-us" },
-  { label: "À Propos", to: "/about", name: "about" },
-  { label: "Témoignages", to: "/testimonials", name: "testimonials" },
-  { label: "Devis", to: "/quote", name: "quote" },
-  { label: "Contact", to: "/contact", name: "contact" },
-];
+  const services = computed<NavigationMenuItem[]>(() => {
+    const serviceItems = serviceStore.services
+      .filter((service: any) => Number(service.display_order) === 1 && service.is_active)
+      .map((service: any) => ({
+        label: service.title,
+        to: `/services/${service.slug}`,
+        description: service.description,
+      }));
+
+    return [
+      ...serviceItems,
+      {
+        label: t("common.allServices"),
+        icon: "i-lucide-arrow-right",
+        description:
+          t("services.menuDescription"),
+        to: "/services",
+      },
+    ];
+  });
+
+  const appMenus = computed<AppMenuItem[]>(() => [
+    {
+      label: t("nav.home"),
+      to: "/",
+      name: "index",
+    },
+
+    {
+      label: t("nav.services"),
+      name: "services",
+      children: services.value,
+    },
+
+    {
+      label: t("nav.whyUs"),
+      to: "/why-us",
+      name: "why-us",
+    },
+
+    {
+      label: t("nav.about"),
+      to: "/about",
+      name: "about",
+    },
+
+    {
+      label: t("nav.testimonials"),
+      to: "/testimonials",
+      name: "testimonials",
+    },
+
+    {
+      label: t("nav.quote"),
+      to: "/quote",
+      name: "quote",
+    },
+
+    {
+      label: t("nav.contact"),
+      to: "/contact",
+      name: "contact",
+    },
+  ]);
+
+  return {
+    appMenus,
+    services,
+  };
+};
 
 export const menus = ref<NavigationMenuItem[]>([
   {
@@ -52,27 +93,21 @@ export const menus = ref<NavigationMenuItem[]>([
   {
     label: "Gestion du site",
     icon: "i-tabler-world",
+    defaultOpen: true,
+
     children: [
       {
         label: "Médiathèque",
         icon: "i-tabler-photo-video",
         to: "/admin/pageContent/media",
       },
+
       {
         label: "Services",
         icon: "i-tabler-briefcase",
         to: "/admin/pageContent/services",
       },
-      // {
-      //   label: "Pourquoi Súna",
-      //   icon: "i-tabler-shield-check",
-      //   to: "/admin/pageContent/why-us",
-      // },
-      // {
-      //   label: "À propos",
-      //   icon: "i-tabler-info-circle",
-      //   to: "/admin/pageContent/about",
-      // },
+
       {
         label: "Témoignages",
         icon: "i-tabler-message-star",
@@ -84,12 +119,15 @@ export const menus = ref<NavigationMenuItem[]>([
   {
     label: "Demandes",
     icon: "i-tabler-inbox",
+    defaultOpen: true,
+
     children: [
       {
         label: "Commandes",
         icon: "i-tabler-file-invoice",
         to: "/admin/quotes",
       },
+
       {
         label: "Messages",
         icon: "i-tabler-mail",
@@ -101,16 +139,18 @@ export const menus = ref<NavigationMenuItem[]>([
   {
     label: "Utilisateurs",
     icon: "i-tabler-users",
+    defaultOpen: true,
+
     children: [
       {
         label: "Administrateurs",
         icon: "i-tabler-user-shield",
-        to: "/admin/users",
+        to: "/admin/users/admins",
       },
-      {
-        label: "Profils",
-        icon: "i-tabler-user-circle",
-        to: "/admin/profiles",
+       {
+        label: "Clients",
+        icon: "i-tabler-user-shield",
+        to: "/admin/users/clients",
       },
     ],
   },
@@ -118,16 +158,13 @@ export const menus = ref<NavigationMenuItem[]>([
   {
     label: "Paramètres",
     icon: "i-tabler-settings",
+    defaultOpen: true,
+
     children: [
       {
         label: "Général",
         icon: "i-tabler-adjustments",
         to: "/admin/settings",
-      },
-      {
-        label: "Sécurité",
-        icon: "i-tabler-lock",
-        to: "/admin/settings/security",
       },
     ],
   },

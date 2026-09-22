@@ -6,68 +6,19 @@ const props = defineProps<{
   testimonials?: any[] | testimonialsType[];
 }>();
 
-// Curated authentic diaspora testimonials
-const defaultTestimonials: any[] = [
-  {
-    author_name: "Carine N.",
-    author_location: "Toronto, Canada",
-    flag: "🇨🇦",
-    service_used: "Suivi de chantier & Foncier",
-    content:
-      "Súna a géré la rénovation complète de la maison de mes parents à Yaoundé sans que j’aie besoin de prendre un vol. Les vidéos hebdomadaires m’ont apporté une tranquillité d’esprit inestimable.",
-    rating: 5,
-  },
-  {
-    author_name: "Jean-Marc M.",
-    author_location: "Montréal, Canada",
-    flag: "🇨🇦",
-    service_used: "Vérification Titre Foncier",
-    content:
-      "J’ai évité une arnaque sur un terrain à Douala grâce à leur vérification minutieuse au cadastre. Leur rapport était limpide, sans langue de bois. Merci à toute l’équipe !",
-    rating: 5,
-  },
-  {
-    author_name: "Aïcha B.",
-    author_location: "Paris, France",
-    flag: "🇫🇷",
-    service_used: "Démarches & État Civil",
-    content:
-      "Une équipe ultra réactive qui a récupéré mes actes de naissance et certificats de nationalité en un temps record. Tout a été expédié de façon sécurisée.",
-    rating: 5,
-  },
-  {
-    author_name: "Stéphane K.",
-    author_location: "Dallas, USA",
-    flag: "🇺🇸",
-    service_used: "Organisation Dot & Famille",
-    content:
-      "Nous avons coordonné la dot de ma sœur depuis les États-Unis. Du traiteur à la logistique des invités, tout était impeccable et dans le respect de notre budget.",
-    rating: 5,
-  },
-  {
-    author_name: "Marie-Claire T.",
-    author_location: "Bruxelles, Belgique",
-    flag: "🇧🇪",
-    service_used: "Livraison Vivres & Santé",
-    content:
-      "Faire soigner mes proches et leur faire livrer des médicaments de qualité au pays est devenu tellement simple. Súna est notre lien vital avec le Cameroun.",
-    rating: 5,
-  },
-];
-
 const list = computed(() => {
   if (props.testimonials && props.testimonials.length > 0) {
-    // If the prop only has duplicates, merge with realistic entries
-    const valid = props.testimonials.filter((p) => p.is_published);
-    if (valid.length >= 3) return valid as any[];
+    const valid = props.testimonials.filter(
+      (p) => p.is_published && p.rating === 5,
+    );
+    if (valid.length > 0) return valid as any[];
   }
-  return defaultTestimonials;
 });
 </script>
 
 <template>
   <section id="temoignages" class="py-16 md:py-24 bg-sand-50/70 relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center max-w-3xl mx-auto space-y-4">
         <UBadge
@@ -99,37 +50,45 @@ const list = computed(() => {
         </p>
       </div>
       <div class="flex flex-col gap-3 mt-6">
-        <UMarquee
-          pause-on-hover
-          :overlay="false"
-          :ui="{
-            root: '[--gap:--spacing(3)] [--duration:45s]',
-            content: 'w-auto py-1',
-          }"
+        <div
+          class="relative overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-linear-to-r before:from-sand-50 before:to-transparent before:pointer-events-none after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-linear-to-l after:from-sand-50 after:to-transparent after:pointer-events-none"
         >
-          <TestimonialCard
-            v-for="(item, index) in list"
-            :key="index"
-            :testimonial="item"
-            w="96"
-          />
-        </UMarquee>
-        <UMarquee
-          pause-on-hover
-          reverse
-          :overlay="false"
-          :ui="{
-            root: '[--gap:--spacing(3)] [--duration:45s]',
-            content: 'w-auto py-1',
-          }"
+          <UMarquee
+            pause-on-hover
+            :overlay="false"
+            :ui="{
+              root: '[--gap:--spacing(3)] [--duration:100s]',
+              content: 'w-auto py-1',
+            }"
+          >
+            <TestimonialCard
+              v-for="(item, index) in list"
+              :key="index"
+              :testimonial="item"
+              w="96"
+            />
+          </UMarquee>
+        </div>
+        <div
+          class="relative overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-24 before:bg-linear-to-r before:from-sand-50 before:to-transparent before:pointer-events-none after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-24 after:bg-linear-to-l after:from-sand-50 after:to-transparent after:pointer-events-none"
         >
-          <TestimonialCard
-            v-for="(item, index) in list"
-            :key="index"
-            :testimonial="item"
-            w="96"
-          />
-        </UMarquee>
+          <UMarquee
+            pause-on-hover
+            reverse
+            :overlay="false"
+            :ui="{
+              root: '[--gap:--spacing(3)] [--duration:100s]',
+              content: 'w-auto py-1',
+            }"
+          >
+            <TestimonialCard
+              v-for="(item, index) in list"
+              :key="index"
+              :testimonial="item"
+              w="96"
+            />
+          </UMarquee>
+        </div>
       </div>
     </div>
 

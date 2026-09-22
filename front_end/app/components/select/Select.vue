@@ -8,7 +8,7 @@
     <USelect
       v-model="model"
       :name="name"
-      :options="options"
+      :items="options"
       :placeholder="placeholder || 'Sélectionner'"
       :color="error ? 'error' : 'neutral'"
       :id="name"

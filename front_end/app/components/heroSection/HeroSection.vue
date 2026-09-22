@@ -10,45 +10,15 @@ interface StatItem {
   icon?: string;
 }
 
-const props = withDefaults(
-  defineProps<{
-    eyebrow?: string;
-    title?: string;
-    subtitle?: string;
-    stats?: StatItem[];
-  }>(),
-  {
-    eyebrow: 'Súna Consulting • Partenaire Diaspora',
-    title: 'Plus proche du pays, malgré la distance',
-    subtitle: 'Votre représentant de confiance au Cameroun pour vos démarches administratives, investissements fonciers, suivi de chantiers et coordination de projets.',
-    stats: () => [
-      { label: "Années d'expérience", value: 8, suffix: '+', icon: 'i-lucide-award' },
-      { label: 'Dossiers traités', value: 500, suffix: '+', icon: 'i-lucide-check-circle' },
-      { label: 'Pays couverts', value: 12, suffix: '+', icon: 'i-lucide-globe' },
-    ],
-  }
-);
+const { t } = useI18n();
 
-const steps = [
-  {
-    num: '01',
-    title: 'Cadrage & Écoute',
-    desc: 'Analyse précise de votre besoin et plan d’action sur-mesure.',
-    icon: 'i-lucide-file-search',
-  },
-  {
-    num: '02',
-    title: 'Intervention Terrain',
-    desc: 'Déploiement rapide sur place à Yaoundé, Douala et régions.',
-    icon: 'i-lucide-map-pin',
-  },
-  {
-    num: '03',
-    title: 'Reporting & Transparence',
-    desc: 'Photos horodatées, vidéos et livrables sécurisés en direct.',
-    icon: 'i-lucide-shield-check',
-  },
-];
+const props = defineProps<{
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  stats?: StatItem[];
+}>();
+
 </script>
 
 <template>
@@ -73,21 +43,21 @@ const steps = [
                 class="bg-gold-400/20 text-gold-300 border border-gold-400/40 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase backdrop-blur-md"
               >
                 <UIcon name="i-lucide-sparkles" class="w-3.5 h-3.5 text-gold-300" />
-                {{ props.eyebrow }}
+                {{ props.eyebrow || t('hero.eyebrow') }}
               </UBadge>
             </div>
 
             <!-- Main Heading -->
             <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.15] text-white">
-              {{ props.title || 'Plus proche du pays,' }}
+              {{ props.title || t('hero.title') }}
               <span class="block text-transparent bg-clip-text bg-linear-to-r from-gold-300 via-amber-200 to-rust-400">
-                malgré la distance.
+                {{ t('hero.title').split(', ').slice(1).join(', ') || t('hero.title') }}
               </span>
             </h1>
 
             <!-- Subtitle -->
             <p class="text-base sm:text-lg text-sand-50/90 leading-relaxed max-w-2xl font-light">
-              {{ props.subtitle }}
+              {{ props.subtitle || t('hero.subtitle') }}
             </p>
 
             <!-- CTA Buttons with Nuxt UI -->
@@ -99,7 +69,7 @@ const steps = [
                 icon="i-lucide-calculator"
                 class="bg-rust-600 hover:bg-rust-500 text-white font-semibold px-6 py-3.5 justify-center"
               >
-                Demander un devis gratuit
+                {{ t('common.freeQuote') }}
               </UButton>
 
               <UButton
@@ -111,34 +81,14 @@ const steps = [
                 trailing
                 class="border-white/30 text-white bg-transparent hover:bg-white/10 font-semibold px-6 py-3.5 backdrop-blur-sm justify-center"
               >
-                Voir nos services
+                {{ t('hero.seeServices') }}
               </UButton>
-            </div>
-
-            <!-- Trust highlights -->
-            <div class="pt-3 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-sand-50/80">
-              <span class="inline-flex items-center gap-1.5">
-                <UIcon name="i-lucide-check-circle-2" class="w-4 h-4 text-emerald-400" />
-                100% Confidentialité
-              </span>
-              <span class="inline-flex items-center gap-1.5">
-                <UIcon name="i-lucide-shield-alert" class="w-4 h-4 text-gold-300" />
-                Comptes-rendus horodatés
-              </span>
-              <span class="inline-flex items-center gap-1.5">
-                <UIcon name="i-lucide-zap" class="w-4 h-4 text-amber-400" />
-                Réponse sous 24h
-              </span>
             </div>
 
             <!-- Stats Bar -->
             <div class="pt-6 grid grid-cols-3 gap-3 sm:gap-4">
               <div
-                v-for="stat in (props.stats?.length ? props.stats : [
-                  { label: 'Années d’expérience', value: 8, suffix: '+' },
-                  { label: 'Missions traitées', value: 500, suffix: '+' },
-                  { label: 'Pays de diaspora', value: 12, suffix: '+' }
-                ])"
+                v-for="stat in stats"
                 :key="stat.label"
                 class="glass-panel rounded-xl p-3 sm:p-4 text-center border border-white/10 backdrop-blur-md transition-transform hover:scale-105 duration-200"
               >

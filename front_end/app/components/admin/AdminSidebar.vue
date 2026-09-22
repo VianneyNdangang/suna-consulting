@@ -3,11 +3,13 @@
     <USidebar
       v-model:open="open"
       collapsible="icon"
+      variant="sidebar"
       rail
       :ui="{
         container: 'h-full bg-(--sidebar)',
         inner: ' divide-transparent',
         body: 'py-0',
+        
       }"
     >
       <template #header>
@@ -19,37 +21,33 @@
             height="50"
             quality="100"
             format="webp"
-            class="h-8 w-auto object-contain transition-transform group-hover:scale-105 duration-200"
-          />
-          <UButton
-            icon="i-lucide-panel-left"
-            color="neutral"
-            variant="ghost"
-            aria-label="Toggle sidebar"
-            @click="open = !open"
+            class="h-8 w-8 object-contain transition-transform group-hover:scale-105 duration-200"
           />
         </div>
       </template>
 
       <template #default="{ state }">
         <UNavigationMenu
-  :key="state"
-  :items="menus"
-  orientation="vertical"
-  disableHoverTrigger
-  :ui="{
-    linkLabel: 'text-gray-200 font-semibold ',
-    linkLeadingIcon: 'text-gray-300 h-6 w-6',
-    link: `
+          :key="state"
+          :items="menus"
+          orientation="vertical"
+          popover
+          :collapsed="!open"
+          tooltip
+          :delayDuration="3"
+          disableHoverTrigger
+          :ui="{
+            linkLabel: 'text-gray-200 font-semibold ',
+            linkLeadingIcon: 'text-gray-300 h-6 w-6',
+            link: `
       p-1.5
       my-2
       rounded
       data-[active]:bg-(--secondary)
-    `
-  }"
-/>
+    `,
+          }"
+        />
       </template>
-
       <template #footer>
         <UDropdownMenu
           :items="userItems"
@@ -70,19 +68,19 @@
         </UDropdownMenu>
       </template>
     </USidebar>
-
+    
     <div class="flex-1 flex flex-col h-screen overflow-hidden">
       <div
         class="h-(--ui-header-height) shrink-0 flex items-center border-b border-default"
       >
         <AdminNavbar />
       </div>
-      <span class="bg-(--background) py-2 px-5"><Breadcrumb :menus="menus"/></span>
       <div class="flex-1 overflow-y-auto bg-(--background)">
         <slot />
       </div>
     </div>
   </div>
+  
 </template>
 
 <script setup lang="ts">
@@ -90,6 +88,7 @@ import type { DropdownMenuItem } from "@nuxt/ui";
 import { menus } from "~/menu/menu";
 
 const open = ref(true);
+const authStore = useAuthStore();
 
 // const colorMode = useColorMode()
 
@@ -140,6 +139,6 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
   //     ]
   //   }
   // ],
-  [{ label: "Log out", icon: "i-lucide-log-out" }],
+  [{ label: "Log out", icon: "i-lucide-log-out", onSelect: () => authStore.logout() }],
 ]);
 </script>
