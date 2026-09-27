@@ -1,5 +1,5 @@
 <template>
-  <UFieldGroup class="w-full">
+  <UFieldGroup class="w-full h-8 rounded">
     <!-- <UInput loading/> -->
     <UInputMenu
       v-model="model"
@@ -13,7 +13,7 @@
       :ui="{
         base: 'focus-visible:border-default focus-visible:ring-0',
       }"
-      class="w-full"
+      class="w-full rounded-l"
       @update:search-term="onSearch"
     />
     <UDashboardSearchButton
@@ -22,7 +22,7 @@
       :ui="{
         base: 'focus-visible:border-default focus-visible:ring-0',
       }"
-      class="bg-(--secondary) hover:bg-(--secondary)/80 text-white"
+      class="bg-(--secondary) hover:bg-(--secondary)/80 text-white rounded-r cursor-pointer"
       variant="soft"
       type="button"
       @click="() => onSearch"

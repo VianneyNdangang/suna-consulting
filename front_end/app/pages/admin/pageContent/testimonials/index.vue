@@ -35,21 +35,20 @@
 
 <script setup lang="ts">
 definePageMeta({
-  // middleware: 'auth',
   layout: "admin",
+  roles: ['ADMIN', 'SUPER_ADMIN'],
+  middleware: ['role']
 });
+
 import type { TableColumn } from "@nuxt/ui";
 import DataTable from "~/components/admin/dataTable/DataTable.vue";
 import FilterBar from "~/components/admin/filter/FilterBar.vue";
 import ActiveteTestimonial from "~/components/admin/forms/ActiveteTestimonial.vue";
 import ServiceForm from "~/components/admin/forms/ServiceForm.vue";
 import PageHeader from "~/components/admin/pageHeader/PageHeader.vue";
+import { formatDate } from "~/helpers/formateData";
 import { type servicesType } from "~/types/types";
 
-const newData = {
-  label: "Nouveau service",
-  action: () => (isServiceForm.value = true),
-};
 const store = useTestimonialstore();
 const loading = computed(() => store.loading);
 
@@ -130,6 +129,11 @@ const columns: TableColumn<any>[] = [
     },
   },
   {
+    accessorKey: "created_at",
+    header: "Date",
+    cell: ({ row }) => formatDate(row.getValue("created_at") as string),
+  },
+  {
     id: "actions",
     header: "Actions",
     meta: {
@@ -153,6 +157,7 @@ const columns: TableColumn<any>[] = [
             color: "neutral",
             variant: "ghost",
             "aria-label": "Actions dropdown",
+            class: 'cursor-pointer',
           }),
       );
     },
@@ -170,6 +175,7 @@ function getRowItems(row: any) {
     },
     {
       label: row.original?.is_published ? "Masquer" : "Publier",
+      class: 'cursor-pointer',
       onSelect() {
         selectedTestimonial.value = row.original;
         isActivatForm.value = true;

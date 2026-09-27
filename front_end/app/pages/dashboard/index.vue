@@ -23,15 +23,15 @@
 
       <section class="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_18rem]">
         <div class="min-w-0">
-          <!-- <div class="mb-4 flex items-end justify-between gap-4">
+          <div class="mb-4 flex items-end justify-between gap-4">
             <div>
               <p class="text-xs font-bold uppercase tracking-wider text-rust-600">Votre activité</p>
               <h2 class="mt-1 text-2xl font-black text-(--text-primary)">Demandes récentes</h2>
             </div>
             <span class="hidden text-xs text-(--text-secondary) sm:block">{{ quotes.length }} demande{{ quotes.length > 1 ? 's' : '' }}</span>
-          </div> -->
+          </div>
 
-          <CardDesign title="Demandes récentes" description="Suivez l'état de vos demandes depuis votre espace client.">
+          <Card title="Demandes récentes" description="Suivez l'état de vos demandes depuis votre espace client.">
             <div v-if="!quoteStore.loading && !quotes.length" class="px-4 py-10 text-center">
               <UIcon name="i-lucide-inbox" class="size-8 text-(--secondary)" />
               <h3 class="mt-3 text-base font-bold text-(--text-primary)">Aucune demande pour le moment</h3>
@@ -47,21 +47,21 @@
               :limit="10"
               :page="1"
             />
-          </CardDesign>
+          </Card>
         </div>
 
         <aside class="space-y-4">
-          <CardDesign>
+          <Card>
             <div class="flex size-10 items-center justify-center rounded-md bg-(--muted) text-(--secondary)"><UIcon name="i-lucide-headphones" class="size-5" /></div>
             <h2 class="mt-4 text-base font-bold text-(--text-primary)">Besoin d'aide ?</h2>
             <p class="mt-2 text-sm leading-relaxed text-(--text-secondary)">Notre équipe vous accompagne pour cadrer votre prochaine mission.</p>
             <Button to="/contact" type="button" variant="ghost" icon="i-lucide-arrow-up-right" label="Contacter l'équipe" class="mt-4" />
-          </CardDesign>
-          <CardDesign>
+          </Card>
+          <Card>
             <UIcon name="i-lucide-shield-check" class="size-6 text-(--secondary)" />
             <h2 class="mt-4 text-base font-bold text-(--text-primary)">Vos données restent protégées</h2>
             <p class="mt-2 text-xs leading-relaxed text-(--text-secondary)">Chaque échange est traité avec discrétion et confidentialité.</p>
-          </CardDesign>
+          </Card>
         </aside>
       </section>
     </main>
@@ -69,14 +69,19 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: "client",
+  middleware: ['role'],
+  roles:['CLIENT']
+});
+
 import type { TableColumn } from "@nuxt/ui";
 import DataSommary from "~/components/admin/dataSommary/DataSommary.vue";
 import DataTable from "~/components/admin/dataTable/DataTable.vue";
 import Button from "~/components/buttons/Button.vue";
+import { formatDate, statusColor, statusLabel } from "~/helpers/formateData";
 
-definePageMeta({
-  layout: "client",
-});
+
 
 const authStore = useAuthStore();
 const connectedUser = computed(() => authStore.user);
@@ -97,9 +102,9 @@ const recentQuotes = computed(() => [...quotes.value].slice().reverse().slice(0,
 const UBadge = resolveComponent("UBadge");
 const columns: TableColumn<any>[] = [
   {
-    accessorKey: "id",
+    accessorKey: "number",
     header: "Numéro",
-    cell: ({ row }) => `#${row.getValue("id")}`,
+    cell: ({ row }) => `#${row.getValue("number")}`,
   },
   {
     accessorKey: "created_at",
@@ -127,7 +132,5 @@ const stats = computed(() => [
   { title: "Terminées", value: quotes.value.filter((quote) => quote.status === "ended").length, description: "Missions finalisées", state: "success" as const, icon: "i-lucide-circle-check" },
 ]);
 
-const formatDate = (date?: string) => date ? new Date(date).toLocaleDateString("fr-FR", { day: "numeric", month: "short", year: "numeric" }) : "Date inconnue";
-const statusLabel = (status?: string) => ({ ended: "Terminée", canceled: "Annulée", pending: "En attente" }[status || ""] || "En cours");
-const statusColor = (status?: string) => status === "ended" ? "success" : status === "canceled" ? "error" : "warning";
+
 </script>

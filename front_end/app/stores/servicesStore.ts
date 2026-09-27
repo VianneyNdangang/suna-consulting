@@ -36,6 +36,8 @@ export const useServiceStore = defineStore("services", () => {
   return { fetchServices, services, loading, createServices };
 },
 {
-  persist: true
+  persist: {
+    pick: [ "services"]
+  }
 }
 );

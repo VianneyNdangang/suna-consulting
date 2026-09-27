@@ -159,11 +159,14 @@ onMounted(async () => {
     <ServiceList :services="services" :loading="serviceStore.loading" />
 
     <Carrousel/>
-    <div v-if="!isDataLoaded" class="space-y-10 px-4 py-10 sm:px-6 lg:px-8">
+    <div v-if="!isDataLoaded" class="w-full px-4 py-10 sm:px-6 lg:px-8 flex flex-col justify-center items-center">
+       <div  class=" space-y-10 w-full max-w-7xl ">
       <DataSkeleton :count="6" />
       <DataSkeleton variant="list" :count="4" />
       <DataSkeleton variant="list" :count="4" />
     </div>
+    </div>
+   
     <template v-else>
       <WhyChooseUs :points="site_content?.why_choose_us" />
 

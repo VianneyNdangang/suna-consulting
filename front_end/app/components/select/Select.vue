@@ -10,15 +10,17 @@
       :name="name"
       :items="options"
       :placeholder="placeholder || 'Sélectionner'"
-      :color="error ? 'error' : 'neutral'"
       :id="name"
       class="w-full rounded"
+      :ui="{
+        base:'focus-visible:border-default focus-visible:ring-0'
+      }"
     />
   </UFormField>
 </template>
 
 <script setup lang="ts">
-const model = defineModel<string | number>();
+const model = defineModel<string | number | boolean>();
 
 const props = withDefaults(defineProps<{
   label?: string;
@@ -28,7 +30,7 @@ const props = withDefaults(defineProps<{
   labelClass?: string;
   options: {
     label: string;
-    value: string | number;
+    value: string | number | boolean | undefined;
   }[];
 }>(), {
   labelClass: 'text-sm font-semibold text-slate-700'

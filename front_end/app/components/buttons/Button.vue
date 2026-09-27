@@ -12,7 +12,7 @@
     "
     :class="[
       `w-${w}`,
-      'rounded font-bold py-2 px-3 flex justify-center items-center max-h-8',
+      'rounded font-bold py-2 px-3 flex justify-center items-center max-h-8 cursor-pointer',
       variant === 'secondary'
         ? (color ?? ` text-rust-600`)
         : variant === 'primary'

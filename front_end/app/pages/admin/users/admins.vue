@@ -8,25 +8,31 @@
       :loading="loading"
     />
     <div class="flex">
-      <UCard
+      <Card
         class="bg-(--card) w-full rounded-(--radius) border border-(--border)"
       >
         <DataTable :data="users" :columns="columns" />
-      </UCard>
+      </Card>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-definePageMeta({ layout: "admin" });
+definePageMeta({
+  layout: "admin",
+  roles: ['ADMIN', 'SUPER_ADMIN'],
+  middleware: ['role']
+});
+
 import { ref, onMounted, h } from "vue";
 
 import { storeToRefs } from "pinia";
 import type { TableColumn } from "@nuxt/ui";
 import DataTable from "~/components/admin/dataTable/DataTable.vue";
 import PageHeader from "~/components/admin/pageHeader/PageHeader.vue";
+import Card from "~/components/Card/Card.vue";
+import { formatDate } from "~/helpers/formateData";
 
 const isCreateUser = ref(false);
-const isDeleteData = ref(false);
 const newUser = {
   label: "New User",
   action: () => (isCreateUser.value = true),
@@ -52,7 +58,7 @@ const columns: TableColumn<any>[] = [
     header: "Nom d'utilisateur",
     cell: ({ row }) => {
       const user = row.original;
-      
+
       return h(UUser, {
         name: user.full_name,
         description: user.email,
@@ -110,14 +116,8 @@ const columns: TableColumn<any>[] = [
   {
     accessorKey: "created_at",
     header: "Date",
-    cell: ({ row }) => {
-      return new Date(row.getValue("created_at")).toLocaleString("fr-FR", {
-        day: "numeric",
-        month: "long",
-      });
-    },
+    cell: ({ row }) => formatDate(row.getValue("created_at") as string),
   },
-
   {
     id: "actions",
     header: "Actions",
@@ -142,6 +142,7 @@ const columns: TableColumn<any>[] = [
             color: "neutral",
             variant: "ghost",
             "aria-label": "Actions dropdown",
+            class: "cursor-pointer",
           }),
       );
     },
@@ -159,6 +160,7 @@ function getRowItems(row: any) {
     },
     {
       label: row.original?.is_active ? "Desaciver" : "Activer",
+      class: "cursor-pointer",
       onSelect() {
         selectedUser.value = row.original;
         isCreateUser.value = true;
@@ -166,6 +168,7 @@ function getRowItems(row: any) {
     },
     {
       label: "Envoyer un mail",
+      class: "cursor-pointer",
       onselect() {
         selectedUser.value = row.original;
         isCreateUser.value = true;

@@ -8,6 +8,7 @@
             <UMain class="h-full w-full p-3 md:p-5 ">
                 <NuxtPage/>
             </UMain>
+             <ScrollToTop/>
         </AdminSidebar>
     </div>
 </template>

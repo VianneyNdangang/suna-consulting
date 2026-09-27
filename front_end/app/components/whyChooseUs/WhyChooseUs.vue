@@ -107,7 +107,7 @@ const pillars = computed<Pillar[]>(() => [
       </div>
 
       <!-- Social Commitment Banner -->
-      <div class="mt-12 rounded-2xl bg-linear-to-r from-rust-800/90 via-rust-900 to-ink-800 p-6 sm:p-8 border border-rust-600/40 relative overflow-hidden">
+      <div class="mt-12 rounded-2xl bg-rust-900 p-6 sm:p-8 relative overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-8 space-y-2">
             <div class="inline-flex items-center gap-1.5 text-xs font-bold text-gold-300 uppercase tracking-widest">

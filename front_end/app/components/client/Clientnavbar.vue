@@ -72,14 +72,19 @@
         </nav>
         <div class="flex items-center gap-3">
           <!-- Header Actions -->
-          <div class="flex items-center gap-3">
-            <span
-              class="hidden lg:flex text-(--text-secondary) p-1 rounded-md border border-(--border) hover:bg-(--hover)"
-            >
-              <UIcon name="i-lucide-user" size="20" />
-            </span>
+          <div class="flex items-center gap-1 md:gap-3">
             <LocaleButton />
             <UColorModeButton class="border border-(--border)" />
+            <UDropdownMenu :items="items" v-if="user">
+              <div>
+                <Profile class="hidden md:flex" :user="user" />
+                <UAvatar
+                  class="flex md:hidden"
+                  :src="user?.avatar_url"
+                  :alt="user?.full_name"
+                />
+              </div>
+            </UDropdownMenu>
           </div>
 
           <!-- Mobile Burger Menu Button -->
@@ -94,8 +99,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="bg-rust-600 w-full p-2"> -->
-      <!-- </div> -->
+
       <!-- Mobile Slideover / Dropdown Menu -->
       <UDrawer title="Menu" v-model:open="isMenuOpen" direction="top">
         <template #body>
@@ -103,9 +107,9 @@
           <UNavigationMenu
             :items="appMenus"
             orientation="vertical"
+            disableHoverTrigger
             :ui="{
-              link: 'px-3 py-2 text-sm font-medium text-ink-700 hover:text-rust-700',
-              linkLeadingIcon: 'text-rust-600',
+              link: 'px-3 py-2 text-sm font-medium text-(--text-secondary) hover:text-(--secondary)',
             }"
           />
           <USeparator />
@@ -141,11 +145,42 @@ import { IconWhatsApp } from "../svg/svg";
 import Button from "../buttons/Button.vue";
 import { useAppMenus } from "~/menu/menu";
 import LocaleButton from "../locale/LocaleButton.vue";
+import type { DropdownMenuItem } from "@nuxt/ui";
 
 const isMenuOpen = ref(false);
 const isScrolled = ref(false);
 const serviceStore = useServiceStore();
 const appMenus = useAppMenus().appMenus;
+const authStore = useAuthStore();
+const { user } = storeToRefs(authStore);
+
+const handleLogout = async () => {
+  await authStore.logout();
+};
+const items = ref<DropdownMenuItem[][]>([
+  [
+    {
+      label: user.value.full_name,
+      avatar: {
+        src: user.value.avatar_url,
+        loading: "lazy",
+      },
+      type: "label",
+    },
+  ],
+  [
+    {
+      label: "Modifier votre profil",
+      icon: "i-lucide-user",
+      // onSelect: handleEditProfile,
+    },
+    {
+      label: "Déconnexion",
+      icon: "i-tabler-logout",
+      onSelect: handleLogout,
+    },
+  ],
+]);
 
 const handleScroll = () => {
   if (typeof window !== "undefined") {

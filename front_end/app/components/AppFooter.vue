@@ -87,7 +87,7 @@
               class="rounded-full flex items-center justify-center"
               aria-label="Facebook"
             >
-              <UIcon :name="IconFacebook" class="w-8 h-8" />
+              <UIcon :name="IconFacebook" class="size-6" />
             </a>
             <a
               href="https://instagram.com/sunaconsulting"
@@ -96,7 +96,7 @@
               class=" bg-white flex items-center justify-center rounded"
               aria-label="Instagram"
             >
-              <UIcon :name="IconLinkedin" class="w-8 h-8" />
+              <UIcon :name="IconLinkedin" class="size-6" />
             </a>
             <a
               href="https://wa.me/237679188336"
@@ -105,7 +105,7 @@
               class=" rounded-full flex items-center justify-center"
               aria-label="WhatsApp"
             >
-              <UIcon :name="IconWhatsApp" class="w-8 h-8" />
+              <UIcon :name="IconWhatsApp" class="size-6" />
             </a>
           </div>
         </div>

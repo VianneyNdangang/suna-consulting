@@ -20,9 +20,12 @@ export const useTestimonialstore = defineStore("Testimonials", () => {
   // })
 
   // const testimonials = computed(()=>data.value)
-  // const fetchTestimonials = async (newPage?: number) => {
+  // const fetchTestimonials = async (newPage?: number, newFilters?: any) => {
   //   if(newPage){
   //     page.value = newPage
+  //   }
+  //   if(newFilters){
+  //     filters.value = newFilters
   //   }
   //   fetchData()
   // };

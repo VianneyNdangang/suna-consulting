@@ -15,7 +15,7 @@ div
     </div>
     <!-- Content -->
     <div v-else-if="content" class="space-y-6">
-      <CardDesign>
+      <Card>
         <template #header>
           <div class="flex items-start gap-2">
             <Icon
@@ -67,9 +67,9 @@ div
             </p>
           </div>
         </div>
-      </CardDesign>
+      </Card>
       <!-- ================= STATS ================= -->
-      <CardDesign>
+      <Card>
         <template #header>
           <div class="flex w-full items-start justify-between gap-4">
             <div class="flex items-start gap-2">
@@ -127,9 +127,9 @@ div
             </div>
           </UCard>
         </div>
-      </CardDesign>
+      </Card>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <CardDesign>
+        <Card>
           <template #header>
             <div class="flex items-start gap-2">
               <Icon
@@ -147,9 +147,9 @@ div
           <UFormField label="Description">
             <UTextarea v-model="content.our_goals" :rows="6" class="w-full" />
           </UFormField>
-        </CardDesign>
+        </Card>
         <div class="md:col-span-2">
-          <CardDesign>
+          <Card>
             <template #header>
               <div class="flex w-full items-start justify-between gap-4">
                 <div class="flex items-start gap-2">
@@ -201,12 +201,12 @@ div
                 </div>
               </div>
             </div>
-          </CardDesign>
+          </Card>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div class="md:col-span-2">
-          <CardDesign>
+          <Card>
             <template #header>
               <div class="flex w-full items-start justify-between gap-4">
                 <div class="flex items-start gap-2">
@@ -290,10 +290,10 @@ div
                 </div>
               </UCard>
             </div>
-          </CardDesign>
+          </Card>
         </div>
         <div class="flex flex-col gap-3">
-          <CardDesign>
+          <Card>
             <template #header>
               <div class="flex w-full items-start justify-between gap-4">
                 <div class="flex items-start gap-2">
@@ -334,8 +334,8 @@ div
                 />
               </div>
             </div>
-          </CardDesign>
-          <CardDesign>
+          </Card>
+          <Card>
             <template #header>
               <div class="flex items-start gap-2">
                 <Icon
@@ -444,7 +444,7 @@ div
                 label-class="text-(--text-secondary)"
               />
             </div>
-          </CardDesign>
+          </Card>
         </div>
       </div>
       <!-- ================= ACTIONS ================= -->
@@ -486,11 +486,13 @@ div
 import ConfirmContentModal from "~/components/admin/forms/ConfirmContentModal.vue";
 import PageHeader from "~/components/admin/pageHeader/PageHeader.vue";
 import Button from "~/components/buttons/Button.vue";
-import CardDesign from "~/components/cardDesign/CardDesign.vue";
+import Card from "~/components/Card/Card.vue";
 import Input from "~/components/input/Input.vue";
 
 definePageMeta({
   layout: "admin",
+  roles: ['ADMIN', 'SUPER_ADMIN'],
+  middleware: ['role']
 });
 
 const store = usesite_contentStore();

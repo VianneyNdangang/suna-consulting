@@ -38,7 +38,7 @@ export const registerSchema = z
   });
 
 export const quoteSchema = z.object({
-  name: nonEmptyText("Le nom est requis"),
+  full_name: nonEmptyText("Le nom est requis"),
   email: nonEmptyText("L'adresse e-mail est requise").email(
     "Format d'e-mail invalide",
   ),
@@ -46,8 +46,8 @@ export const quoteSchema = z.object({
     6,
     "Numéro de téléphone invalide",
   ),
-  // residence_country: nonEmptyText("Le pays de résidence est requis"),
-  residence_country: z.string().optional(),
+  country: nonEmptyText("Le pays de résidence est requis"),
+  city: z.string().optional(),
   service_slug: nonEmptyText("Le service est requis"),
   urgency: nonEmptyText("L'urgence est requise"),
   details: nonEmptyText("Veuillez décrire votre besoin").min(

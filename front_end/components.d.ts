@@ -27,7 +27,7 @@ export const Badge: typeof import("../app/components/badge/Badge.vue")['default'
 export const ButtonsButton: typeof import("../app/components/buttons/Button.vue")['default']
 export const CallToAction: typeof import("../app/components/callToAction/CallToAction.vue")['default']
 export const Card: typeof import("../app/components/card/Card.vue")['default']
-export const CardDesign: typeof import("../app/components/cardDesign/CardDesign.vue")['default']
+export const Card: typeof import("../app/components/Card/Card.vue")['default']
 export const Carrousel: typeof import("../app/components/carrousel/Carrousel.vue")['default']
 export const Counter: typeof import("../app/components/counter/Counter.vue")['default']
 export const DataSommary: typeof import("../app/components/dataSommary/DataSommary.vue")['default']
@@ -233,7 +233,7 @@ export const LazyBadge: LazyComponent<typeof import("../app/components/badge/Bad
 export const LazyButtonsButton: LazyComponent<typeof import("../app/components/buttons/Button.vue")['default']>
 export const LazyCallToAction: LazyComponent<typeof import("../app/components/callToAction/CallToAction.vue")['default']>
 export const LazyCard: LazyComponent<typeof import("../app/components/card/Card.vue")['default']>
-export const LazyCardDesign: LazyComponent<typeof import("../app/components/cardDesign/CardDesign.vue")['default']>
+export const LazyCard: LazyComponent<typeof import("../app/components/Card/Card.vue")['default']>
 export const LazyCarrousel: LazyComponent<typeof import("../app/components/carrousel/Carrousel.vue")['default']>
 export const LazyCounter: LazyComponent<typeof import("../app/components/counter/Counter.vue")['default']>
 export const LazyDataSommary: LazyComponent<typeof import("../app/components/dataSommary/DataSommary.vue")['default']>

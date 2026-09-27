@@ -85,8 +85,8 @@ export const useAppMenus = () => {
 
 export const menus = ref<NavigationMenuItem[]>([
   {
-    label: "Tableau de bord",
-    icon: "i-tabler-layout-dashboard",
+    label: "Composants",
+    icon: "i-tabler-tools",
     to: "/admin",
   },
 
@@ -128,11 +128,11 @@ export const menus = ref<NavigationMenuItem[]>([
         to: "/admin/quotes",
       },
 
-      {
-        label: "Messages",
-        icon: "i-tabler-mail",
-        to: "/admin/messages",
-      },
+      // {
+      //   label: "Messages",
+      //   icon: "i-tabler-mail",
+      //   to: "/admin/messages",
+      // },
     ],
   },
 
@@ -149,23 +149,23 @@ export const menus = ref<NavigationMenuItem[]>([
       },
        {
         label: "Clients",
-        icon: "i-tabler-user-shield",
+        icon: "i-tabler-address-book",
         to: "/admin/users/clients",
       },
     ],
   },
 
-  {
-    label: "Paramètres",
-    icon: "i-tabler-settings",
-    defaultOpen: true,
+  // {
+  //   label: "Paramètres",
+  //   icon: "i-tabler-settings",
+  //   defaultOpen: true,
 
-    children: [
-      {
-        label: "Général",
-        icon: "i-tabler-adjustments",
-        to: "/admin/settings",
-      },
-    ],
-  },
+  //   children: [
+  //     {
+  //       label: "Général",
+  //       icon: "i-tabler-adjustments",
+  //       to: "/admin/settings",
+  //     },
+  //   ],
+  // },
 ]);

@@ -12,15 +12,14 @@
       :type="type === 'password' && showPassword ? 'text' : type"
       :name="name"
       :ui="{
-        base:'focus-visible:border-default focus-visible:ring-0'
+        base: 'focus-visible:border-default focus-visible:ring-0',
       }"
       :placeholder="placeholder"
-      :color=" undefined"
+      :color="undefined"
       :id="name"
       :icon="icon"
-      class="w-full rounded focus:ring-0 "
+      class="w-full rounded focus:ring-0"
     >
-   
       <!-- Trailing -->
       <template #trailing>
         <div class="flex items-center gap-1">
@@ -56,18 +55,18 @@
         </div>
       </template>
     </UInput>
-     <UInputNumber
+    <UInputNumber
       v-model="model"
       v-if="type === 'number'"
       :name="name"
       :placeholder="placeholder"
       :id="name"
       :icon="icon"
-      :min=" min "
+      :min="min"
       :max="max"
-      :step="step "
+      :step="step"
       :ui="{
-        base:'focus-visible:border-default focus-visible:ring-0'
+        base: 'focus-visible:border-default focus-visible:ring-0',
       }"
       class="w-full rounded"
     />
@@ -81,26 +80,21 @@
         :accept="accept || 'image/*'"
         class="w-full rounded"
         :ui="{
-        base:'focus-visible:border-default focus-visible:ring-0'
-      }"
+          base: 'focus-visible:border-default focus-visible:ring-0',
+        }"
         @change="onFileChange"
       />
-
-      <!-- Clear selected file -->
-      <!--
-      <UButton
-        v-if="model instanceof File"
-        type="button"
-        color="neutral"
-        variant="ghost"
-        size="xs"
-        icon="i-lucide-x"
-        aria-label="Supprimer l'image"
-        class="absolute right-2 top-1/2 -translate-y-1/2"
-        @click="removeFile"
-      />
-      -->
     </div>
+    <template v-if="model?.length" #trailing>
+      <UButton
+        color="neutral"
+        variant="link"
+        size="sm"
+        icon="i-lucide-circle-x"
+        aria-label="Clear input"
+        @click="model = ''"
+      />
+    </template>
   </UFormField>
 </template>
 
@@ -137,17 +131,17 @@ const fileInput = ref<any>(null);
 
 const textModel = computed<string>({
   get: () => {
-  //   if (props.type === "number") {
-  //     if (
-  //       model.value === null ||
-  //       model.value === undefined ||
-  //       model.value === ""
-  //     ) {
-  //       return "";
-  //     }
+    //   if (props.type === "number") {
+    //     if (
+    //       model.value === null ||
+    //       model.value === undefined ||
+    //       model.value === ""
+    //     ) {
+    //       return "";
+    //     }
 
-  //     return String(model.value);
-  //   }
+    //     return String(model.value);
+    //   }
 
     return typeof model.value === "string" ? model.value : "";
   },

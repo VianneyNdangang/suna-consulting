@@ -20,7 +20,11 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({ layout: "admin" });
+definePageMeta({
+  layout: "admin",
+  roles: ['SUPER_ADMIN'],
+  middleware: ['role']
+});
 
 const data = ref([
   {

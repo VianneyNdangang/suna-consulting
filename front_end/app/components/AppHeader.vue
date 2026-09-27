@@ -8,12 +8,10 @@
         <div class="flex items-center gap-4">
           <span class="inline-flex items-center gap-1.5 text-gold-300">
             <UIcon name="i-lucide-map-pin" class="w-3.5 h-3.5" />
-            {{ t('header.location') }}
+            {{ t("header.location") }}
           </span>
           <span class="text-white/30">•</span>
-          <span class="text-white/80"
-            >{{ t('header.tagline') }}</span
-          >
+          <span class="text-white/80">{{ t("header.tagline") }}</span>
         </div>
         <div class="flex items-center gap-5">
           <a
@@ -77,11 +75,10 @@
         </nav>
 
         <!-- Header Actions -->
-        <div class="flex items-center gap-3">
-          <LocaleButton/>
+        <div class="flex items-center gap-1 md:gap-3">
+          <LocaleButton />
           <!-- Auth / Client Space Button -->
           <span class="hidden lg:flex">
-            
             <Button
               variant="ghost"
               type="button"
@@ -102,29 +99,34 @@
               :label="t('common.quote')"
             />
           </span>
-        </div>
 
-        <!-- Mobile Burger Menu Button -->
-        <div class="flex items-center gap-2 lg:hidden">
-          <UButton
-            color="neutral"
-            variant="ghost"
-            icon="i-lucide-user"
-            size="sm"
-            class="text-rust-900"
-            @click="isAuthFormOpen = true"
-            :aria-label="t('nav.clientArea')"
-          />
+          <!-- Mobile Burger Menu Button -->
+          <div class="flex items-center gap-2 lg:hidden">
+            <div v-if="authStore.isAuthenticated" @click="handleAuthClick">
+              <Profile class="hidden md:flex" :user="authStore.user" />
+              <UAvatar
+                class="flex md:hidden"
+                :src="authStore.user.avatar_url"
+                :alt="authStore.user.full_name"
+              />
+            </div>
+            <Button
+              v-else
+              type="button"
+              variant="ghost"
+              icon="i-lucide-user"
+              size="sm"
+              @click="handleAuthClick"
+            />
 
-          <UButton
-            color="neutral"
-            variant="ghost"
-            :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-menu'"
-            size="md"
-            class="text-rust-900"
-            @click="isMenuOpen = !isMenuOpen"
-            :aria-label="t('nav.menu')"
-          />
+            <Button
+              type="button"
+              variant="ghost"
+              :icon="isMenuOpen ? 'i-lucide-x' : 'i-lucide-menu'"
+              @click="isMenuOpen = !isMenuOpen"
+              :aria-label="t('nav.menu')"
+            />
+          </div>
         </div>
       </div>
       <!-- <div class="bg-rust-600 w-full p-2"> -->
@@ -180,6 +182,7 @@ import Button from "./buttons/Button.vue";
 import { IconWhatsApp } from "./svg/svg";
 import Breadcrumb from "./breadcrumb/Breadcrumb.vue";
 import LocaleButton from "./locale/LocaleButton.vue";
+import Profile from "./profile/Profile.vue";
 
 const route = useRoute();
 const isMenuOpen = ref(false);

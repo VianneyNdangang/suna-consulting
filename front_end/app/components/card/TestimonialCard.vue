@@ -13,10 +13,7 @@
   >
     <!-- Card header -->
     <template #header>
-      <div class="w-full space-y-3">
-
-        <!-- Rating + Flag -->
-        
+      <div class="w-full space-y-3">        
 
         <!-- Service -->
         <div v-if="testimonial.service_used">

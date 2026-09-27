@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import Card from '~/components/card/Card.vue';
 import DataSkeleton from '~/components/loading/DataSkeleton.vue';
 import BottomBanner from '~/components/banners/BottomBanner.vue';
+import ServiceCard from '~/components/card/ServiceCard.vue';
 
 useHead({
   title: 'Nos Services d’Accompagnement au Cameroun | Súna Consulting',
@@ -45,7 +45,7 @@ const services = computed(() => {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Page Header -->
-      <div class="max-w-3xl space-y-4">
+      <div class="w-full flex flex-col justify-center items-center text-center space-y-4">
         <UBadge
           color="primary"
           variant="subtle"
@@ -70,7 +70,7 @@ const services = computed(() => {
         <DataSkeleton :count="6" />
       </div>
       <div v-else class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <Card
+        <ServiceCard
           v-for="(service, index) in services"
           :key="index"
           :item="service"

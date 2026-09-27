@@ -9,7 +9,7 @@ const { t } = useI18n();
   <section class="py-16 md:py-20 bg-sand-25 relative overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="relative rounded-3xl bg-linear-to-br from-ink-900 via-rust-900 to-ink-800 p-8 sm:p-12 lg:p-16 text-white border border-gold-400/30 overflow-hidden text-center">
+      <div class="relative rounded-3xl bg-ink-900 p-8 sm:p-12 lg:p-16 text-white overflow-hidden text-center">
         
         <!-- Ambient lighting background circles -->
         <div class="absolute -top-24 -left-24 w-96 h-96 bg-gold-400/20 rounded-full blur-3xl pointer-events-none" />

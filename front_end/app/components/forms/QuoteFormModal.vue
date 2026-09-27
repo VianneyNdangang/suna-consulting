@@ -16,7 +16,7 @@
 
         <div class="min-w-0">
           <h2 class="text-base font-bold text-rust-600 sm:text-lg">
-            {{ t('common.quote') }}
+            {{ t("common.quote") }}
           </h2>
 
           <p class="mt-0.5 text-md text-rust-500">
@@ -32,7 +32,7 @@
         <UAlert
           color="info"
           variant="subtle"
-            :description="t('quoteForm.description')"
+          :description="t('quoteForm.description')"
           icon="i-tabler-info-circle"
         />
 
@@ -43,24 +43,25 @@
               <UIcon name="i-tabler-user" class="size-4 text-rust-600" />
 
               <h3 class="text-sm font-semibold text-rust-600">
-                {{ t('quoteForm.contactDetails') }}
+                {{ t("quoteForm.contactDetails") }}
               </h3>
             </div>
 
             <p class="mt-1 text-xs text-rust-500">
-              {{ t('quoteForm.contactDetailsDescription') }}
+              {{ t("quoteForm.contactDetailsDescription") }}
             </p>
           </div>
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Input
-              v-model="name"
+              v-model="full_name"
               name="name"
               icon="i-tabler-user"
               :label="t('quoteForm.name')"
               type="text"
               :placeholder="t('quoteForm.namePlaceholder')"
-              :error="formErrors.name"
+              :error="formErrors.full_name"
+              class="col-span-2"
             />
 
             <Input
@@ -84,15 +85,25 @@
             />
 
             <Combobox
-              v-model="residenceCountry"
+              v-model="country"
               url="https://countries.dev/name"
               option-value="name"
               option-label="name"
               icon="i-tabler-map-pin"
-              name="residence_country"
+              name="country"
               :label="t('quoteForm.residenceCountry')"
               :placeholder="t('quoteForm.selectCountry')"
-              :error="formErrors.residence_country"
+              :error="formErrors.country"
+            />
+            <Combobox
+              v-model="city"
+              url="https://countries.dev/cities?q="
+              option-value="name"
+              option-label="name"
+              name="city"
+              :label="t('auth.city')"
+              :placeholder="t('auth.searchCity')"
+              :error="formErrors.city"
             />
           </div>
         </section>
@@ -107,12 +118,12 @@
               />
 
               <h3 class="text-sm font-semibold text-rust-600">
-                {{ t('quoteForm.startWhen') }}
+                {{ t("quoteForm.startWhen") }}
               </h3>
             </div>
 
             <p class="mt-1 text-xs text-rust-500">
-              {{ t('quoteForm.startWhenDescription') }}
+              {{ t("quoteForm.startWhenDescription") }}
             </p>
           </div>
 
@@ -187,11 +198,13 @@
             <div class="flex items-center gap-2">
               <UIcon name="i-tabler-message-2" class="size-4 text-rust-600" />
 
-              <h3 class="text-sm font-semibold text-rust-600">{{ t('quoteForm.need') }}</h3>
+              <h3 class="text-sm font-semibold text-rust-600">
+                {{ t("quoteForm.need") }}
+              </h3>
             </div>
 
             <p class="mt-1 text-xs text-rust-500">
-              {{ t('quoteForm.needDescription') }}
+              {{ t("quoteForm.needDescription") }}
             </p>
           </div>
 
@@ -219,7 +232,7 @@
             <UIcon name="i-tabler-shield-check" class="size-3.5" />
 
             <p class="text-[11px] text-slate-500">
-              {{ t('quoteForm.confidentialInfo') }}
+              {{ t("quoteForm.confidentialInfo") }}
             </p>
           </div>
         </div>
@@ -252,9 +265,9 @@ const isOpen = computed({
 });
 
 const urgencyOptions = computed(() => [
-  { label: t('quoteForm.normal'), value: "normal" },
-  { label: t('quoteForm.urgent'), value: "urgent" },
-  { label: t('quoteForm.veryUrgent'), value: "tres_urgent" },
+  { label: t("quoteForm.normal"), value: "normal" },
+  { label: t("quoteForm.urgent"), value: "urgent" },
+  { label: t("quoteForm.veryUrgent"), value: "veryUrgent" },
 ]);
 
 const toast = useToast();
@@ -266,20 +279,22 @@ const {
 } = useForm({
   validationSchema: toTypedSchema(quoteSchema),
   initialValues: {
-    name: "",
+    full_name: "",
     email: "",
     phone: "",
-    residence_country: "",
+    country: "",
+    city: "",
     service_slug: props.service.slug,
     urgency: "normal",
     details: "",
   },
 });
 
-const [name] = defineField("name");
+const [full_name] = defineField("full_name");
 const [email] = defineField("email");
 const [phone] = defineField("phone");
-const [residenceCountry] = defineField("residence_country");
+const [country] = defineField("country");
+const [city] = defineField("city");
 const [service_slug] = defineField("service_slug");
 const [urgency] = defineField("urgency");
 const [description] = defineField("details");
@@ -289,10 +304,11 @@ const store = usequotestore();
 
 const prefillFromUser = (user: any) => {
   if (!user) return;
-  if (!name.value && user.full_name) name.value = user.full_name;
+  if (!full_name.value && user.full_name) full_name.value = user.full_name;
   if (!email.value && user.email) email.value = user.email;
   if (!phone.value && user.phone) phone.value = user.phone;
-  if (!residenceCountry.value && user.country) residenceCountry.value = user.country;
+  if (!country.value && user.country) country.value = user.country;
+  if (!city.value && user.city) city.value = user.city;
 };
 
 watch(() => authStore.user, prefillFromUser, { immediate: true });
@@ -301,16 +317,17 @@ const submitQuote = handleSubmit(async (values) => {
   loading.value = true;
   try {
     await store.createquotes(values);
+    resetQuoteForm()
     toast.add({
-      title: t('quoteForm.sentToast'),
-      description: t('quoteForm.sentDescription'),
+      title: t("quoteForm.sentToast"),
+      description: t("quoteForm.sentDescription"),
       color: "success",
       icon: `i-tabler-check`,
     });
   } catch (error) {
     toast.add({
-      title: t('quoteForm.errorToast'),
-      description: t('quoteForm.errorDescription'),
+      title: t("quoteForm.errorToast"),
+      description: t("quoteForm.errorDescription"),
       color: "error",
       icon: `i-tabler-x`,
     });

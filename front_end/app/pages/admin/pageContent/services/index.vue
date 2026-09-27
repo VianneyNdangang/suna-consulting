@@ -50,8 +50,9 @@
 
 <script setup lang="ts">
 definePageMeta({
-  // middleware: 'auth',
   layout: "admin",
+  roles: ['ADMIN', 'SUPER_ADMIN'],
+  middleware: ['role']
 });
 import type { TableColumn } from "@nuxt/ui";
 import DataTable from "~/components/admin/dataTable/DataTable.vue";
@@ -59,6 +60,7 @@ import FilterBar from "~/components/admin/filter/FilterBar.vue";
 import ActiveteService from "~/components/admin/forms/ActiveteService.vue";
 import ServiceForm from "~/components/admin/forms/ServiceForm.vue";
 import PageHeader from "~/components/admin/pageHeader/PageHeader.vue";
+import { formatDate } from "~/helpers/formateData";
 import { type servicesType } from "~/types/types";
 
 const newData = {
@@ -87,8 +89,8 @@ const UBadge = resolveComponent("UBadge");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
 const columns: TableColumn<any>[] = [
   {
-    accessorKey: "slug",
-    header: "Slug",
+    accessorKey: "title",
+    header: "Titre",
      size: 250,
   minSize: 200,
   maxSize: 350,
@@ -99,15 +101,12 @@ const columns: TableColumn<any>[] = [
     },
   },
   {
-    accessorKey: "title",
-    header: "Titre",
-     size: 100,
-  minSize: 100,
-  maxSize: 200,
-  },
-  {
     accessorKey: "description",
     header: "Description",
+  },
+  {
+    accessorKey: "display_order",
+    header: "Niveau"
   },
   {
     accessorKey: "is_active",
@@ -122,6 +121,11 @@ const columns: TableColumn<any>[] = [
         row.getValue("is_active") === true ? "Actif" : "Inactif",
       );
     },
+  },
+  {
+    accessorKey: "created_at",
+    header: "Date",
+    cell: ({ row }) => formatDate(row.getValue("created_at") as string),
   },
   {
     id: "actions",
@@ -147,6 +151,7 @@ const columns: TableColumn<any>[] = [
             color: "neutral",
             variant: "ghost",
             "aria-label": "Actions dropdown",
+            class: 'cursor-pointer'
           }),
       );
     },
@@ -164,6 +169,7 @@ function getRowItems(row: any) {
     },
     {
       label: row.original.is_active? "Désactiver" : "Activer",
+      class: 'cursor-pointer',
       onSelect() {
         selectedService.value = row.original;
         isActiveForm.value = true;
@@ -171,6 +177,7 @@ function getRowItems(row: any) {
     },
     {
       label: "Modifier",
+      class: 'cursor-pointer',
       onSelect() {
         selectedService.value = row.original;
         isServiceForm.value = true;

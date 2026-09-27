@@ -277,7 +277,7 @@ const { defineField, errors, handleSubmit, resetForm } = useForm({
     password: "",
     confirm_password: "",
     phone: "",
-    avatar: "",
+    avatar: undefined,
   },
 });
 const [full_name] = defineField("full_name");
@@ -292,26 +292,14 @@ const [avatar] = defineField("avatar");
 const store = useAuthStore();
 const toast = useToast();
 
-const prefillFromUser = (user: any) => {
-  if (!user) return;
-  if (!full_name.value && user.full_name) full_name.value = user.full_name;
-  if (!email.value && user.email) email.value = user.email;
-  if (!phone.value && user.phone) phone.value = user.phone;
-  if (!country.value && user.country) country.value = user.country;
-  if (!city.value && user.city) city.value = user.city;
-};
-
-watch(() => store.user, prefillFromUser, { immediate: true });
-
 const onSubmit = handleSubmit(async (values) => {
   try {
     loading.value = true;
     if (isRegister.value) {
       await store.register(values);
     } else {
-      const success = await store.login(values);
+      await store.login(values);
     }
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
     emit("update:modelValue", false);
     toast.add({
       title: store.message,

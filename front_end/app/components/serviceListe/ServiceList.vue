@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import Card from "../card/Card.vue";
 import type { servicesType } from "~/types/types";
-import { IconWhatsApp } from "../svg/svg.js";
 import BottomBanner from "../banners/BottomBanner.vue";
 import DataSkeleton from "../loading/DataSkeleton.vue";
+import ServiceCard from "../card/ServiceCard.vue";
 
 const props = defineProps<{
   services?: servicesType[];
@@ -16,64 +15,15 @@ const { t } = useI18n();
 const emit = defineEmits<{
   (e: "selectService", item: servicesType): void;
 }>();
-
-// Default mock services for instant rendering & fallback
-// const defaultServices: servicesType[] = [
-//   {
-//     id: "b1",
-//     slug: "assistance-administrative",
-//     title: "Démarches administratives & formalités",
-//     description:
-//       "Obtention d’actes d’état civil, légalisations, dépôts de dossiers et suivi rigoureux auprès des ministères et administrations au Cameroun.",
-//     icon: "shield-doc",
-//   },
-//   {
-//     id: "b2",
-//     slug: "accompagnement-immobilier-foncier",
-//     title: "Vérification foncière & suivi de chantiers",
-//     description:
-//       "Contrôle préalable des titres fonciers au cadastre, visite de parcelles avec rapport vidéo et suivi régulier de vos constructions.",
-//     icon: "home",
-//   },
-//   {
-//     id: "b3",
-//     slug: "achats-livraisons-proches",
-//     title: "Achat & livraison de biens pour vos proches",
-//     description:
-//       "Achat de vivres, matériaux, médicaments ou cadeaux et livraison en mains propres à vos familles à Yaoundé, Douala et environs.",
-//     icon: "heart",
-//   },
-//   {
-//     id: "b4",
-//     slug: "logistique-reservations",
-//     title: "Réservations de séjours & véhicules",
-//     description:
-//       "Organisation complète de vos séjours au Cameroun : appartements meublés sécurisés, hôtels et location de véhicules avec chauffeur.",
-//     icon: "car",
-//   },
-//   {
-//     id: "b5",
-//     slug: "evenements-familiaux",
-//     title: "Organisation d’événements familiaux",
-//     description:
-//       "Coordination locale pour vos dots, mariages coutumiers, baptêmes, anniversaires ou obsèques avec respect strict de votre budget.",
-//     icon: "users",
-//   },
-//   {
-//     id: "b6",
-//     slug: "sur-mesure",
-//     title: "Assistance personnalisée & conciergerie",
-//     description:
-//       "Missions spéciales sur le terrain selon votre cahier des charges avec un interlocuteur dédié et des rapports réguliers.",
-//     icon: "trending",
-//   },
-// ];
-
 const selectedCategory = ref("all");
 
 const categories = [
   { id: "all", label: t("services.all"), icon: "i-lucide-grid" },
-  { id: "admin", label: t("services.administrative"), icon: "i-lucide-file-text" },
+  {
+    id: "admin",
+    label: t("services.administrative"),
+    icon: "i-lucide-file-text",
+  },
   { id: "immo", label: t("services.realEstate"), icon: "i-lucide-home" },
   {
     id: "projets",
@@ -86,7 +36,6 @@ const allServices = computed(() => {
   if (props.services && props.services.length > 0) {
     return props.services;
   }
-  // return defaultServices;
 });
 
 const filteredServices = computed(() => {
@@ -172,14 +121,14 @@ const filteredServices = computed(() => {
       </div>
 
       <!-- Services Grid -->
-       <div v-if="loading" class="mt-12">
+      <div v-if="loading" class="mt-12">
         <DataSkeleton :count="6" />
       </div>
       <div
-      v-else
+        v-else
         class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
       >
-        <Card
+        <ServiceCard
           v-for="(service, index) in filteredServices"
           :key="index"
           :item="service"

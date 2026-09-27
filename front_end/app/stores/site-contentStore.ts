@@ -50,4 +50,8 @@ export const usesite_contentStore = defineStore('site_content', () => {
     fetchsite_content,
     updatesite_content,
   }
+},{
+  persist:{
+    pick: ['site_content']
+  } 
 })

@@ -62,7 +62,7 @@ export const useAuthStore = defineStore(
           if (role === "CLIENT") {
             await navigateTo(`/dashboard`);
           } else {
-            await navigateTo(`/admin`);
+            await navigateTo(`/admin/pageContent/media`);
           }
         }
         return res.data.success;
@@ -87,11 +87,17 @@ export const useAuthStore = defineStore(
     };
 
     const logout = async () => {
-      const res = await api.post(`auth/signout`);
-      user.value = null;
-      message.value = res.data.message;
-      await navigateTo("/");
-    };
+  try {
+    const res = await api.post("/auth/signout");
+    message.value = res.data.message;
+  } catch (error) {
+    console.error("Logout API error:", error);
+  } finally {
+    user.value = null;
+    token.value = null;
+    await navigateTo("/");
+  }
+};
 
     return {
       isAuthenticated,

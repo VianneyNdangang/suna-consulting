@@ -5,13 +5,13 @@ const locales = [
     code: "fr",
     name: "Français",
     flag: "https://flagcdn.com/w320/fr.png",
-    alt: "Français",
+    alt: "Fr",
   },
   {
     code: "en",
     name: "English",
     flag: "https://flagcdn.com/w320/gb.png",
-    alt: "English",
+    alt: "En",
   },
 ] as const;
 
@@ -39,7 +39,7 @@ const dropdownItems = locales.map((item) => ({
     <template #default>
       <button
         type="button"
-        class="flex h-9 w-11 items-center justify-center"
+        class="flex h-9 w-11 gap-1 items-center justify-center cursor-pointer"
         aria-label="Changer de langue"
       >
         <img
@@ -51,7 +51,7 @@ const dropdownItems = locales.map((item) => ({
     </template>
 
     <template #locale="{ item }">
-      <span class="flex items-center gap-2">
+      <span class="flex items-center gap-2 cursor-pointer">
         <img
           :src="item.flag"
           :alt="item.label"

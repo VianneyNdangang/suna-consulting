@@ -19,7 +19,7 @@
       :ui="{
         base:'focus-visible:border-default focus-visible:ring-0'
       }"
-      class="w-full"
+      class="w-full rounded "
       @update:search-term="onSearch"
     />
   </UFormField>

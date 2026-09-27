@@ -170,6 +170,9 @@ const publishedTestimonials = computed(() =>
   )
 )
 
+// onMounted(async () => {
+//   await testimonialStore.fetchTestimonials(undefined, {is_published: true})
+// })
 onMounted(async () => {
   await testimonialStore.fetchTestimonials()
 })

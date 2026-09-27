@@ -1,25 +1,25 @@
 <template>
-    <CardDesign class="rounded-md">
+    <Card >
         <div class="flex items-center justify-start gap-3 whitespace-nowrap">
             <div
-                class="flex size-11 shrink-0 items-center justify-center rounded-md border p-3"
+                class="flex size-11 shrink-0 items-center justify-center rounded-md border p-1.5 md:p-3"
                 :class="stateClasses"
             >
-                <UIcon :name="icon" class="size-5" :stroke-width="1.5" />
+                <UIcon :name="icon" class=" size-4 md:size-5" :stroke-width="1.5" />
             </div>
-            <div class="min-w-0">
-                <p class="truncate text-sm font-semibold text-(--text-primary)">
+            <div class="flex flex-col justify-start">
+                <p class="truncate text-xs md:text-sm font-semibold text-(--text-primary)">
                     {{ title }}
                 </p>
-                <p class="text-3xl font-semibold text-(--text-muted)">
+                <p class=" text-xl md:text-3xl font-semibold text-(--text-muted)">
                     {{ value }}
                 </p>
             </div>
         </div>
-        <p v-if="description" class="mt-3 text-sm text-(--text-secondary)">
+        <p v-if="description" class=" text-xs mt-1.5 md:mt-3 text-(--text-secondary)">
             {{ description }}
         </p>
-    </CardDesign>
+    </Card>
 </template>
 
 <script setup lang="ts">

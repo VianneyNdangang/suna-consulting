@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen">
     <Modal>
-      <CardDesign w="md">
+      <Card w="md">
         <div class="max-w-md">
         <p class="text-(--text-secondary) text-lg font-semibold mb-2 flex">{{props.title}}<p class="font-bold ml-1">{{ props.name }}</p></p>
         <p class="text-(--text-thirdly) text-justify text-sm">
@@ -12,7 +12,7 @@
           <Button label="Supprimer" type="button" variant="primary" :click="()=>{props.action}" />
         </div>
         </div>
-      </CardDesign>
+      </Card>
     </Modal>
   </div>
 </template>
@@ -21,7 +21,7 @@
 import Card from '@/components/card/Card.vue';
 import Button from '../buttons/Button.vue';
 import Modal from '../admin/forms/ServiceForm.vue/index.js';
-import CardDesign from '../cardDesign/CardDesign.vue';
+import Card from '../Card/Card.vue';
 
 
 const props = defineProps<{

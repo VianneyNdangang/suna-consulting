@@ -44,12 +44,7 @@ const handleVideoLoaded = () => {
 
     <!-- Overlay -->
     <div
-      class="absolute inset-0 bg-linear-to-r from-ink-950/78 via-ink-900/62 to-rust-900/58 backdrop-blur-[1px]"
-    />
-
-    <!-- Glow -->
-    <div
-      class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,162,78,0.18),transparent_60%)]"
+      class="absolute inset-0 bg-linear-to-r from-ink-950/78 via-ink-900/62 to-rust-900/20 backdrop-blur-[1px]"
     />
 
     <!-- Content -->

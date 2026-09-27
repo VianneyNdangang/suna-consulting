@@ -1,7 +1,7 @@
 <template>
   <section
     id="devis"
-    class="py-16 md:py-24 bg-linear-to-br from-ink-900 via-ink-800 to-rust-900 text-white relative overflow-hidden"
+    class="py-16 md:py-24 bg-ink-900 text-white relative overflow-hidden"
   >
     <!-- Ambient mesh lighting -->
     <div
@@ -22,17 +22,17 @@
             class="bg-gold-400/20 text-gold-300 border border-gold-400/40 px-3.5 py-1 rounded-full font-medium text-xs tracking-wider uppercase backdrop-blur-md"
           >
             <UIcon name="i-lucide-calculator" class="w-3.5 h-3.5 mr-1" />
-            {{ t('quoteForm.badge') }}
+            {{ t("quoteForm.badge") }}
           </UBadge>
 
           <h2
             class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight leading-tight"
           >
-            {{ t('quoteForm.heading') }}
+            {{ t("quoteForm.heading") }}
           </h2>
 
           <p class="text-base text-sand-50/85 leading-relaxed font-light">
-            {{ t('quoteForm.description') }}
+            {{ t("quoteForm.description") }}
           </p>
 
           <!-- Why trust this process -->
@@ -45,42 +45,42 @@
               </div>
               <div>
                 <h4 class="text-sm font-bold text-white">
-                  {{ t('quoteForm.clearPricing') }}
+                  {{ t("quoteForm.clearPricing") }}
                 </h4>
                 <p class="text-xs text-sand-50/75 mt-0.5">
-                  {{ t('quoteForm.clearPricingDescription') }}
+                  {{ t("quoteForm.clearPricingDescription") }}
                 </p>
               </div>
             </div>
 
             <div class="flex items-start gap-3.5">
               <div
-                class="h-9 w-9 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-emerald-400 shrink-0"
+                class="h-9 w-9 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-gold-400 shrink-0"
               >
                 <UIcon name="i-lucide-shield-check" class="w-5 h-5" />
               </div>
               <div>
                 <h4 class="text-sm font-bold text-white">
-                  {{ t('quoteForm.dedicatedAdvisor') }}
+                  {{ t("quoteForm.dedicatedAdvisor") }}
                 </h4>
                 <p class="text-xs text-sand-50/75 mt-0.5">
-                  {{ t('quoteForm.dedicatedAdvisorDescription') }}
+                  {{ t("quoteForm.dedicatedAdvisorDescription") }}
                 </p>
               </div>
             </div>
 
             <div class="flex items-start gap-3.5">
               <div
-                class="h-9 w-9 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-rose-400 shrink-0"
+                class="h-9 w-9 rounded-lg bg-white/10 border border-white/15 flex items-center justify-center text-gold-400 shrink-0"
               >
                 <UIcon name="i-lucide-lock" class="w-5 h-5" />
               </div>
               <div>
                 <h4 class="text-sm font-bold text-white">
-                  {{ t('quoteForm.confidentiality') }}
+                  {{ t("quoteForm.confidentiality") }}
                 </h4>
                 <p class="text-xs text-sand-50/75 mt-0.5">
-                  {{ t('quoteForm.confidentialityDescription') }}
+                  {{ t("quoteForm.confidentialityDescription") }}
                 </p>
               </div>
             </div>
@@ -89,18 +89,15 @@
           <!-- Fast contact -->
           <div class="pt-6 border-t border-white/10">
             <p class="text-xs text-sand-50/70 mb-2">
-              {{ t('quoteForm.directMessage') }}
+              {{ t("quoteForm.directMessage") }}
             </p>
             <a
               href="https://wa.me/237679188336"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600/30 hover:bg-emerald-600/40 border border-emerald-500/40 text-emerald-300 text-xs font-semibold transition-colors"
+              class="inline-flex items-center gap-2 px-3 py-2 max-h-8 rounded bg-emerald-600/30 hover:bg-emerald-600/40 border border-emerald-500/40 text-emerald-300 text-xs font-semibold transition-colors"
             >
-              <UIcon
-                :name="IconWhatsApp"
-                class="w-4 h-4 text-emerald-400"
-              />
+              <UIcon :name="IconWhatsApp" class="w-4 h-4" />
               WhatsApp Direct : +237 679 188 336
             </a>
           </div>
@@ -121,25 +118,26 @@
 
             <div class="space-y-2">
               <h3 class="text-2xl font-bold text-white">
-                {{ t('quoteForm.successTitle') }}
+                {{ t("quoteForm.successTitle") }}
               </h3>
               <p
                 class="text-sm text-sand-50/80 max-w-md mx-auto leading-relaxed"
               >
-                {{ name || t('quoteForm.dearClient') }}. {{ t('quoteForm.successDescription') }}
+                {{ full_name || t("quoteForm.dearClient") }}.
+                {{ t("quoteForm.successDescription") }}
               </p>
             </div>
 
             <div
               class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2"
             >
-              <UButton
-                color="primary"
-                class="bg-rust-600 hover:bg-rust-500 text-white font-semibold px-6 py-2.5"
+              <Button
+                variant="primary"
+                type="button"
                 @click="resetQuoteForm"
-              >
-                {{ t('quoteForm.anotherRequest') }}
-              </UButton>
+                :label="t('quoteForm.anotherRequest')"
+              />
+
               <a
                 href="https://wa.me/237679188336"
                 target="_blank"
@@ -147,7 +145,7 @@
                 class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-lg bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-500 transition-colors"
               >
                 <UIcon :name="IconWhatsApp" class="w-4 h-4" />
-                {{ t('quoteForm.accelerateWhatsapp') }}
+                {{ t("quoteForm.accelerateWhatsapp") }}
               </a>
             </div>
           </div>
@@ -160,14 +158,15 @@
             <form @submit.prevent="submitQuote" class="space-y-4">
               <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <Input
-                  v-model="name"
-                  name="name"
+                  v-model="full_name"
+                  name="full_name"
                   icon="i-tabler-user"
                   :label="t('quoteForm.name')"
                   type="text"
                   :placeholder="t('quoteForm.namePlaceholder')"
                   label-class="text-sm font-semibold text-white"
-                  :error="formErrors.name"
+                  :error="formErrors.full_name"
+                  class="col-span-2"
                 />
                 <Input
                   v-model="email"
@@ -190,7 +189,7 @@
                   :error="formErrors.phone"
                 />
                 <Combobox
-                  v-model="residenceCountry"
+                  v-model="country"
                   url="https://countries.dev/name"
                   option-value="name"
                   option-label="name"
@@ -199,7 +198,17 @@
                   :label="t('quoteForm.residenceCountry')"
                   :placeholder="t('quoteForm.residencePlaceholder')"
                   label-class="text-sm font-semibold text-white"
-                  :error="formErrors.residence_country"
+                  :error="formErrors.country"
+                />
+                <Combobox
+                  v-model="city"
+                  url="https://countries.dev/cities?q="
+                  option-value="name"
+                  option-label="name"
+                  name="city"
+                  :label="t('auth.city')"
+                  :placeholder="t('auth.searchCity')"
+                  :error="formErrors.city"
                 />
               </div>
               <Select
@@ -214,9 +223,9 @@
 
               <!-- Urgency radio tags -->
               <div class="space-y-1.5">
-                <label class="text-xs font-semibold text-sand-50"
-                  >{{ t('quoteForm.deadline') }}</label
-                >
+                <label class="text-xs font-semibold text-sand-50">{{
+                  t("quoteForm.deadline")
+                }}</label>
                 <div class="grid grid-cols-3 gap-2">
                   <button
                     v-for="urg in urgencyOptions"
@@ -264,7 +273,7 @@
               </div>
 
               <p class="text-center text-[11px] text-sand-50/60 pt-1">
-                {{ t('quoteForm.privacy') }}
+                {{ t("quoteForm.privacy") }}
               </p>
             </form>
           </div>
@@ -309,7 +318,7 @@ const serviceOptions = computed(() =>
 const urgencyOptions = computed(() => [
   { label: t("quoteForm.normal"), value: "normal" },
   { label: t("quoteForm.urgent"), value: "urgent" },
-  { label: t("quoteForm.veryUrgent"), value: "tres_urgent" },
+  { label: t("quoteForm.veryUrgent"), value: "veryUrgent" },
 ]);
 
 const {
@@ -320,20 +329,22 @@ const {
 } = useForm({
   validationSchema: toTypedSchema(quoteSchema),
   initialValues: {
-    name: "",
+    full_name: "",
     email: "",
     phone: "",
-    residence_country: "",
+    country: "",
+    city: "",
     service_slug: serviceOptions.value[0]?.value,
     urgency: "normal",
     details: "",
   },
 });
 
-const [name] = defineField("name");
+const [full_name] = defineField("full_name");
 const [email] = defineField("email");
 const [phone] = defineField("phone");
-const [residenceCountry] = defineField("residence_country");
+const [country] = defineField("country");
+const [city] = defineField("city");
 const [service_slug] = defineField("service_slug");
 const [urgency] = defineField("urgency");
 const [description] = defineField("details");
@@ -342,10 +353,11 @@ const isSubmitted = ref(false);
 
 const prefillFromUser = (user: any) => {
   if (!user) return;
-  if (!name.value && user.full_name) name.value = user.full_name;
+  if (!full_name.value && user.full_name) full_name.value = user.full_name;
   if (!email.value && user.email) email.value = user.email;
   if (!phone.value && user.phone) phone.value = user.phone;
-  if (!residenceCountry.value && user.country) residenceCountry.value = user.country;
+  if (!country.value && user.country) country.value = user.country;
+  if (!city.value && user.city) city.value = user.city;
 };
 
 watch(() => authStore.user, prefillFromUser, { immediate: true });
@@ -355,9 +367,14 @@ watch(
   (options) => {
     if (!service_slug.value && options.length) {
       const requestedService = route.query.service;
-      const selected = typeof requestedService === "string"
-        ? options.find((service) => service.value === requestedService || service.value.includes(requestedService))
-        : undefined;
+      const selected =
+        typeof requestedService === "string"
+          ? options.find(
+              (service) =>
+                service.value === requestedService ||
+                service.value.includes(requestedService),
+            )
+          : undefined;
       service_slug.value = selected?.value ?? options[0]?.value;
     }
   },
@@ -388,9 +405,9 @@ const submitQuote = handleSubmit(async (values) => {
     isSubmitting.value = false;
     isSubmitted.value = true;
     toast.add({
-      title: t('quoteForm.sentToast'),
+      title: t("quoteForm.sentToast"),
       color: "success",
-      description: t('quoteForm.sentDescription'),
+      description: t("quoteForm.sentDescription"),
     });
   }, 1200);
 });

@@ -1,7 +1,7 @@
 <template>
   <div v-if="isOpen">
     <Modal>
-      <CardDesign w="lg">
+      <Card w="lg">
         <div class="max-w-sm max-h-md md:max-h-2xl md:max-w-2xl p-5">
           <h1 class="text-2xl font-bold text-(--text-secondary)">{{props.user? `Modify User`: `New User`}}</h1>
           <div class="flex flex-col items-center justify-center w-full">
@@ -140,7 +140,7 @@
             </form>
           </div>
         </div>
-      </CardDesign>
+      </Card>
     </Modal>
   </div>
 </template>
@@ -154,7 +154,7 @@ import Card from "@/components/card/Card.vue";
 import Select from "@/components/select/Select.vue";
 import { createUserSchema } from "@/handler/usersHandler";
 import Button from "../buttons/Button.vue";
-import CardDesign from "../cardDesign/CardDesign.vue";
+import Card from "../Card/Card.vue";
 
 const props = defineProps<{
   user?: any;

@@ -6,28 +6,44 @@
       :refresh="() => userStore.fetchUsers()"
       :loading="loading"
     />
-    <FilterBar/>
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-3 mb-4">
+        <DataSommary
+          v-for="stat in stats"
+          :key="stat.title"
+          :icon="stat.icon"
+          :title="stat.title"
+          :value="stat.value"
+          :description="stat.description"
+          :state="stat.state"
+        />
+      </div>
+      <UsersFilter/>
     <div class="flex">
-      <CardDesign
+      <Card
       >
-        <DataTable :data="users" :columns="columns" />
-      </CardDesign>
+        <DataTable :data="users" :columns="columns" :loading="userStore.loading"/>
+      </Card>
     </div>
   </div>
 </template>
 <script setup lang="ts">
-definePageMeta({ layout: "admin" });
-import { ref, onMounted, h } from "vue";
+definePageMeta({
+  layout: "admin",
+  roles: ['ADMIN', 'SUPER_ADMIN'],
+  middleware: ['role']
+});
 
+import { ref, onMounted, h } from "vue";
 import { storeToRefs } from "pinia";
 import type { TableColumn } from "@nuxt/ui";
 import DataTable from "~/components/admin/dataTable/DataTable.vue";
 import PageHeader from "~/components/admin/pageHeader/PageHeader.vue";
-import FilterBar from "~/components/admin/filter/FilterBar.vue";
-import CardDesign from "~/components/cardDesign/CardDesign.vue";
+import Card from "~/components/Card/Card.vue";
+import UsersFilter from "~/components/admin/filter/UsersFilter.vue";
+import DataSommary from "~/components/admin/dataSommary/DataSommary.vue";
+import { formatDate } from "~/helpers/formateData";
 
 const isCreateUser = ref(false);
-const isDeleteData = ref(false);
 
 const UButton = resolveComponent("UButton");
 const UBadge = resolveComponent("UBadge");
@@ -42,6 +58,36 @@ const { loading } = storeToRefs(userStore);
 onMounted(async () => {
   await userStore.fetchUsers();
 });
+
+const stats = computed(() => {
+  const total = users.value.length
+  const active = users.value.filter((user:any) => user.is_active).length
+  const inactive = users.value.filter((user: any) => !user.is_active).length
+
+  return [
+    {
+      title: "Total des clients",
+      value: total,
+      description: "Ensemble des clients enregistrés",
+      state: "primary" as const,
+      icon: "i-lucide-users",
+    },
+    {
+      title: "Clients actifs",
+      value: active,
+      description: "Clients actuellement actifs",
+      state: "success" as const,
+      icon: "i-lucide-user-check",
+    },
+    {
+      title: "Clients inactifs",
+      value: inactive,
+      description: "Clients actuellement inactifs",
+      state: "warning" as const,
+      icon: "i-lucide-user-x",
+    },
+  ]
+})
 
 const columns: TableColumn<any>[] = [
   {
@@ -58,17 +104,12 @@ const columns: TableColumn<any>[] = [
     },
   },
   {
-    accessorKey: "country",
-    header: "Pays",
-    meta: {
-      class: {
-        td: "text-(--text-secondary) font-bold",
-      },
+    header: "Localisation",
+    cell: ({ row }) =>{
+      const user = row.original;
+      const location = user.city + `, `+user.country
+      return location
     },
-  },
-  {
-    accessorKey: "city",
-    header: "Ville",
     meta: {
       class: {
         td: "text-(--text-secondary) font-bold",
@@ -106,14 +147,8 @@ const columns: TableColumn<any>[] = [
   {
     accessorKey: "created_at",
     header: "Date",
-    cell: ({ row }) => {
-      return new Date(row.getValue("created_at")).toLocaleString("fr-FR", {
-        day: "numeric",
-        month: "long",
-      });
-    },
+    cell: ({ row }) => formatDate(row.getValue("created_at") as string),
   },
-
   {
     id: "actions",
     header: "Actions",
@@ -155,6 +190,7 @@ function getRowItems(row: any) {
     },
     {
       label: row.original?.is_active ? "Desaciver" : "Activer",
+      class: 'cursor-pointer',
       onSelect() {
         selectedUser.value = row.original;
         isCreateUser.value = true;
@@ -162,6 +198,7 @@ function getRowItems(row: any) {
     },
     {
       label: "Envoyer un mail",
+      class: 'cursor-pointer',
       onselect() {
         selectedUser.value = row.original;
         isCreateUser.value = true;

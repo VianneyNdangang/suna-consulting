@@ -247,7 +247,7 @@
       "content": "Le service a été clair, efficace et parfaitement adapté à mes besoins.",
       "rating": 1,
       "photo_url": "https://cdn.suna.com/avatars/testimonial-6.jpg",
-      "is_published": true,
+      "is_published": false,
       "flag": "https://flagcdn.com/w320/ga.png",
       "service_used": "Représentation locale"
     },
@@ -2821,6 +2821,16 @@
       "content": "Je suis un test",
       "is_published": false,
       "id": "xpRpxbe4dTY"
+    },
+    {
+      "author_name": "admin",
+      "author_location": "Canada",
+      "service_used": "assistance-administrative",
+      "flag": "",
+      "rating": 5,
+      "content": "hhhhhhhhhhhhh",
+      "is_published": false,
+      "id": "0KovXepylxw"
     }
   ],
   "team": [
@@ -2869,64 +2879,1415 @@
   ],
   "quotes": [
     {
-      "name": "admin",
+      "full_name": "Jean Dupont",
+      "email": "jean.dupont1@gmail.com",
+      "phone": "650000001",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D001",
+      "details": "Demande de test numéro 1 concernant un accompagnement au Cameroun.",
+      "id": "1-quote0001",
+      "created_at": "2026-01-01T00:00:00Z"
+    },
+    {
+      "full_name": "Marie Laurent",
+      "email": "marie.laurent2@gmail.com",
+      "phone": "690000002",
+      "country": "France",
+      "city": "Paris",
+      "service_slug": "gestion-administrative",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D002",
+      "details": "Je souhaite être accompagnée dans plusieurs démarches administratives depuis la France.",
+      "id": "2-quote0002",
+      "created_at": "2026-01-03T10:15:00Z"
+    },
+    {
+      "full_name": "Paul Martin",
+      "email": "paul.martin3@gmail.com",
+      "phone": "651000003",
+      "country": "Canada",
+      "city": "Montreal",
+      "service_slug": "assistance-juridique",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D003",
+      "details": "J'ai besoin d'une assistance juridique rapide pour une situation familiale au Cameroun.",
+      "id": "3-quote0003",
+      "created_at": "2026-01-05T14:30:00Z"
+    },
+    {
+      "full_name": "Sophie Bernard",
+      "email": "sophie.bernard4@gmail.com",
+      "phone": "652000004",
+      "country": "Belgium",
+      "city": "Brussels",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D004",
+      "details": "Je recherche une personne de confiance pouvant me représenter pour certaines démarches au Cameroun.",
+      "id": "4-quote0004",
+      "created_at": "2026-01-07T09:45:00Z"
+    },
+    {
+      "full_name": "David Moreau",
+      "email": "david.moreau5@gmail.com",
+      "phone": "653000005",
+      "country": "Switzerland",
+      "city": "Geneva",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D005",
+      "details": "Je souhaite étudier une opportunité d'investissement immobilier au Cameroun.",
+      "id": "5-quote0005",
+      "created_at": "2026-01-09T16:20:00Z"
+    },
+    {
+      "full_name": "Claire Petit",
+      "email": "claire.petit6@gmail.com",
+      "phone": "654000006",
+      "country": "France",
+      "city": "Lyon",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D006",
+      "details": "Je souhaite déléguer le suivi d'un projet de construction actuellement en cours à Douala.",
+      "id": "6-quote0006",
+      "created_at": "2026-01-11T11:10:00Z"
+    },
+    {
+      "full_name": "Thomas Robert",
+      "email": "thomas.robert7@gmail.com",
+      "phone": "655000007",
+      "country": "Canada",
+      "city": "Toronto",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "urgent",
+      "status": "canceled",
+      "number": "D007",
+      "details": "Je souhaite vérifier les documents liés à un terrain familial situé au Cameroun.",
+      "id": "7-quote0007",
+      "created_at": "2026-01-13T08:25:00Z"
+    },
+    {
+      "full_name": "Nathalie Girard",
+      "email": "nathalie.girard8@gmail.com",
+      "phone": "656000008",
+      "country": "Germany",
+      "city": "Berlin",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D008",
+      "details": "J'ai besoin d'aide pour effectuer différentes démarches administratives à distance.",
+      "id": "8-quote0008",
+      "created_at": "2026-01-15T13:40:00Z"
+    },
+    {
+      "full_name": "Antoine Leroy",
+      "email": "antoine.leroy9@gmail.com",
+      "phone": "657000009",
+      "country": "United States",
+      "city": "New York",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D009",
+      "details": "Je dois effectuer rapidement une démarche administrative et souhaite être représenté sur place.",
+      "id": "9-quote0009",
+      "created_at": "2026-01-17T17:05:00Z"
+    },
+    {
+      "full_name": "Camille Roux",
+      "email": "camille.roux10@gmail.com",
+      "phone": "658000010",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "assistance-juridique",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D010",
+      "details": "Je souhaite obtenir un accompagnement juridique concernant un dossier immobilier.",
+      "id": "10-quote0010",
+      "created_at": "2026-01-19T10:50:00Z"
+    },
+    {
+      "full_name": "François Michel",
+      "email": "francois.michel11@gmail.com",
+      "phone": "659000011",
+      "country": "France",
+      "city": "Marseille",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D011",
+      "details": "Je souhaite être accompagné pour analyser un projet d'investissement au Cameroun.",
+      "id": "11-quote0011",
+      "created_at": "2026-01-21T15:35:00Z"
+    },
+    {
+      "full_name": "Isabelle Fontaine",
+      "email": "isabelle.fontaine12@gmail.com",
+      "phone": "660000012",
+      "country": "Canada",
+      "city": "Quebec",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D012",
+      "details": "Je souhaite confier le suivi régulier de mon chantier à une personne présente localement.",
+      "id": "12-quote0012",
+      "created_at": "2026-01-23T12:00:00Z"
+    },
+    {
+      "full_name": "Olivier Henry",
+      "email": "olivier.henry13@gmail.com",
+      "phone": "661000013",
+      "country": "Belgium",
+      "city": "Antwerp",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "veryUrgent",
+      "status": "in_progress",
+      "number": "D013",
+      "details": "J'ai besoin d'une vérification urgente concernant une propriété familiale.",
+      "id": "13-quote0013",
+      "created_at": "2026-01-25T09:20:00Z"
+    },
+    {
+      "full_name": "Amélie Blanc",
+      "email": "amelie.blanc14@gmail.com",
+      "phone": "662000014",
+      "country": "Switzerland",
+      "city": "Lausanne",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D014",
+      "details": "Je recherche une solution pour gérer mes démarches administratives au Cameroun depuis l'étranger.",
+      "id": "14-quote0014",
+      "created_at": "2026-01-27T14:45:00Z"
+    },
+    {
+      "full_name": "Julien Faure",
+      "email": "julien.faure15@gmail.com",
+      "phone": "663000015",
+      "country": "United States",
+      "city": "Boston",
+      "service_slug": "assistance-juridique",
+      "urgency": "urgent",
+      "status": "canceled",
+      "number": "D015",
+      "details": "Je souhaite obtenir des conseils concernant une procédure juridique au Cameroun.",
+      "id": "15-quote0015",
+      "created_at": "2026-01-29T18:10:00Z"
+    },
+    {
+      "full_name": "Caroline André",
+      "email": "caroline.andre16@gmail.com",
+      "phone": "664000016",
+      "country": "France",
+      "city": "Bordeaux",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D016",
+      "details": "Je souhaite mandater un représentant pour effectuer certaines démarches administratives.",
+      "id": "16-quote0016",
+      "created_at": "2026-01-31T10:35:00Z"
+    },
+    {
+      "full_name": "Nicolas Gauthier",
+      "email": "nicolas.gauthier17@gmail.com",
+      "phone": "665000017",
+      "country": "Canada",
+      "city": "Ottawa",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D017",
+      "details": "Je souhaite investir dans un projet au Cameroun et avoir un accompagnement local.",
+      "id": "17-quote0017",
+      "created_at": "2026-02-02T13:15:00Z"
+    },
+    {
+      "full_name": "Élodie Mercier",
+      "email": "elodie.mercier18@gmail.com",
+      "phone": "666000018",
+      "country": "France",
+      "city": "Toulouse",
+      "service_slug": "suivi-de-projets",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D018",
+      "details": "Mon projet nécessite une vérification rapide de l'avancement des travaux et un compte rendu détaillé.",
+      "id": "18-quote0018",
+      "created_at": "2026-02-04T16:40:00Z"
+    },
+    {
+      "full_name": "Patrick Ngono",
+      "email": "patrick.ngono19@gmail.com",
+      "phone": "667000019",
+      "country": "Cameroon",
+      "city": "Bafoussam",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D019",
+      "details": "Je souhaite obtenir de l'aide pour vérifier les documents d'un terrain.",
+      "id": "19-quote0019",
+      "created_at": "2026-02-06T11:25:00Z"
+    },
+    {
+      "full_name": "Sandra Mbarga",
+      "email": "sandra.mbarga20@gmail.com",
+      "phone": "668000020",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "gestion-administrative",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D020",
+      "details": "Je souhaite être accompagnée pour plusieurs formalités administratives nécessitant une présence locale.",
+      "id": "20-quote0020",
+      "created_at": "2026-02-08T09:55:00Z"
+    },
+    {
+      "full_name": "Kevin Tchoumi",
+      "email": "kevin.tchoumi21@gmail.com",
+      "phone": "669000021",
+      "country": "United Kingdom",
+      "city": "London",
+      "service_slug": "assistance-juridique",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D021",
+      "details": "Je recherche une assistance juridique urgente pour résoudre un problème lié à un dossier familial.",
+      "id": "21-quote0021",
+      "created_at": "2026-02-10T15:30:00Z"
+    },
+    {
+      "full_name": "Laura Petit",
+      "email": "laura.petit22@gmail.com",
+      "phone": "670000022",
+      "country": "France",
+      "city": "Nantes",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D022",
+      "details": "Je souhaite être représentée pour certaines démarches que je ne peux pas effectuer personnellement.",
+      "id": "22-quote0022",
+      "created_at": "2026-02-12T12:45:00Z"
+    },
+    {
+      "full_name": "Marc Leclerc",
+      "email": "marc.leclerc23@gmail.com",
+      "phone": "671000023",
+      "country": "Canada",
+      "city": "Vancouver",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D023",
+      "details": "Je souhaite étudier les possibilités d'investissement immobilier et être conseillé sur place.",
+      "id": "23-quote0023",
+      "created_at": "2026-02-14T08:35:00Z"
+    },
+    {
+      "full_name": "Julie Garnier",
+      "email": "julie.garnier24@gmail.com",
+      "phone": "672000024",
+      "country": "Belgium",
+      "city": "Brussels",
+      "service_slug": "suivi-de-projets",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D024",
+      "details": "Je souhaite recevoir un suivi régulier de mon projet de construction avec des rapports sur l'avancement.",
+      "id": "24-quote0024",
+      "created_at": "2026-02-16T17:20:00Z"
+    },
+    {
+      "full_name": "Arnaud Simon",
+      "email": "arnaud.simon25@gmail.com",
+      "phone": "673000025",
+      "country": "Switzerland",
+      "city": "Zurich",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "veryUrgent",
+      "status": "canceled",
+      "number": "D025",
+      "details": "Une vérification urgente est nécessaire avant la signature d'un document relatif à un terrain.",
+      "id": "25-quote0025",
+      "created_at": "2026-02-18T10:05:00Z"
+    },
+    {
+      "full_name": "Aline Robert",
+      "email": "aline.robert26@gmail.com",
+      "phone": "674000026",
+      "country": "France",
+      "city": "Lille",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D026",
+      "details": "Je souhaite déléguer certaines formalités administratives à une personne de confiance au Cameroun.",
+      "id": "26-quote0026",
+      "created_at": "2026-02-20T14:15:00Z"
+    },
+    {
+      "full_name": "Christophe Bernard",
+      "email": "christophe.bernard27@gmail.com",
+      "phone": "675000027",
+      "country": "United States",
+      "city": "Washington",
+      "service_slug": "assistance-juridique",
+      "urgency": "urgent",
+      "status": "ended",
+      "number": "D027",
+      "details": "Je souhaite obtenir un accompagnement concernant un dossier juridique nécessitant une intervention locale.",
+      "id": "27-quote0027",
+      "created_at": "2026-02-22T11:50:00Z"
+    },
+    {
+      "full_name": "Mélanie Dubois",
+      "email": "melanie.dubois28@gmail.com",
+      "phone": "676000028",
+      "country": "Canada",
+      "city": "Montreal",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D028",
+      "details": "Je souhaite être représentée lors de certaines démarches administratives à Yaoundé.",
+      "id": "28-quote0028",
+      "created_at": "2026-02-24T16:05:00Z"
+    },
+    {
+      "full_name": "Benoît Richard",
+      "email": "benoit.richard29@gmail.com",
+      "phone": "677000029",
+      "country": "France",
+      "city": "Paris",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D029",
+      "details": "Je souhaite lancer un projet d'investissement au Cameroun et recherche un accompagnement complet.",
+      "id": "29-quote0029",
+      "created_at": "2026-02-26T09:40:00Z"
+    },
+    {
+      "full_name": "Céline Morel",
+      "email": "celine.morel30@gmail.com",
+      "phone": "678000030",
+      "country": "Germany",
+      "city": "Munich",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D030",
+      "details": "Je souhaite avoir un représentant capable de contrôler régulièrement l'évolution de mon chantier.",
+      "id": "30-quote0030",
+      "created_at": "2026-02-28T13:30:00Z"
+    },
+    {
+      "full_name": "Didier Kamga",
+      "email": "didier.kamga31@gmail.com",
+      "phone": "679000031",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D031",
+      "details": "Je souhaite vérifier la situation foncière d'une parcelle avant de poursuivre mon projet.",
+      "id": "31-quote0031",
+      "created_at": "2026-03-02T10:10:00Z"
+    },
+    {
+      "full_name": "Estelle Nguema",
+      "email": "estelle.nguema32@gmail.com",
+      "phone": "680000032",
+      "country": "Gabon",
+      "city": "Libreville",
+      "service_slug": "gestion-administrative",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D032",
+      "details": "J'ai besoin d'aide pour effectuer plusieurs démarches administratives au Cameroun.",
+      "id": "32-quote0032",
+      "created_at": "2026-03-04T15:25:00Z"
+    },
+    {
+      "full_name": "Loïc Meunier",
+      "email": "loic.meunier33@gmail.com",
+      "phone": "681000033",
+      "country": "France",
+      "city": "Nice",
+      "service_slug": "assistance-juridique",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D033",
+      "details": "Je souhaite bénéficier rapidement d'un accompagnement juridique concernant un dossier au Cameroun.",
+      "id": "33-quote0033",
+      "created_at": "2026-03-06T18:00:00Z"
+    },
+    {
+      "full_name": "Rachel Johnson",
+      "email": "rachel.johnson34@gmail.com",
+      "phone": "682000034",
+      "country": "United States",
+      "city": "Atlanta",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D034",
+      "details": "I need a trusted representative to handle administrative procedures on my behalf in Cameroon.",
+      "id": "34-quote0034",
+      "created_at": "2026-03-08T12:20:00Z"
+    },
+    {
+      "full_name": "Hélène Caron",
+      "email": "helene.caron35@gmail.com",
+      "phone": "683000035",
+      "country": "Canada",
+      "city": "Ottawa",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D035",
+      "details": "Je souhaite analyser un projet d'investissement et comprendre les différentes étapes avant de me lancer.",
+      "id": "35-quote0035",
+      "created_at": "2026-03-10T09:15:00Z"
+    },
+    {
+      "full_name": "Maxime Perrin",
+      "email": "maxime.perrin36@gmail.com",
+      "phone": "684000036",
+      "country": "Switzerland",
+      "city": "Geneva",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D036",
+      "details": "Je souhaite recevoir des rapports réguliers sur l'état d'avancement d'un projet immobilier.",
+      "id": "36-quote0036",
+      "created_at": "2026-03-12T14:50:00Z"
+    },
+    {
+      "full_name": "Brigitte Essomba",
+      "email": "brigitte.essomba37@gmail.com",
+      "phone": "685000037",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "urgent",
+      "status": "ended",
+      "number": "D037",
+      "details": "Je souhaite être accompagnée dans l'acquisition d'un terrain et la vérification des documents associés.",
+      "id": "37-quote0037",
+      "created_at": "2026-03-14T11:35:00Z"
+    },
+    {
+      "full_name": "Yannick Fokou",
+      "email": "yannick.fokou38@gmail.com",
+      "phone": "686000038",
+      "country": "Cameroon",
+      "city": "Bafoussam",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "canceled",
+      "number": "D038",
+      "details": "Je souhaite déléguer certaines formalités et recevoir une confirmation de leur réalisation.",
+      "id": "38-quote0038",
+      "created_at": "2026-03-16T16:10:00Z"
+    },
+    {
+      "full_name": "Sophie Martin",
+      "email": "sophie.martin39@gmail.com",
+      "phone": "687000039",
+      "country": "France",
+      "city": "Strasbourg",
+      "service_slug": "assistance-juridique",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D039",
+      "details": "Je souhaite obtenir des informations juridiques avant de prendre une décision concernant mon dossier.",
+      "id": "39-quote0039",
+      "created_at": "2026-03-18T10:45:00Z"
+    },
+    {
+      "full_name": "Gabriel Thomas",
+      "email": "gabriel.thomas40@gmail.com",
+      "phone": "688000040",
+      "country": "Belgium",
+      "city": "Brussels",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "veryUrgent",
+      "status": "in_progress",
+      "number": "D040",
+      "details": "Une intervention rapide est nécessaire pour effectuer une démarche administrative à ma place.",
+      "id": "40-quote0040",
+      "created_at": "2026-03-20T17:30:00Z"
+    },
+    {
+      "full_name": "Valérie Colin",
+      "email": "valerie.colin41@gmail.com",
+      "phone": "689000041",
+      "country": "France",
+      "city": "Rennes",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D041",
+      "details": "Je souhaite étudier un projet immobilier familial et connaître les possibilités d'investissement.",
+      "id": "41-quote0041",
+      "created_at": "2026-03-22T13:05:00Z"
+    },
+    {
+      "full_name": "Stéphane Marchand",
+      "email": "stephane.marchand42@gmail.com",
+      "phone": "690000042",
+      "country": "Canada",
+      "city": "Toronto",
+      "service_slug": "suivi-de-projets",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D042",
+      "details": "Je souhaite déléguer le suivi d'un chantier et recevoir des comptes rendus détaillés chaque semaine.",
+      "id": "42-quote0042",
+      "created_at": "2026-03-24T08:50:00Z"
+    },
+    {
+      "full_name": "Florence Dubois",
+      "email": "florence.dubois43@gmail.com",
+      "phone": "691000043",
+      "country": "France",
+      "city": "Paris",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D043",
+      "details": "Je souhaite faire vérifier rapidement les documents d'une propriété avant une opération importante.",
+      "id": "43-quote0043",
+      "created_at": "2026-03-26T15:15:00Z"
+    },
+    {
+      "full_name": "Eric Mvondo",
+      "email": "eric.mvondo44@gmail.com",
+      "phone": "692000044",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D044",
+      "details": "J'ai besoin d'un accompagnement pour plusieurs démarches administratives liées à mon activité.",
+      "id": "44-quote0044",
+      "created_at": "2026-03-28T11:40:00Z"
+    },
+    {
+      "full_name": "Julie Fontaine",
+      "email": "julie.fontaine45@gmail.com",
+      "phone": "693000045",
+      "country": "United Kingdom",
+      "city": "London",
+      "service_slug": "assistance-juridique",
+      "urgency": "urgent",
+      "status": "ended",
+      "number": "D045",
+      "details": "Je souhaite être conseillée sur les démarches juridiques à effectuer concernant une succession.",
+      "id": "45-quote0045",
+      "created_at": "2026-03-30T09:25:00Z"
+    },
+    {
+      "full_name": "Patrick Leroy",
+      "email": "patrick.leroy46@gmail.com",
+      "phone": "694000046",
+      "country": "France",
+      "city": "Lyon",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "canceled",
+      "number": "D046",
+      "details": "Je recherche une personne pouvant me représenter lors de certaines démarches au Cameroun.",
+      "id": "46-quote0046",
+      "created_at": "2026-04-01T14:00:00Z"
+    },
+    {
+      "full_name": "Chantal Ngassa",
+      "email": "chantal.ngassa47@gmail.com",
+      "phone": "695000047",
+      "country": "Cameroon",
+      "city": "Kribi",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D047",
+      "details": "Je souhaite investir dans un projet touristique et j'aimerais être accompagnée dans l'étude du dossier.",
+      "id": "47-quote0047",
+      "created_at": "2026-04-03T16:30:00Z"
+    },
+    {
+      "full_name": "Luc Bernard",
+      "email": "luc.bernard48@gmail.com",
+      "phone": "696000048",
+      "country": "Canada",
+      "city": "Montreal",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D048",
+      "details": "Je souhaite un suivi complet d'un projet de rénovation avec des photos et rapports réguliers.",
+      "id": "48-quote0048",
+      "created_at": "2026-04-05T10:20:00Z"
+    },
+    {
+      "full_name": "Martine Ndi",
+      "email": "martine.ndi49@gmail.com",
+      "phone": "697000049",
+      "country": "Cameroon",
+      "city": "Buea",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D049",
+      "details": "Je souhaite être accompagnée pour l'acquisition et la sécurisation d'un terrain familial.",
+      "id": "49-quote0049",
+      "created_at": "2026-04-07T12:15:00Z"
+    },
+    {
+      "full_name": "Daniel Morel",
+      "email": "daniel.morel50@gmail.com",
+      "phone": "698000050",
+      "country": "Switzerland",
+      "city": "Lausanne",
+      "service_slug": "gestion-administrative",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D050",
+      "details": "J'ai besoin d'une intervention rapide pour finaliser plusieurs démarches administratives au Cameroun.",
+      "id": "50-quote0050",
+      "created_at": "2026-04-09T18:45:00Z"
+    },
+    {
+      "full_name": "Aurélie Robert",
+      "email": "aurelie.robert51@gmail.com",
+      "phone": "699000051",
+      "country": "France",
+      "city": "Montpellier",
+      "service_slug": "assistance-juridique",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D051",
+      "details": "Je souhaite être accompagnée pour comprendre les implications juridiques de mon dossier.",
+      "id": "51-quote0051",
+      "created_at": "2026-04-11T09:10:00Z"
+    },
+    {
+      "full_name": "Jean-Paul Mbarga",
+      "email": "jeanpaul.mbarga52@gmail.com",
+      "phone": "650000052",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D052",
+      "details": "Je souhaite déléguer une démarche administrative à une personne capable de me représenter efficacement.",
+      "id": "52-quote0052",
+      "created_at": "2026-04-13T13:35:00Z"
+    },
+    {
+      "full_name": "Nathalie Roy",
+      "email": "nathalie.roy53@gmail.com",
+      "phone": "651000053",
+      "country": "Canada",
+      "city": "Quebec",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D053",
+      "details": "Je souhaite étudier plusieurs opportunités d'investissement avant de choisir un projet au Cameroun.",
+      "id": "53-quote0053",
+      "created_at": "2026-04-15T15:50:00Z"
+    },
+    {
+      "full_name": "Simon Girard",
+      "email": "simon.girard54@gmail.com",
+      "phone": "652000054",
+      "country": "France",
+      "city": "Grenoble",
+      "service_slug": "suivi-de-projets",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D054",
+      "details": "Je souhaite contrôler régulièrement l'avancement des travaux de construction de ma maison.",
+      "id": "54-quote0054",
+      "created_at": "2026-04-17T11:25:00Z"
+    },
+    {
+      "full_name": "Catherine Lefèvre",
+      "email": "catherine.lefevre55@gmail.com",
+      "phone": "653000055",
+      "country": "Belgium",
+      "city": "Liege",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "veryUrgent",
+      "status": "canceled",
+      "number": "D055",
+      "details": "Une vérification urgente de documents fonciers est nécessaire avant la prochaine étape de mon projet.",
+      "id": "55-quote0055",
+      "created_at": "2026-04-19T17:00:00Z"
+    },
+    {
+      "full_name": "Mickaël Thomas",
+      "email": "mickael.thomas56@gmail.com",
+      "phone": "654000056",
+      "country": "United States",
+      "city": "Chicago",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D056",
+      "details": "Je souhaite être accompagné dans la réalisation de plusieurs formalités administratives.",
+      "id": "56-quote0056",
+      "created_at": "2026-04-21T10:40:00Z"
+    },
+    {
+      "full_name": "Valentine Adam",
+      "email": "valentine.adam57@gmail.com",
+      "phone": "655000057",
+      "country": "France",
+      "city": "Nantes",
+      "service_slug": "assistance-juridique",
+      "urgency": "urgent",
+      "status": "ended",
+      "number": "D057",
+      "details": "Je souhaite obtenir une première orientation concernant un problème juridique au Cameroun.",
+      "id": "57-quote0057",
+      "created_at": "2026-04-23T14:20:00Z"
+    },
+    {
+      "full_name": "Richard Etoa",
+      "email": "richard.etoa58@gmail.com",
+      "phone": "656000058",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D058",
+      "details": "Je souhaite être représenté pour effectuer une démarche que je ne peux pas réaliser personnellement.",
+      "id": "58-quote0058",
+      "created_at": "2026-04-25T08:55:00Z"
+    },
+    {
+      "full_name": "Manon Perrier",
+      "email": "manon.perrier59@gmail.com",
+      "phone": "657000059",
+      "country": "France",
+      "city": "Paris",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D059",
+      "details": "Je souhaite obtenir un accompagnement pour analyser la rentabilité d'un projet immobilier.",
+      "id": "59-quote0059",
+      "created_at": "2026-04-27T16:15:00Z"
+    },
+    {
+      "full_name": "Franck Kamdem",
+      "email": "franck.kamdem60@gmail.com",
+      "phone": "658000060",
+      "country": "Cameroon",
+      "city": "Bafoussam",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D060",
+      "details": "Je souhaite faire suivre un chantier et recevoir des informations régulières sur son évolution.",
+      "id": "60-quote0060",
+      "created_at": "2026-04-29T12:30:00Z"
+    },
+    {
+      "full_name": "Isabelle Laurent",
+      "email": "isabelle.laurent61@gmail.com",
+      "phone": "659000061",
+      "country": "France",
+      "city": "Lyon",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D061",
+      "details": "Je souhaite vérifier les documents d'une parcelle avant de procéder à son acquisition.",
+      "id": "61-quote0061",
+      "created_at": "2026-05-01T09:45:00Z"
+    },
+    {
+      "full_name": "Hervé Njoya",
+      "email": "herve.njoya62@gmail.com",
+      "phone": "660000062",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "gestion-administrative",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D062",
+      "details": "J'ai plusieurs documents administratifs à faire traiter et je souhaite bénéficier d'un accompagnement.",
+      "id": "62-quote0062",
+      "created_at": "2026-05-03T15:00:00Z"
+    },
+    {
+      "full_name": "Anne Sophie Martin",
+      "email": "annesophie.martin63@gmail.com",
+      "phone": "661000063",
+      "country": "Canada",
+      "city": "Montreal",
+      "service_slug": "assistance-juridique",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D063",
+      "details": "Je recherche une assistance juridique dans les prochaines 48 heures concernant un dossier familial.",
+      "id": "63-quote0063",
+      "created_at": "2026-05-05T17:25:00Z"
+    },
+    {
+      "full_name": "Olivier Bernard",
+      "email": "olivier.bernard64@gmail.com",
+      "phone": "662000064",
+      "country": "France",
+      "city": "Bordeaux",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D064",
+      "details": "Je souhaite confier certaines démarches locales à un représentant de confiance.",
+      "id": "64-quote0064",
+      "created_at": "2026-05-07T11:10:00Z"
+    },
+    {
+      "full_name": "Éric Fontaine",
+      "email": "eric.fontaine65@gmail.com",
+      "phone": "663000065",
+      "country": "Switzerland",
+      "city": "Geneva",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D065",
+      "details": "Je souhaite étudier une opportunité d'investissement et bénéficier d'un accompagnement sur place.",
+      "id": "65-quote0065",
+      "created_at": "2026-05-09T13:45:00Z"
+    },
+    {
+      "full_name": "Laura Dubois",
+      "email": "laura.dubois66@gmail.com",
+      "phone": "664000066",
+      "country": "France",
+      "city": "Paris",
+      "service_slug": "suivi-de-projets",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D066",
+      "details": "Je souhaite suivre à distance l'avancement d'un projet de construction et obtenir des comptes rendus détaillés.",
+      "id": "66-quote0066",
+      "created_at": "2026-05-11T10:20:00Z"
+    },
+    {
+      "full_name": "Bernard Talla",
+      "email": "bernard.talla67@gmail.com",
+      "phone": "665000067",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "urgent",
+      "status": "canceled",
+      "number": "D067",
+      "details": "Je souhaite faire vérifier une propriété avant de poursuivre les négociations avec le vendeur.",
+      "id": "67-quote0067",
+      "created_at": "2026-05-13T16:55:00Z"
+    },
+    {
+      "full_name": "Chloé Richard",
+      "email": "chloe.richard68@gmail.com",
+      "phone": "666000068",
+      "country": "Belgium",
+      "city": "Brussels",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D068",
+      "details": "Je souhaite déléguer la gestion de plusieurs démarches administratives liées à mon projet.",
+      "id": "68-quote0068",
+      "created_at": "2026-05-15T09:30:00Z"
+    },
+    {
+      "full_name": "Thomas Leroy",
+      "email": "thomas.leroy69@gmail.com",
+      "phone": "667000069",
+      "country": "United States",
+      "city": "Miami",
+      "service_slug": "assistance-juridique",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D069",
+      "details": "Je souhaite obtenir un accompagnement juridique pour résoudre une situation concernant un bien immobilier.",
+      "id": "69-quote0069",
+      "created_at": "2026-05-17T14:05:00Z"
+    },
+    {
+      "full_name": "Marie-Claire Ngo",
+      "email": "marieclaire.ngo70@gmail.com",
+      "phone": "668000070",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D070",
+      "details": "J'ai besoin d'une représentation dans les plus brefs délais pour une démarche administrative importante.",
+      "id": "70-quote0070",
+      "created_at": "2026-05-19T18:20:00Z"
+    },
+    {
+      "full_name": "Alexandre Moreau",
+      "email": "alexandre.moreau71@gmail.com",
+      "phone": "669000071",
+      "country": "France",
+      "city": "Lille",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D071",
+      "details": "Je souhaite analyser les risques et les possibilités d'un investissement immobilier au Cameroun.",
+      "id": "71-quote0071",
+      "created_at": "2026-05-21T12:40:00Z"
+    },
+    {
+      "full_name": "Caroline Bernard",
+      "email": "caroline.bernard72@gmail.com",
+      "phone": "670000072",
+      "country": "Canada",
+      "city": "Ottawa",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D072",
+      "details": "Je souhaite recevoir des informations régulières sur l'avancement de mon projet immobilier au Cameroun.",
+      "id": "72-quote0072",
+      "created_at": "2026-05-23T15:10:00Z"
+    },
+    {
+      "full_name": "Jean Michel Essomba",
+      "email": "jeanmichel.essomba73@gmail.com",
+      "phone": "671000073",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D073",
+      "details": "Je souhaite bénéficier d'un accompagnement pour sécuriser l'achat d'un terrain.",
+      "id": "73-quote0073",
+      "created_at": "2026-05-25T10:35:00Z"
+    },
+    {
+      "full_name": "Sabrina Martin",
+      "email": "sabrina.martin74@gmail.com",
+      "phone": "672000074",
+      "country": "France",
+      "city": "Toulouse",
+      "service_slug": "gestion-administrative",
+      "urgency": "urgent",
+      "status": "ended",
+      "number": "D074",
+      "details": "Je souhaite être accompagnée pour effectuer des formalités administratives depuis l'étranger.",
+      "id": "74-quote0074",
+      "created_at": "2026-05-27T13:50:00Z"
+    },
+    {
+      "full_name": "François Ngono",
+      "email": "francois.ngono75@gmail.com",
+      "phone": "673000075",
+      "country": "Cameroon",
+      "city": "Bafoussam",
+      "service_slug": "assistance-juridique",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D075",
+      "details": "Je souhaite comprendre les différentes démarches juridiques nécessaires pour mon dossier.",
+      "id": "75-quote0075",
+      "created_at": "2026-05-29T08:15:00Z"
+    },
+    {
+      "full_name": "Emma Wilson",
+      "email": "emma.wilson76@gmail.com",
+      "phone": "674000076",
+      "country": "United Kingdom",
+      "city": "London",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D076",
+      "details": "I need someone in Cameroon to represent me during an important administrative procedure.",
+      "id": "76-quote0076",
+      "created_at": "2026-05-31T16:30:00Z"
+    },
+    {
+      "full_name": "Sébastien Roy",
+      "email": "sebastien.roy77@gmail.com",
+      "phone": "675000077",
+      "country": "Canada",
+      "city": "Montreal",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "veryUrgent",
+      "status": "canceled",
+      "number": "D077",
+      "details": "Je souhaitais obtenir rapidement une analyse d'un projet d'investissement avant de poursuivre les discussions.",
+      "id": "77-quote0077",
+      "created_at": "2026-06-02T11:45:00Z"
+    },
+    {
+      "full_name": "Amandine Lefort",
+      "email": "amandine.lefort78@gmail.com",
+      "phone": "676000078",
+      "country": "France",
+      "city": "Nice",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D078",
+      "details": "Je souhaite suivre à distance les travaux d'un projet immobilier familial.",
+      "id": "78-quote0078",
+      "created_at": "2026-06-04T14:25:00Z"
+    },
+    {
+      "full_name": "Armand Foko",
+      "email": "armand.foko79@gmail.com",
+      "phone": "677000079",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D079",
+      "details": "Je souhaite vérifier la situation juridique et foncière d'un terrain avant son acquisition.",
+      "id": "79-quote0079",
+      "created_at": "2026-06-06T09:00:00Z"
+    },
+    {
+      "full_name": "Lucie Bernard",
+      "email": "lucie.bernard80@gmail.com",
+      "phone": "678000080",
+      "country": "Belgium",
+      "city": "Brussels",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D080",
+      "details": "Je souhaite déléguer plusieurs formalités administratives qui nécessitent une présence au Cameroun.",
+      "id": "80-quote0080",
+      "created_at": "2026-06-08T13:15:00Z"
+    },
+    {
+      "full_name": "David Johnson",
+      "email": "david.johnson81@gmail.com",
+      "phone": "679000081",
+      "country": "United States",
+      "city": "Houston",
+      "service_slug": "assistance-juridique",
+      "urgency": "urgent",
+      "status": "ended",
+      "number": "D081",
+      "details": "I need legal assistance regarding a property-related matter in Cameroon.",
+      "id": "81-quote0081",
+      "created_at": "2026-06-10T17:40:00Z"
+    },
+    {
+      "full_name": "Mireille Tchoumi",
+      "email": "mireille.tchoumi82@gmail.com",
+      "phone": "680000082",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D082",
+      "details": "Je souhaite mandater un représentant pour gérer certaines démarches administratives à ma place.",
+      "id": "82-quote0082",
+      "created_at": "2026-06-12T10:30:00Z"
+    },
+    {
+      "full_name": "Nicolas Dupuis",
+      "email": "nicolas.dupuis83@gmail.com",
+      "phone": "681000083",
+      "country": "France",
+      "city": "Paris",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D083",
+      "details": "Je souhaite étudier un investissement immobilier et être accompagné dans les différentes étapes.",
+      "id": "83-quote0083",
+      "created_at": "2026-06-14T15:05:00Z"
+    },
+    {
+      "full_name": "Sarah Moreau",
+      "email": "sarah.moreau84@gmail.com",
+      "phone": "682000084",
+      "country": "Canada",
+      "city": "Toronto",
+      "service_slug": "suivi-de-projets",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D084",
+      "details": "Je souhaite mettre en place un suivi régulier de mon chantier avec des rapports détaillés.",
+      "id": "84-quote0084",
+      "created_at": "2026-06-16T12:50:00Z"
+    },
+    {
+      "full_name": "Alain Kamdem",
+      "email": "alain.kamdem85@gmail.com",
+      "phone": "683000085",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D085",
+      "details": "J'ai besoin d'une vérification urgente de documents fonciers avant une transaction prévue prochainement.",
+      "id": "85-quote0085",
+      "created_at": "2026-06-18T18:05:00Z"
+    },
+    {
+      "full_name": "Émilie Laurent",
+      "email": "emilie.laurent86@gmail.com",
+      "phone": "684000086",
+      "country": "France",
+      "city": "Lyon",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D086",
+      "details": "Je souhaite être accompagnée pour effectuer plusieurs démarches administratives liées à mon patrimoine.",
+      "id": "86-quote0086",
+      "created_at": "2026-06-20T09:35:00Z"
+    },
+    {
+      "full_name": "Robert Smith",
+      "email": "robert.smith87@gmail.com",
+      "phone": "685000087",
+      "country": "United States",
+      "city": "Los Angeles",
+      "service_slug": "assistance-juridique",
+      "urgency": "urgent",
+      "status": "in_progress",
+      "number": "D087",
+      "details": "I would like legal guidance regarding a family property matter in Cameroon.",
+      "id": "87-quote0087",
+      "created_at": "2026-06-22T14:20:00Z"
+    },
+    {
+      "full_name": "Joséphine Nono",
+      "email": "josephine.nono88@gmail.com",
+      "phone": "686000088",
+      "country": "Cameroon",
+      "city": "Kribi",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D088",
+      "details": "Je souhaite être représentée dans certaines démarches concernant un bien immobilier.",
+      "id": "88-quote0088",
+      "created_at": "2026-06-24T16:45:00Z"
+    },
+    {
+      "full_name": "Antoine Blanc",
+      "email": "antoine.blanc89@gmail.com",
+      "phone": "687000089",
+      "country": "Switzerland",
+      "city": "Zurich",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D089",
+      "details": "Je souhaite être accompagné dans l'étude d'une opportunité d'investissement au Cameroun.",
+      "id": "89-quote0089",
+      "created_at": "2026-06-26T11:30:00Z"
+    },
+    {
+      "full_name": "Claire Martin",
+      "email": "claire.martin90@gmail.com",
+      "phone": "688000090",
+      "country": "France",
+      "city": "Marseille",
+      "service_slug": "suivi-de-projets",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D090",
+      "details": "Je souhaite recevoir un compte rendu régulier sur l'état d'avancement de mon projet.",
+      "id": "90-quote0090",
+      "created_at": "2026-06-28T13:10:00Z"
+    },
+    {
+      "full_name": "Samuel Ekotto",
+      "email": "samuel.ekotto91@gmail.com",
+      "phone": "689000091",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "normal",
+      "status": "pending",
+      "number": "D091",
+      "details": "Je souhaite vérifier les documents relatifs à une parcelle avant de finaliser son acquisition.",
+      "id": "91-quote0091",
+      "created_at": "2026-06-30T10:00:00Z"
+    },
+    {
+      "full_name": "Élodie Bernard",
+      "email": "elodie.bernard92@gmail.com",
+      "phone": "690000092",
+      "country": "France",
+      "city": "Rennes",
+      "service_slug": "gestion-administrative",
+      "urgency": "urgent",
+      "status": "ended",
+      "number": "D092",
+      "details": "Je souhaite confier certaines formalités administratives à un représentant au Cameroun.",
+      "id": "92-quote0092",
+      "created_at": "2026-07-02T15:40:00Z"
+    },
+    {
+      "full_name": "Michael Brown",
+      "email": "michael.brown93@gmail.com",
+      "phone": "691000093",
+      "country": "United States",
+      "city": "New York",
+      "service_slug": "assistance-juridique",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D093",
+      "details": "I need urgent legal assistance regarding a property matter that requires local intervention.",
+      "id": "93-quote0093",
+      "created_at": "2026-07-04T17:15:00Z"
+    },
+    {
+      "full_name": "Carine Mballa",
+      "email": "carine.mballa94@gmail.com",
+      "phone": "692000094",
+      "country": "Cameroon",
+      "city": "Yaoundé",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D094",
+      "details": "Je souhaite être représentée dans une démarche nécessitant plusieurs déplacements auprès des administrations.",
+      "id": "94-quote0094",
+      "created_at": "2026-07-06T09:25:00Z"
+    },
+    {
+      "full_name": "Thomas Girard",
+      "email": "thomas.girard95@gmail.com",
+      "phone": "693000095",
+      "country": "Canada",
+      "city": "Vancouver",
+      "service_slug": "accompagnement-investissement",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D095",
+      "details": "Je souhaite analyser un projet d'investissement et avoir une estimation des démarches nécessaires.",
+      "id": "95-quote0095",
+      "created_at": "2026-07-08T12:35:00Z"
+    },
+    {
+      "full_name": "Sophie Lefèvre",
+      "email": "sophie.lefevre96@gmail.com",
+      "phone": "694000096",
+      "country": "France",
+      "city": "Bordeaux",
+      "service_slug": "suivi-de-projets",
+      "urgency": "urgent",
+      "status": "pending",
+      "number": "D096",
+      "details": "Je souhaite déléguer le suivi d'un projet de construction et recevoir des photos ainsi que des rapports.",
+      "id": "96-quote0096",
+      "created_at": "2026-07-10T14:50:00Z"
+    },
+    {
+      "full_name": "Christian Fongang",
+      "email": "christian.fongang97@gmail.com",
+      "phone": "695000097",
+      "country": "Cameroon",
+      "city": "Bafoussam",
+      "service_slug": "accompagnement-immobilier-foncier",
+      "urgency": "urgent",
+      "status": "canceled",
+      "number": "D097",
+      "details": "Je souhaite vérifier la conformité des documents d'une propriété avant de poursuivre la transaction.",
+      "id": "97-quote0097",
+      "created_at": "2026-07-12T16:20:00Z"
+    },
+    {
+      "full_name": "Nathalie Dupont",
+      "email": "nathalie.dupont98@gmail.com",
+      "phone": "696000098",
+      "country": "France",
+      "city": "Paris",
+      "service_slug": "gestion-administrative",
+      "urgency": "normal",
+      "status": "in_progress",
+      "number": "D098",
+      "details": "Je souhaite obtenir de l'aide pour gérer plusieurs formalités administratives à distance.",
+      "id": "98-quote0098",
+      "created_at": "2026-07-14T10:45:00Z"
+    },
+    {
+      "full_name": "Marc Williams",
+      "email": "marc.williams99@gmail.com",
+      "phone": "697000099",
+      "country": "United Kingdom",
+      "city": "Manchester",
+      "service_slug": "assistance-juridique",
+      "urgency": "normal",
+      "status": "ended",
+      "number": "D099",
+      "details": "I would like to receive legal guidance regarding an administrative matter in Cameroon.",
+      "id": "99-quote0099",
+      "created_at": "2026-07-16T13:25:00Z"
+    },
+    {
+      "full_name": "Françoise Ngo",
+      "email": "francoise.ngo100@gmail.com",
+      "phone": "698000100",
+      "country": "Cameroon",
+      "city": "Douala",
+      "service_slug": "representation-au-cameroun",
+      "urgency": "veryUrgent",
+      "status": "pending",
+      "number": "D100",
+      "details": "J'ai besoin d'une représentation rapide pour effectuer une démarche administrative importante avant une échéance proche.",
+      "id": "100-quote0100",
+      "created_at": "2026-07-18T18:00:00Z"
+    },
+    {
+      "full_name": "admin",
       "email": "admin@gmail.com",
       "phone": "652814435",
-      "residence_country": "",
-      "service_slug": "assistance-administrative",
-      "urgency": "normal",
-      "details": "Je suis un test",
-      "id": "F5Kwn4o4stA"
-    },
-    {
-      "name": "admin",
-      "email": "admin@gmail.com",
-      "phone": "691948056",
-      "residence_country": "",
-      "service_slug": "assistance-administrative",
-      "urgency": "normal",
-      "details": "Je suis un test",
-      "id": "HkcRcZlpREs"
-    },
-    {
-      "name": "admin",
-      "email": "admin@gmail.com",
-      "phone": "652814435",
-      "residence_country": "France",
+      "country": "Canada",
+      "city": "Shanghai",
       "service_slug": "accompagnement-immobilier-foncier",
-      "urgency": "normal",
-      "details": "Je suis un test",
-      "id": "tsFqCZ-X_10"
-    },
-    {
-      "name": "admin",
-      "email": "admin@gmail.com",
-      "phone": "652814435",
-      "residence_country": "Spain",
-      "service_slug": "accompagnement-immobilier-foncier",
-      "urgency": "normal",
-      "details": "Je suis un test",
-      "id": "9LsWwsziDQc"
-    },
-    {
-      "name": "admin",
-      "email": "admin@gmail.com",
-      "phone": "691948056",
-      "residence_country": "Cambodia",
-      "service_slug": "accompagnement-immobilier-foncier",
-      "urgency": "normal",
-      "details": "Je suis le test du Cambodia",
-      "id": "ToBBb1g3oYI"
-    },
-    {
-      "name": "admin",
-      "email": "admin@gmail.com",
-      "phone": "691948056",
-      "residence_country": "Cambodia",
-      "service_slug": "accompagnement-immobilier-foncier",
-      "urgency": "normal",
-      "details": "Je suis le test du Cambodia",
-      "id": "2-wHep67rAA"
+      "urgency": "urgent",
+      "details": "ujjjjjjjjjjj",
+      "id": "gOyl5fMeNSY"
     }
   ],
   "auth/me": {
@@ -2948,8 +4309,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/men/0.jpg",
-      "id": 1,
-      "created_at": "2026-01-01T00:00:00Z"
+      "id": "1",
+      "created_at": "2026-01-01T00:00:00Z",
+      "is_active": true
     },
     {
       "full_name": "Michael Davis",
@@ -2959,8 +4321,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
-      "id": 2,
-      "created_at": "2026-01-02T03:17:00Z"
+      "id": "2",
+      "created_at": "2026-01-02T03:17:00Z",
+      "is_active": true
     },
     {
       "full_name": "David White",
@@ -2970,8 +4333,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/men/2.jpg",
-      "id": 3,
-      "created_at": "2026-01-03T06:34:00Z"
+      "id": "3",
+      "created_at": "2026-01-03T06:34:00Z",
+      "is_active": true
     },
     {
       "full_name": "Daniel Moreau",
@@ -2981,8 +4345,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
-      "id": 4,
-      "created_at": "2026-01-04T09:51:00Z"
+      "id": "4",
+      "created_at": "2026-01-04T09:51:00Z",
+      "is_active": true
     },
     {
       "full_name": "James Simon",
@@ -2992,8 +4357,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
-      "id": 5,
-      "created_at": "2026-01-05T12:08:00Z"
+      "id": "5",
+      "created_at": "2026-01-05T12:08:00Z",
+      "is_active": true
     },
     {
       "full_name": "Robert Mballa",
@@ -3003,8 +4369,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
-      "id": 6,
-      "created_at": "2026-01-06T15:25:00Z"
+      "id": "6",
+      "created_at": "2026-01-06T15:25:00Z",
+      "is_active": true
     },
     {
       "full_name": "William Nguimfack",
@@ -3014,8 +4381,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/men/6.jpg",
-      "id": 7,
-      "created_at": "2026-01-07T18:42:00Z"
+      "id": "7",
+      "created_at": "2026-01-07T18:42:00Z",
+      "is_active": true
     },
     {
       "full_name": "Thomas Smith",
@@ -3025,8 +4393,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/men/7.jpg",
-      "id": 8,
-      "created_at": "2026-01-08T21:59:00Z"
+      "id": "8",
+      "created_at": "2026-01-08T21:59:00Z",
+      "is_active": true
     },
     {
       "full_name": "Joseph Wilson",
@@ -3036,8 +4405,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/men/8.jpg",
-      "id": 9,
-      "created_at": "2026-01-09T00:16:00Z"
+      "id": "9",
+      "created_at": "2026-01-09T00:16:00Z",
+      "is_active": true
     },
     {
       "full_name": "Charles Harris",
@@ -3047,8 +4417,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/men/9.jpg",
-      "id": 10,
-      "created_at": "2026-01-10T03:33:00Z"
+      "id": "10",
+      "created_at": "2026-01-10T03:33:00Z",
+      "is_active": true
     },
     {
       "full_name": "Christopher Laurent",
@@ -3058,8 +4429,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/men/10.jpg",
-      "id": 11,
-      "created_at": "2026-01-11T06:50:00Z"
+      "id": "11",
+      "created_at": "2026-01-11T06:50:00Z",
+      "is_active": true
     },
     {
       "full_name": "Matthew Michel",
@@ -3069,8 +4441,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/men/11.jpg",
-      "id": 12,
-      "created_at": "2026-01-12T09:07:00Z"
+      "id": "12",
+      "created_at": "2026-01-12T09:07:00Z",
+      "is_active": true
     },
     {
       "full_name": "Anthony Essomba",
@@ -3080,8 +4453,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/men/12.jpg",
-      "id": 13,
-      "created_at": "2026-01-13T12:24:00Z"
+      "id": "13",
+      "created_at": "2026-01-13T12:24:00Z",
+      "is_active": true
     },
     {
       "full_name": "Andrew Talla",
@@ -3091,8 +4465,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/men/13.jpg",
-      "id": 14,
-      "created_at": "2026-01-14T15:41:00Z"
+      "id": "14",
+      "created_at": "2026-01-14T15:41:00Z",
+      "is_active": true
     },
     {
       "full_name": "Joshua Johnson",
@@ -3102,8 +4477,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/men/14.jpg",
-      "id": 15,
-      "created_at": "2026-01-15T18:58:00Z"
+      "id": "15",
+      "created_at": "2026-01-15T18:58:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ryan Moore",
@@ -3113,8 +4489,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/men/15.jpg",
-      "id": 16,
-      "created_at": "2026-01-16T21:15:00Z"
+      "id": "16",
+      "created_at": "2026-01-16T21:15:00Z",
+      "is_active": true
     },
     {
       "full_name": "Kevin Martin",
@@ -3124,8 +4501,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/men/16.jpg",
-      "id": 17,
-      "created_at": "2026-01-17T00:32:00Z"
+      "id": "17",
+      "created_at": "2026-01-17T00:32:00Z",
+      "is_active": true
     },
     {
       "full_name": "Brian Bernard",
@@ -3135,8 +4513,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/men/17.jpg",
-      "id": 18,
-      "created_at": "2026-01-18T03:49:00Z"
+      "id": "18",
+      "created_at": "2026-01-18T03:49:00Z",
+      "is_active": true
     },
     {
       "full_name": "Eric Kamdem",
@@ -3146,8 +4525,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/men/18.jpg",
-      "id": 19,
-      "created_at": "2026-01-19T06:06:00Z"
+      "id": "19",
+      "created_at": "2026-01-19T06:06:00Z",
+      "is_active": true
     },
     {
       "full_name": "Jason Nana",
@@ -3157,8 +4537,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/men/19.jpg",
-      "id": 20,
-      "created_at": "2026-01-20T09:23:00Z"
+      "id": "20",
+      "created_at": "2026-01-20T09:23:00Z",
+      "is_active": true
     },
     {
       "full_name": "Emma Atangana",
@@ -3168,8 +4549,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/women/20.jpg",
-      "id": 21,
-      "created_at": "2026-01-21T12:40:00Z"
+      "id": "21",
+      "created_at": "2026-01-21T12:40:00Z",
+      "is_active": true
     },
     {
       "full_name": "Olivia Brown",
@@ -3179,8 +4561,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/women/21.jpg",
-      "id": 22,
-      "created_at": "2026-01-22T15:57:00Z"
+      "id": "22",
+      "created_at": "2026-01-22T15:57:00Z",
+      "is_active": true
     },
     {
       "full_name": "Sophia Taylor",
@@ -3190,8 +4573,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/women/22.jpg",
-      "id": 23,
-      "created_at": "2026-01-23T18:14:00Z"
+      "id": "23",
+      "created_at": "2026-01-23T18:14:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ava Thompson",
@@ -3201,8 +4585,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/women/23.jpg",
-      "id": 24,
-      "created_at": "2026-01-24T21:31:00Z"
+      "id": "24",
+      "created_at": "2026-01-24T21:31:00Z",
+      "is_active": true
     },
     {
       "full_name": "Isabella Robert",
@@ -3212,8 +4597,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/women/24.jpg",
-      "id": 25,
-      "created_at": "2026-01-25T00:48:00Z"
+      "id": "25",
+      "created_at": "2026-01-25T00:48:00Z",
+      "is_active": true
     },
     {
       "full_name": "Mia Mbarga",
@@ -3223,8 +4609,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/women/25.jpg",
-      "id": 26,
-      "created_at": "2026-01-26T03:05:00Z"
+      "id": "26",
+      "created_at": "2026-01-26T03:05:00Z",
+      "is_active": true
     },
     {
       "full_name": "Charlotte Tchoumi",
@@ -3234,8 +4621,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/women/26.jpg",
-      "id": 27,
-      "created_at": "2026-01-27T06:22:00Z"
+      "id": "27",
+      "created_at": "2026-01-27T06:22:00Z",
+      "is_active": true
     },
     {
       "full_name": "Amelia Mekongo",
@@ -3245,8 +4633,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/women/27.jpg",
-      "id": 28,
-      "created_at": "2026-01-28T09:39:00Z"
+      "id": "28",
+      "created_at": "2026-01-28T09:39:00Z",
+      "is_active": true
     },
     {
       "full_name": "Harper Williams",
@@ -3256,8 +4645,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/women/28.jpg",
-      "id": 29,
-      "created_at": "2026-01-29T12:56:00Z"
+      "id": "29",
+      "created_at": "2026-01-29T12:56:00Z",
+      "is_active": true
     },
     {
       "full_name": "Evelyn Anderson",
@@ -3267,8 +4657,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/women/29.jpg",
-      "id": 30,
-      "created_at": "2026-01-30T15:13:00Z"
+      "id": "30",
+      "created_at": "2026-01-30T15:13:00Z",
+      "is_active": true
     },
     {
       "full_name": "Grace Garcia",
@@ -3278,8 +4669,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/women/30.jpg",
-      "id": 31,
-      "created_at": "2026-01-31T18:30:00Z"
+      "id": "31",
+      "created_at": "2026-01-31T18:30:00Z",
+      "is_active": true
     },
     {
       "full_name": "Chloe Petit",
@@ -3289,8 +4681,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/women/31.jpg",
-      "id": 32,
-      "created_at": "2026-02-01T21:47:00Z"
+      "id": "32",
+      "created_at": "2026-02-01T21:47:00Z",
+      "is_active": true
     },
     {
       "full_name": "Victoria Ndi",
@@ -3300,8 +4693,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/women/32.jpg",
-      "id": 33,
-      "created_at": "2026-02-02T00:04:00Z"
+      "id": "33",
+      "created_at": "2026-02-02T00:04:00Z",
+      "is_active": true
     },
     {
       "full_name": "Lily Ngangue",
@@ -3311,8 +4705,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/women/33.jpg",
-      "id": 34,
-      "created_at": "2026-02-03T03:21:00Z"
+      "id": "34",
+      "created_at": "2026-02-03T03:21:00Z",
+      "is_active": true
     },
     {
       "full_name": "Hannah Ndomo",
@@ -3322,8 +4717,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/women/34.jpg",
-      "id": 35,
-      "created_at": "2026-02-04T06:38:00Z"
+      "id": "35",
+      "created_at": "2026-02-04T06:38:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ella Jones",
@@ -3333,8 +4729,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/women/35.jpg",
-      "id": 36,
-      "created_at": "2026-02-05T09:55:00Z"
+      "id": "36",
+      "created_at": "2026-02-05T09:55:00Z",
+      "is_active": true
     },
     {
       "full_name": "Zoe Thomas",
@@ -3344,8 +4741,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/women/36.jpg",
-      "id": 37,
-      "created_at": "2026-02-06T12:12:00Z"
+      "id": "37",
+      "created_at": "2026-02-06T12:12:00Z",
+      "is_active": true
     },
     {
       "full_name": "Camille Martinez",
@@ -3355,8 +4753,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/women/37.jpg",
-      "id": 38,
-      "created_at": "2026-02-07T15:29:00Z"
+      "id": "38",
+      "created_at": "2026-02-07T15:29:00Z",
+      "is_active": true
     },
     {
       "full_name": "Claire Durand",
@@ -3366,8 +4765,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/women/38.jpg",
-      "id": 39,
-      "created_at": "2026-02-08T18:46:00Z"
+      "id": "39",
+      "created_at": "2026-02-08T18:46:00Z",
+      "is_active": true
     },
     {
       "full_name": "Sophie Fouda",
@@ -3377,8 +4777,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/women/39.jpg",
-      "id": 40,
-      "created_at": "2026-02-09T21:03:00Z"
+      "id": "40",
+      "created_at": "2026-02-09T21:03:00Z",
+      "is_active": true
     },
     {
       "full_name": "Nicolas Manga",
@@ -3388,8 +4789,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/men/40.jpg",
-      "id": 41,
-      "created_at": "2026-02-10T00:20:00Z"
+      "id": "41",
+      "created_at": "2026-02-10T00:20:00Z",
+      "is_active": true
     },
     {
       "full_name": "Lucas Ndjock",
@@ -3399,8 +4801,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/men/41.jpg",
-      "id": 42,
-      "created_at": "2026-02-11T03:37:00Z"
+      "id": "42",
+      "created_at": "2026-02-11T03:37:00Z",
+      "is_active": true
     },
     {
       "full_name": "Gabriel Miller",
@@ -3410,8 +4813,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/men/42.jpg",
-      "id": 43,
-      "created_at": "2026-02-12T06:54:00Z"
+      "id": "43",
+      "created_at": "2026-02-12T06:54:00Z",
+      "is_active": true
     },
     {
       "full_name": "Nathan Jackson",
@@ -3421,8 +4825,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/men/43.jpg",
-      "id": 44,
-      "created_at": "2026-02-13T09:11:00Z"
+      "id": "44",
+      "created_at": "2026-02-13T09:11:00Z",
+      "is_active": true
     },
     {
       "full_name": "Alexandre Dupont",
@@ -3432,8 +4837,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/men/44.jpg",
-      "id": 45,
-      "created_at": "2026-02-14T12:28:00Z"
+      "id": "45",
+      "created_at": "2026-02-14T12:28:00Z",
+      "is_active": true
     },
     {
       "full_name": "Julien Leroy",
@@ -3443,8 +4849,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/men/45.jpg",
-      "id": 46,
-      "created_at": "2026-02-15T15:45:00Z"
+      "id": "46",
+      "created_at": "2026-02-15T15:45:00Z",
+      "is_active": true
     },
     {
       "full_name": "Antoine Ngono",
@@ -3454,8 +4861,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/men/46.jpg",
-      "id": 47,
-      "created_at": "2026-02-16T18:02:00Z"
+      "id": "47",
+      "created_at": "2026-02-16T18:02:00Z",
+      "is_active": true
     },
     {
       "full_name": "Maxime Fotso",
@@ -3465,8 +4873,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/men/47.jpg",
-      "id": 48,
-      "created_at": "2026-02-17T21:19:00Z"
+      "id": "48",
+      "created_at": "2026-02-17T21:19:00Z",
+      "is_active": true
     },
     {
       "full_name": "Hugo Doe",
@@ -3476,8 +4885,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/men/48.jpg",
-      "id": 49,
-      "created_at": "2026-02-18T00:36:00Z"
+      "id": "49",
+      "created_at": "2026-02-18T00:36:00Z",
+      "is_active": true
     },
     {
       "full_name": "Amina Davis",
@@ -3487,8 +4897,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/women/49.jpg",
-      "id": 50,
-      "created_at": "2026-02-19T03:53:00Z"
+      "id": "50",
+      "created_at": "2026-02-19T03:53:00Z",
+      "is_active": true
     },
     {
       "full_name": "Fatou White",
@@ -3498,8 +4909,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/women/50.jpg",
-      "id": 51,
-      "created_at": "2026-02-20T06:10:00Z"
+      "id": "51",
+      "created_at": "2026-02-20T06:10:00Z",
+      "is_active": true
     },
     {
       "full_name": "Mariam Moreau",
@@ -3509,8 +4921,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/women/51.jpg",
-      "id": 52,
-      "created_at": "2026-02-21T09:27:00Z"
+      "id": "52",
+      "created_at": "2026-02-21T09:27:00Z",
+      "is_active": true
     },
     {
       "full_name": "Sarah Simon",
@@ -3520,8 +4933,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/women/52.jpg",
-      "id": 53,
-      "created_at": "2026-02-22T12:44:00Z"
+      "id": "53",
+      "created_at": "2026-02-22T12:44:00Z",
+      "is_active": true
     },
     {
       "full_name": "Nadia Mballa",
@@ -3531,8 +4945,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/women/53.jpg",
-      "id": 54,
-      "created_at": "2026-02-23T15:01:00Z"
+      "id": "54",
+      "created_at": "2026-02-23T15:01:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ines Nguimfack",
@@ -3542,8 +4957,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/women/54.jpg",
-      "id": 55,
-      "created_at": "2026-02-24T18:18:00Z"
+      "id": "55",
+      "created_at": "2026-02-24T18:18:00Z",
+      "is_active": true
     },
     {
       "full_name": "Leila Smith",
@@ -3553,8 +4969,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/women/55.jpg",
-      "id": 56,
-      "created_at": "2026-02-25T21:35:00Z"
+      "id": "56",
+      "created_at": "2026-02-25T21:35:00Z",
+      "is_active": true
     },
     {
       "full_name": "Yasmine Wilson",
@@ -3564,8 +4981,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/women/56.jpg",
-      "id": 57,
-      "created_at": "2026-02-26T00:52:00Z"
+      "id": "57",
+      "created_at": "2026-02-26T00:52:00Z",
+      "is_active": true
     },
     {
       "full_name": "Aya Harris",
@@ -3575,8 +4993,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/women/57.jpg",
-      "id": 58,
-      "created_at": "2026-02-27T03:09:00Z"
+      "id": "58",
+      "created_at": "2026-02-27T03:09:00Z",
+      "is_active": true
     },
     {
       "full_name": "Rania Laurent",
@@ -3586,8 +5005,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/women/58.jpg",
-      "id": 59,
-      "created_at": "2026-02-28T06:26:00Z"
+      "id": "59",
+      "created_at": "2026-02-28T06:26:00Z",
+      "is_active": true
     },
     {
       "full_name": "John Michel",
@@ -3597,8 +5017,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/men/59.jpg",
-      "id": 60,
-      "created_at": "2026-03-01T09:43:00Z"
+      "id": "60",
+      "created_at": "2026-03-01T09:43:00Z",
+      "is_active": true
     },
     {
       "full_name": "Michael Essomba",
@@ -3608,8 +5029,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/men/60.jpg",
-      "id": 61,
-      "created_at": "2026-03-02T12:00:00Z"
+      "id": "61",
+      "created_at": "2026-03-02T12:00:00Z",
+      "is_active": true
     },
     {
       "full_name": "David Talla",
@@ -3619,8 +5041,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/men/61.jpg",
-      "id": 62,
-      "created_at": "2026-03-03T15:17:00Z"
+      "id": "62",
+      "created_at": "2026-03-03T15:17:00Z",
+      "is_active": true
     },
     {
       "full_name": "Daniel Johnson",
@@ -3630,8 +5053,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/men/62.jpg",
-      "id": 63,
-      "created_at": "2026-03-04T18:34:00Z"
+      "id": "63",
+      "created_at": "2026-03-04T18:34:00Z",
+      "is_active": true
     },
     {
       "full_name": "James Moore",
@@ -3641,8 +5065,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/men/63.jpg",
-      "id": 64,
-      "created_at": "2026-03-05T21:51:00Z"
+      "id": "64",
+      "created_at": "2026-03-05T21:51:00Z",
+      "is_active": true
     },
     {
       "full_name": "Robert Martin",
@@ -3652,8 +5077,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/men/64.jpg",
-      "id": 65,
-      "created_at": "2026-03-06T00:08:00Z"
+      "id": "65",
+      "created_at": "2026-03-06T00:08:00Z",
+      "is_active": true
     },
     {
       "full_name": "William Bernard",
@@ -3663,8 +5089,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/men/65.jpg",
-      "id": 66,
-      "created_at": "2026-03-07T03:25:00Z"
+      "id": "66",
+      "created_at": "2026-03-07T03:25:00Z",
+      "is_active": true
     },
     {
       "full_name": "Thomas Kamdem",
@@ -3674,8 +5101,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/men/66.jpg",
-      "id": 67,
-      "created_at": "2026-03-08T06:42:00Z"
+      "id": "67",
+      "created_at": "2026-03-08T06:42:00Z",
+      "is_active": true
     },
     {
       "full_name": "Joseph Nana",
@@ -3685,8 +5113,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/men/67.jpg",
-      "id": 68,
-      "created_at": "2026-03-09T09:59:00Z"
+      "id": "68",
+      "created_at": "2026-03-09T09:59:00Z",
+      "is_active": true
     },
     {
       "full_name": "Charles Atangana",
@@ -3696,8 +5125,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/men/68.jpg",
-      "id": 69,
-      "created_at": "2026-03-10T12:16:00Z"
+      "id": "69",
+      "created_at": "2026-03-10T12:16:00Z",
+      "is_active": true
     },
     {
       "full_name": "Christopher Brown",
@@ -3707,8 +5137,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/men/69.jpg",
-      "id": 70,
-      "created_at": "2026-03-11T15:33:00Z"
+      "id": "70",
+      "created_at": "2026-03-11T15:33:00Z",
+      "is_active": true
     },
     {
       "full_name": "Matthew Taylor",
@@ -3718,8 +5149,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/men/70.jpg",
-      "id": 71,
-      "created_at": "2026-03-12T18:50:00Z"
+      "id": "71",
+      "created_at": "2026-03-12T18:50:00Z",
+      "is_active": true
     },
     {
       "full_name": "Anthony Thompson",
@@ -3729,8 +5161,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/men/71.jpg",
-      "id": 72,
-      "created_at": "2026-03-13T21:07:00Z"
+      "id": "72",
+      "created_at": "2026-03-13T21:07:00Z",
+      "is_active": true
     },
     {
       "full_name": "Andrew Robert",
@@ -3740,8 +5173,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/men/72.jpg",
-      "id": 73,
-      "created_at": "2026-03-14T00:24:00Z"
+      "id": "73",
+      "created_at": "2026-03-14T00:24:00Z",
+      "is_active": true
     },
     {
       "full_name": "Joshua Mbarga",
@@ -3751,8 +5185,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/men/73.jpg",
-      "id": 74,
-      "created_at": "2026-03-15T03:41:00Z"
+      "id": "74",
+      "created_at": "2026-03-15T03:41:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ryan Tchoumi",
@@ -3762,8 +5197,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/men/74.jpg",
-      "id": 75,
-      "created_at": "2026-03-16T06:58:00Z"
+      "id": "75",
+      "created_at": "2026-03-16T06:58:00Z",
+      "is_active": true
     },
     {
       "full_name": "Kevin Mekongo",
@@ -3773,8 +5209,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/men/75.jpg",
-      "id": 76,
-      "created_at": "2026-03-17T09:15:00Z"
+      "id": "76",
+      "created_at": "2026-03-17T09:15:00Z",
+      "is_active": true
     },
     {
       "full_name": "Brian Williams",
@@ -3784,8 +5221,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/men/76.jpg",
-      "id": 77,
-      "created_at": "2026-03-18T12:32:00Z"
+      "id": "77",
+      "created_at": "2026-03-18T12:32:00Z",
+      "is_active": true
     },
     {
       "full_name": "Eric Anderson",
@@ -3795,8 +5233,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/men/77.jpg",
-      "id": 78,
-      "created_at": "2026-03-19T15:49:00Z"
+      "id": "78",
+      "created_at": "2026-03-19T15:49:00Z",
+      "is_active": true
     },
     {
       "full_name": "Jason Garcia",
@@ -3806,8 +5245,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/men/78.jpg",
-      "id": 79,
-      "created_at": "2026-03-20T18:06:00Z"
+      "id": "79",
+      "created_at": "2026-03-20T18:06:00Z",
+      "is_active": true
     },
     {
       "full_name": "Emma Petit",
@@ -3817,8 +5257,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/women/79.jpg",
-      "id": 80,
-      "created_at": "2026-03-21T21:23:00Z"
+      "id": "80",
+      "created_at": "2026-03-21T21:23:00Z",
+      "is_active": true
     },
     {
       "full_name": "Olivia Ndi",
@@ -3828,8 +5269,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/women/80.jpg",
-      "id": 81,
-      "created_at": "2026-03-22T00:40:00Z"
+      "id": "81",
+      "created_at": "2026-03-22T00:40:00Z",
+      "is_active": true
     },
     {
       "full_name": "Sophia Ngangue",
@@ -3839,8 +5281,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/women/81.jpg",
-      "id": 82,
-      "created_at": "2026-03-23T03:57:00Z"
+      "id": "82",
+      "created_at": "2026-03-23T03:57:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ava Ndomo",
@@ -3850,8 +5293,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/women/82.jpg",
-      "id": 83,
-      "created_at": "2026-03-24T06:14:00Z"
+      "id": "83",
+      "created_at": "2026-03-24T06:14:00Z",
+      "is_active": true
     },
     {
       "full_name": "Isabella Jones",
@@ -3861,8 +5305,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/women/83.jpg",
-      "id": 84,
-      "created_at": "2026-03-25T09:31:00Z"
+      "id": "84",
+      "created_at": "2026-03-25T09:31:00Z",
+      "is_active": true
     },
     {
       "full_name": "Mia Thomas",
@@ -3872,8 +5317,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/women/84.jpg",
-      "id": 85,
-      "created_at": "2026-03-26T12:48:00Z"
+      "id": "85",
+      "created_at": "2026-03-26T12:48:00Z",
+      "is_active": true
     },
     {
       "full_name": "Charlotte Martinez",
@@ -3883,8 +5329,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/women/85.jpg",
-      "id": 86,
-      "created_at": "2026-03-27T15:05:00Z"
+      "id": "86",
+      "created_at": "2026-03-27T15:05:00Z",
+      "is_active": true
     },
     {
       "full_name": "Amelia Durand",
@@ -3894,8 +5341,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/women/86.jpg",
-      "id": 87,
-      "created_at": "2026-03-28T18:22:00Z"
+      "id": "87",
+      "created_at": "2026-03-28T18:22:00Z",
+      "is_active": true
     },
     {
       "full_name": "Harper Fouda",
@@ -3905,8 +5353,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/women/87.jpg",
-      "id": 88,
-      "created_at": "2026-03-29T21:39:00Z"
+      "id": "88",
+      "created_at": "2026-03-29T21:39:00Z",
+      "is_active": true
     },
     {
       "full_name": "Evelyn Manga",
@@ -3916,8 +5365,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/women/88.jpg",
-      "id": 89,
-      "created_at": "2026-03-30T00:56:00Z"
+      "id": "89",
+      "created_at": "2026-03-30T00:56:00Z",
+      "is_active": true
     },
     {
       "full_name": "Grace Ndjock",
@@ -3927,8 +5377,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/women/89.jpg",
-      "id": 90,
-      "created_at": "2026-03-31T03:13:00Z"
+      "id": "90",
+      "created_at": "2026-03-31T03:13:00Z",
+      "is_active": true
     },
     {
       "full_name": "Chloe Miller",
@@ -3938,8 +5389,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/women/90.jpg",
-      "id": 91,
-      "created_at": "2026-04-01T06:30:00Z"
+      "id": "91",
+      "created_at": "2026-04-01T06:30:00Z",
+      "is_active": true
     },
     {
       "full_name": "Victoria Jackson",
@@ -3949,8 +5401,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/women/91.jpg",
-      "id": 92,
-      "created_at": "2026-04-02T09:47:00Z"
+      "id": "92",
+      "created_at": "2026-04-02T09:47:00Z",
+      "is_active": true
     },
     {
       "full_name": "Lily Dupont",
@@ -3960,8 +5413,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/women/92.jpg",
-      "id": 93,
-      "created_at": "2026-04-03T12:04:00Z"
+      "id": "93",
+      "created_at": "2026-04-03T12:04:00Z",
+      "is_active": true
     },
     {
       "full_name": "Hannah Leroy",
@@ -3971,8 +5425,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/women/93.jpg",
-      "id": 94,
-      "created_at": "2026-04-04T15:21:00Z"
+      "id": "94",
+      "created_at": "2026-04-04T15:21:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ella Ngono",
@@ -3982,8 +5437,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/women/94.jpg",
-      "id": 95,
-      "created_at": "2026-04-05T18:38:00Z"
+      "id": "95",
+      "created_at": "2026-04-05T18:38:00Z",
+      "is_active": true
     },
     {
       "full_name": "Zoe Fotso",
@@ -3993,8 +5449,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/women/95.jpg",
-      "id": 96,
-      "created_at": "2026-04-06T21:55:00Z"
+      "id": "96",
+      "created_at": "2026-04-06T21:55:00Z",
+      "is_active": true
     },
     {
       "full_name": "Camille Doe",
@@ -4004,8 +5461,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/women/96.jpg",
-      "id": 97,
-      "created_at": "2026-04-07T00:12:00Z"
+      "id": "97",
+      "created_at": "2026-04-07T00:12:00Z",
+      "is_active": true
     },
     {
       "full_name": "Claire Davis",
@@ -4015,8 +5473,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/women/97.jpg",
-      "id": 98,
-      "created_at": "2026-04-08T03:29:00Z"
+      "id": "98",
+      "created_at": "2026-04-08T03:29:00Z",
+      "is_active": true
     },
     {
       "full_name": "Sophie White",
@@ -4026,8 +5485,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/women/98.jpg",
-      "id": 99,
-      "created_at": "2026-04-09T06:46:00Z"
+      "id": "99",
+      "created_at": "2026-04-09T06:46:00Z",
+      "is_active": true
     },
     {
       "full_name": "Nicolas Moreau",
@@ -4037,8 +5497,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/men/99.jpg",
-      "id": 100,
-      "created_at": "2026-04-10T09:03:00Z"
+      "id": "100",
+      "created_at": "2026-04-10T09:03:00Z",
+      "is_active": true
     },
     {
       "full_name": "Lucas Simon",
@@ -4048,8 +5509,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/men/0.jpg",
-      "id": 101,
-      "created_at": "2026-04-11T12:20:00Z"
+      "id": "101",
+      "created_at": "2026-04-11T12:20:00Z",
+      "is_active": true
     },
     {
       "full_name": "Gabriel Mballa",
@@ -4059,8 +5521,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
-      "id": 102,
-      "created_at": "2026-04-12T15:37:00Z"
+      "id": "102",
+      "created_at": "2026-04-12T15:37:00Z",
+      "is_active": true
     },
     {
       "full_name": "Nathan Nguimfack",
@@ -4070,8 +5533,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/men/2.jpg",
-      "id": 103,
-      "created_at": "2026-04-13T18:54:00Z"
+      "id": "103",
+      "created_at": "2026-04-13T18:54:00Z",
+      "is_active": true
     },
     {
       "full_name": "Alexandre Smith",
@@ -4081,8 +5545,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
-      "id": 104,
-      "created_at": "2026-04-14T21:11:00Z"
+      "id": "104",
+      "created_at": "2026-04-14T21:11:00Z",
+      "is_active": true
     },
     {
       "full_name": "Julien Wilson",
@@ -4092,8 +5557,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/men/4.jpg",
-      "id": 105,
-      "created_at": "2026-04-15T00:28:00Z"
+      "id": "105",
+      "created_at": "2026-04-15T00:28:00Z",
+      "is_active": true
     },
     {
       "full_name": "Antoine Harris",
@@ -4103,8 +5569,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
-      "id": 106,
-      "created_at": "2026-04-16T03:45:00Z"
+      "id": "106",
+      "created_at": "2026-04-16T03:45:00Z",
+      "is_active": true
     },
     {
       "full_name": "Maxime Laurent",
@@ -4114,8 +5581,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/men/6.jpg",
-      "id": 107,
-      "created_at": "2026-04-17T06:02:00Z"
+      "id": "107",
+      "created_at": "2026-04-17T06:02:00Z",
+      "is_active": true
     },
     {
       "full_name": "Hugo Michel",
@@ -4125,8 +5593,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/men/7.jpg",
-      "id": 108,
-      "created_at": "2026-04-18T09:19:00Z"
+      "id": "108",
+      "created_at": "2026-04-18T09:19:00Z",
+      "is_active": true
     },
     {
       "full_name": "Amina Essomba",
@@ -4136,8 +5605,9 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/women/8.jpg",
-      "id": 109,
-      "created_at": "2026-04-19T12:36:00Z"
+      "id": "109",
+      "created_at": "2026-04-19T12:36:00Z",
+      "is_active": true
     },
     {
       "full_name": "Fatou Talla",
@@ -4147,8 +5617,9 @@
       "country": "Royaume-Uni",
       "city": "London",
       "avatar": "https://randomuser.me/api/portraits/women/9.jpg",
-      "id": 110,
-      "created_at": "2026-04-20T15:53:00Z"
+      "id": "110",
+      "created_at": "2026-04-20T15:53:00Z",
+      "is_active": true
     },
     {
       "full_name": "Mariam Johnson",
@@ -4158,8 +5629,9 @@
       "country": "Cameroun",
       "city": "Douala",
       "avatar": "https://randomuser.me/api/portraits/women/10.jpg",
-      "id": 111,
-      "created_at": "2026-04-21T18:10:00Z"
+      "id": "111",
+      "created_at": "2026-04-21T18:10:00Z",
+      "is_active": true
     },
     {
       "full_name": "Sarah Moore",
@@ -4169,8 +5641,9 @@
       "country": "Cameroun",
       "city": "Yaounde",
       "avatar": "https://randomuser.me/api/portraits/women/11.jpg",
-      "id": 112,
-      "created_at": "2026-04-22T21:27:00Z"
+      "id": "112",
+      "created_at": "2026-04-22T21:27:00Z",
+      "is_active": true
     },
     {
       "full_name": "Nadia Martin",
@@ -4180,8 +5653,9 @@
       "country": "Cameroun",
       "city": "Bafoussam",
       "avatar": "https://randomuser.me/api/portraits/women/12.jpg",
-      "id": 113,
-      "created_at": "2026-04-23T00:44:00Z"
+      "id": "113",
+      "created_at": "2026-04-23T00:44:00Z",
+      "is_active": true
     },
     {
       "full_name": "Ines Bernard",
@@ -4191,8 +5665,9 @@
       "country": "Cameroun",
       "city": "Kribi",
       "avatar": "https://randomuser.me/api/portraits/women/13.jpg",
-      "id": 114,
-      "created_at": "2026-04-24T03:01:00Z"
+      "id": "114",
+      "created_at": "2026-04-24T03:01:00Z",
+      "is_active": true
     },
     {
       "full_name": "Leila Kamdem",
@@ -4202,8 +5677,9 @@
       "country": "Cameroun",
       "city": "Limbe",
       "avatar": "https://randomuser.me/api/portraits/women/14.jpg",
-      "id": 115,
-      "created_at": "2026-04-25T06:18:00Z"
+      "id": "115",
+      "created_at": "2026-04-25T06:18:00Z",
+      "is_active": true
     },
     {
       "full_name": "Yasmine Nana",
@@ -4213,8 +5689,9 @@
       "country": "France",
       "city": "Paris",
       "avatar": "https://randomuser.me/api/portraits/women/15.jpg",
-      "id": 116,
-      "created_at": "2026-04-26T09:35:00Z"
+      "id": "116",
+      "created_at": "2026-04-26T09:35:00Z",
+      "is_active": true
     },
     {
       "full_name": "Aya Atangana",
@@ -4224,8 +5701,9 @@
       "country": "France",
       "city": "Lyon",
       "avatar": "https://randomuser.me/api/portraits/women/16.jpg",
-      "id": 117,
-      "created_at": "2026-04-27T12:52:00Z"
+      "id": "117",
+      "created_at": "2026-04-27T12:52:00Z",
+      "is_active": true
     },
     {
       "full_name": "Rania Brown",
@@ -4235,8 +5713,9 @@
       "country": "Canada",
       "city": "Montreal",
       "avatar": "https://randomuser.me/api/portraits/women/17.jpg",
-      "id": 118,
-      "created_at": "2026-04-28T15:09:00Z"
+      "id": "118",
+      "created_at": "2026-04-28T15:09:00Z",
+      "is_active": true
     },
     {
       "full_name": "John Taylor",
@@ -4246,8 +5725,9 @@
       "country": "Canada",
       "city": "Quebec",
       "avatar": "https://randomuser.me/api/portraits/men/18.jpg",
-      "id": 119,
-      "created_at": "2026-04-29T18:26:00Z"
+      "id": "119",
+      "created_at": "2026-04-29T18:26:00Z",
+      "is_active": true
     },
     {
       "full_name": "Michael Thompson",
@@ -4257,8 +5737,10 @@
       "country": "Etats-Unis",
       "city": "New York",
       "avatar": "https://randomuser.me/api/portraits/men/19.jpg",
-      "id": 120,
-      "created_at": "2026-04-30T21:43:00Z"
+      "id": "120",
+      "created_at": "2026-04-30T21:43:00Z",
+      "is_active": true
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

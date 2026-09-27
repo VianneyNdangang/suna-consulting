@@ -9,42 +9,51 @@
         container: 'h-full bg-(--sidebar)',
         inner: ' divide-transparent',
         body: 'py-0',
-        
       }"
     >
       <template #header>
-        <div class="flex items-center justify-between px-2 py-2">
+        <div class="flex items-center justify-between ">
           <NuxtImg
+          v-if="!open"
             src="/icon.png"
             alt="Súna Consulting - Votre représentant de confiance au Cameroun"
-            width="auto"
-            height="50"
             quality="100"
             format="webp"
-            class="h-8 w-8 object-contain transition-transform group-hover:scale-105 duration-200"
+            class="object-contain transition-transform group-hover:scale-105 duration-200"
+          />
+          <NuxtImg
+            v-else
+            src="/Admin_logo.png"
+            alt="Súna Consulting - Votre représentant de confiance au Cameroun"
+            quality="100"
+            format="webp"
+            class="object-contain transition-transform group-hover:scale-105 duration-200"
           />
         </div>
       </template>
-
+      
       <template #default="{ state }">
+        <!-- <USeparator/> -->
         <UNavigationMenu
           :key="state"
           :items="menus"
           orientation="vertical"
           popover
           :collapsed="!open"
+          color="neutral"
           tooltip
           :delayDuration="3"
           disableHoverTrigger
           :ui="{
-            linkLabel: 'text-gray-200 font-semibold ',
-            linkLeadingIcon: 'text-gray-300 h-6 w-6',
+            linkLabel: 'text-gray-100 ',
+            linkLeadingIcon: 'text-gray-100 size-6 ',
             link: `
-      p-1.5
-      my-2
-      rounded
-      data-[active]:bg-(--secondary)
-    `,
+                p-1.5
+                my-1
+                rounded
+                data-[active]:bg-(--secondary)
+              `,
+            list: 'sidebar-menu',
           }"
         />
       </template>
@@ -60,7 +69,7 @@
             color="neutral"
             variant="ghost"
             square
-            class="w-full data-[state=open]:bg-elevated overflow-hidden"
+            class="w-full data-[state=open]:bg-elevated overflow-hidden text-gray-300"
             :ui="{
               trailingIcon: 'text-dimmed ms-auto',
             }"
@@ -68,7 +77,7 @@
         </UDropdownMenu>
       </template>
     </USidebar>
-    
+
     <div class="flex-1 flex flex-col h-screen overflow-hidden">
       <div
         class="h-(--ui-header-height) shrink-0 flex items-center border-b border-default"
@@ -80,7 +89,6 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script setup lang="ts">
@@ -96,7 +104,6 @@ const user = ref({
   name: "Benjamin Canac",
   label: "Benjamin Canac",
   avatar: {
-    src: "https://github.com/benjamincanac.png",
     alt: "Benjamin Canac",
   },
 });
@@ -107,38 +114,18 @@ const userItems = computed<DropdownMenuItem[][]>(() => [
     { label: "Billing", icon: "i-lucide-credit-card" },
     { label: "Settings", icon: "i-lucide-settings", to: "/settings" },
   ],
-  // [
-  //   {
-  //     label: 'Appearance',
-  //     icon: 'i-lucide-sun-moon',
-  //     children: [
-  //       {
-  //         label: 'Light',
-  //         icon: 'i-lucide-sun',
-  //         type: 'checkbox',
-  //         checked: colorMode.value === 'light',
-  //         onUpdateChecked(checked: boolean) {
-  //           if (checked) colorMode.preference = 'light'
-  //         },
-  //         onSelect(e: Event) {
-  //           e.preventDefault()
-  //         }
-  //       },
-  //       {
-  //         label: 'Dark',
-  //         icon: 'i-lucide-moon',
-  //         type: 'checkbox',
-  //         checked: colorMode.value === 'dark',
-  //         onUpdateChecked(checked: boolean) {
-  //           if (checked) colorMode.preference = 'dark'
-  //         },
-  //         onSelect(e: Event) {
-  //           e.preventDefault()
-  //         }
-  //       }
-  //     ]
-  //   }
-  // ],
-  [{ label: "Log out", icon: "i-lucide-log-out", onSelect: () => authStore.logout() }],
+  [
+    {
+      label: "Log out",
+      icon: "i-lucide-log-out",
+      onSelect: () => authStore.logout(),
+    },
+  ],
 ]);
 </script>
+
+<style>
+.sidebar-menu {
+  --ui-border: var(--sidebar-border);
+}
+</style>
